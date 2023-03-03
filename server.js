@@ -6,7 +6,7 @@ const logger = require("morgan");
 
 require("dotenv").config();
 
-// require('./config/database');
+require('./config/database');
 
 const app = express();
 
@@ -19,37 +19,37 @@ app.use(express.static(path.join(__dirname, "build")));
 // app.use(require('./config/checkToken'));
 app.use(require('./config/checkToken'));
 
-const db = require("./models");
-console.log("DB connection starting");
+// const db = require("./models");
+// console.log("DB connection starting");
 // console.log(db.sequelize)
 
 
 // const db = require("./app/models");
 
-const Role = db.role;
-db.sequelize.sync()
+// const Role = db.role;
+// db.sequelize.sync()
 
 // db.sequelize.sync({force: true}).then(() => {
 //   console.log('Drop and Resync Db');
 //   initial();
 // });
 
-function initial() {
-  Role.create({
-    id: 1,
-    name: "user"
-  });
+// function initial() {
+//   Role.create({
+//     id: 1,
+//     name: "user"
+//   });
  
-  Role.create({
-    id: 2,
-    name: "moderator"
-  });
+//   Role.create({
+//     id: 2,
+//     name: "moderator"
+//   });
  
-  Role.create({
-    id: 3,
-    name: "admin"
-  });
-}
+//   Role.create({
+//     id: 3,
+//     name: "admin"
+//   });
+// }
 
 
 // db.sequelize

@@ -1,3 +1,5 @@
+console.log("models/role.js starting")
+
 module.exports = (sequelize, Sequelize) => {
     const Role = sequelize.define("roles", {
       id: {
@@ -9,5 +11,7 @@ module.exports = (sequelize, Sequelize) => {
       }
     });
   
+
+    console.log("models/role.js ending")
     return Role;
   };

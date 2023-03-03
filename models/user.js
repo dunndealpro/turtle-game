@@ -1,3 +1,5 @@
+console.log("models/user.js file starting")
+
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("users", {
       username: {
@@ -10,6 +12,6 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       }
     });
-  
+    console.log("models/user.js file ending")
     return User;
   };

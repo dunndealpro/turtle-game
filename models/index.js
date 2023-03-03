@@ -10,12 +10,12 @@ const sequelize = new Sequelize(`postgres://my_user:root@127.0.0.1:5432/turtlega
   dialect: 'postgres',
   operatorsAliases: 0,
 
-  pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
+  // pool: {
+  //   max: dbConfig.pool.max,
+  //   min: dbConfig.pool.min,
+  //   acquire: dbConfig.pool.acquire,
+  //   idle: dbConfig.pool.idle
+  // }
 });
 
 const db = {};
@@ -23,7 +23,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+// db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 // console.log("Is this printing? ", db)
 db.user = require("../models/user.js")(sequelize, Sequelize);
 db.role = require("../models/role.js")(sequelize, Sequelize);
@@ -36,9 +36,11 @@ db.role.belongsToMany(db.user, {
 db.user.belongsToMany(db.role, {
   through: "user_roles",
   foreignKey: "userId",
-  otherKey: "roleId"
+  otherKey: "roleId",
 });
 
 db.ROLES = ["user", "admin", "moderator"];
+console.log(db.ROLES)
+console.log("models/index.js file ending")
 
 module.exports = db;

@@ -5,6 +5,8 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 import {useState} from 'react'
 import { getUser } from '../../utilities/users-service';
+import LandingPage from '../LandingPage/LandingPage';
+import NavBar from '../../components/NavBar/NavBar';
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -12,9 +14,16 @@ function App() {
 
   return (
     <main className="App">
-    App!
+    {user ? 
+    <>
+    <NavBar user={user} setUser={setUser}/>
+    <LandingPage />
+
+    </>
+:
     <AuthPage setUser={setUser}/>
-    </main>
+  }
+  </main>
   );
 }
 
