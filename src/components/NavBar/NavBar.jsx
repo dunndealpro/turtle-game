@@ -13,7 +13,7 @@ export default function NavBar({ user, setUser }) {
       setUser(null);
     }
   
-    let title = "Welcome " + user.email + "!"
+    let title = "Welcome " + user.name + "!"
   
     return (
         <div className="fs-5 bg-secondary align-center" >

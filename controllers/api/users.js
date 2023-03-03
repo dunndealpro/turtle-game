@@ -49,7 +49,7 @@ async function create(req, res) {
     console.log("try starting");
 
     user = await User.create({
-      username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
