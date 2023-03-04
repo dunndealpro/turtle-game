@@ -16,17 +16,17 @@ export default function NavBar({ user, setUser }) {
     let title = "Welcome " + user.name + "!"
   
     return (
-        <div className="fs-5 bg-secondary align-center" >
-        <Navbar className="p-2" collapseOnSelect expand="md" id="navbar" sticky="top" style={{ background: 'rgba(0,168,168,1)' }} variant="light">
+        <div className="fs-5" >
+        <Navbar className="p-2" collapseOnSelect expand="md" id="navbar" sticky="top" style={{ background: 'rgba(50,225,75,1)' }} variant="light">
           <Navbar.Brand className=" " href="/">        
             
-    
+    TURTLE
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-2 " />
     
           <Navbar.Collapse className=" " id="basic-navbar-nav " >
-            <Nav variant="pills" className="mx-auto " defaultActiveKey="/">
-            <Nav.Item className=" position-relative center ">
+            <Nav variant="pills" className=" " defaultActiveKey="/">
+            <Nav.Item className=" ">
                 <Nav.Link href="#home">Home</Nav.Link> &nbsp;&nbsp;
               </Nav.Item>
               {/* <Nav.Item className=''>
