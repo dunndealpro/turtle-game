@@ -6,23 +6,28 @@ import Button from 'react-bootstrap/Button';
 export default function KeyCard(props) {
 
     const handleKeyPress = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        if(props.entryCount <6){
         let key = e.target.innerText
+        props.setEntryCount(props.entryCount+1)
         console.log(e.target.innerText)
-        console.log(props.guessInit)
+        console.log(props.currentGuess)
         let idx = props.currentGuess.indexOf('')
-        console.log(props.currentGuess.indexOf(''))
+        console.log(props.guess1)
+        console.log(idx)
         if (idx<5 && idx > -1){
             let temp = props.currentGuess
            temp.splice(idx, 1, key)
            console.log(temp)
            props.setCurrentGuess(temp)
+           console.log(props.currentGuess)
+          props.setGuess1(props.currentGuess)
         }
-        console.log(props.currentGuess)
-       props.setGuess1(props.currentGuess)
         console.log(props.guess1)
-
-        props.compareEntry()
+}else{
+    console.log("no more entries")
+}
+        // props.compareEntry()
     }
 
     return (

@@ -29,6 +29,9 @@ export default function KeyBoardContainer(props) {
                         key={letter.toString()}
                         letter={letter}
                         compareEntry={props.compareEntry}
+                        entryCount={props.entryCount}
+                        setEntryCount={props.setEntryCount}
+                    // guessInit={props.guessInit}
                     />
                 ))}
 
@@ -36,7 +39,7 @@ export default function KeyBoardContainer(props) {
             <div>
                 {midRow.map((letter) => (
                     <KeyCard
-                    currentGuess={props.currentGuess}
+                        currentGuess={props.currentGuess}
                         setCurrentGuess={props.setCurrentGuess}
                         guess1={props.guess1}
                         guessInit={props.guessInit}
@@ -44,6 +47,9 @@ export default function KeyBoardContainer(props) {
                         key={letter.toString()}
                         letter={letter}
                         compareEntry={props.compareEntry}
+                        entryCount={props.entryCount}
+                        setEntryCount={props.setEntryCount}
+                    // guessInit={props.guessInit}
                     />
                 ))}
 
@@ -52,7 +58,7 @@ export default function KeyBoardContainer(props) {
                 <EnterKey />
                 {botRow.map((letter) => (
                     <KeyCard
-                    currentGuess={props.currentGuess}
+                        currentGuess={props.currentGuess}
                         setCurrentGuess={props.setCurrentGuess}
                         guessInit={props.guessInit}
                         guess1={props.guess1}
@@ -60,9 +66,19 @@ export default function KeyBoardContainer(props) {
                         key={letter.toString()}
                         letter={letter}
                         compareEntry={props.compareEntry}
+                        entryCount={props.entryCount}
+                        setEntryCount={props.setEntryCount}
+                    // guessInit={props.guessInit}
                     />
                 ))}
-                <BackKey />
+                <BackKey
+                    entryCount={props.entryCount}
+                    currentGuess={props.currentGuess}
+                    setGuess1={props.setGuess1}
+                    compareEntry={props.compareEntry}
+                    setCurrentGuess={props.setCurrentGuess}
+                    setEntryCount={props.setEntryCount}
+                />
 
             </div>
 
