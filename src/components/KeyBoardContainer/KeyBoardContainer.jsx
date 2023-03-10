@@ -55,7 +55,14 @@ export default function KeyBoardContainer(props) {
 
             </div>
             <div>
-                <EnterKey />
+                <EnterKey 
+                entryCount={props.entryCount}
+                currentGuess={props.currentGuess}
+                setGuess1={props.setGuess1}
+                compareEntry={props.compareEntry}
+                setCurrentGuess={props.setCurrentGuess}
+                setEntryCount={props.setEntryCount}
+                />
                 {botRow.map((letter) => (
                     <KeyCard
                         currentGuess={props.currentGuess}
