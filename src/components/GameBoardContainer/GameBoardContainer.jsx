@@ -35,7 +35,7 @@ export default function GameBoardContainer(props) {
                             <LetterCard
                             key={letter.toString() + '_' + index}
                             letter={letter}
-                            background={props.background}
+                            background={props.guess2bg[index]}
                         />
                         ))}
                     </Row>
@@ -44,7 +44,7 @@ export default function GameBoardContainer(props) {
                             <LetterCard
                             key={letter.toString() + '_' + index}
                             letter={letter}
-                            background={props.background}
+                            background={props.guess3bg[index]}
                         />
                         ))}
                     </Row>
@@ -53,7 +53,7 @@ export default function GameBoardContainer(props) {
                              <LetterCard
                              key={letter.toString() + '_' + index}
                              letter={letter}
-                             background={props.background}
+                             background={props.guess4bg[index]}
                          />
                         ))}
                     </Row>
@@ -62,7 +62,7 @@ export default function GameBoardContainer(props) {
                             <LetterCard
                             key={letter.toString() + '_' + index}
                             letter={letter}
-                            background={props.background}
+                            background={props.guess5bg[index]}
                         />
                         ))}
                     </Row>
@@ -71,7 +71,7 @@ export default function GameBoardContainer(props) {
                             <LetterCard
                             key={letter.toString() + '_' + index}
                             letter={letter}
-                            background={props.background}
+                            background={props.guess6bg[index]}
                         />
                         ))}
                     </Row>

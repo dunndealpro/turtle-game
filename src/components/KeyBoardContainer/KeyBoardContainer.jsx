@@ -25,12 +25,24 @@ export default function KeyBoardContainer(props) {
                         setCurrentGuess={props.setCurrentGuess}
                         guess1={props.guess1}
                         setGuess1={props.setGuess1}
+                        guess2={props.guess2}
+                        setGuess2={props.setGuess2}
+                        guess3={props.guess3}
+                        setGuess3={props.setGuess3}
+                        guess4={props.guess4}
+                        setGuess4={props.setGuess4}
+                        guess5={props.guess5}
+                        setGuess5={props.setGuess5}
+                        guess6={props.guess6}
+                        setGuess6={props.setGuess6}
                         guessInit={props.guessInit}
                         key={letter.toString()}
                         letter={letter}
                         compareEntry={props.compareEntry}
                         entryCount={props.entryCount}
                         setEntryCount={props.setEntryCount}
+                        currentGuessCount={props.currentGuessCount}
+                        setCurrentGuessCount={props.setCurrentGuessCount}
                     // guessInit={props.guessInit}
                     />
                 ))}
@@ -41,27 +53,51 @@ export default function KeyBoardContainer(props) {
                     <KeyCard
                         currentGuess={props.currentGuess}
                         setCurrentGuess={props.setCurrentGuess}
-                        guess1={props.guess1}
                         guessInit={props.guessInit}
+                        guess1={props.guess1}
                         setGuess1={props.setGuess1}
+                        guess2={props.guess2}
+                        setGuess2={props.setGuess2}
+                        guess3={props.guess3}
+                        setGuess3={props.setGuess3}
+                        guess4={props.guess4}
+                        setGuess4={props.setGuess4}
+                        guess5={props.guess5}
+                        setGuess5={props.setGuess5}
+                        guess6={props.guess6}
+                        setGuess6={props.setGuess6}
                         key={letter.toString()}
                         letter={letter}
                         compareEntry={props.compareEntry}
                         entryCount={props.entryCount}
                         setEntryCount={props.setEntryCount}
+                        currentGuessCount={props.currentGuessCount}
+                        setCurrentGuessCount={props.setCurrentGuessCount}
                     // guessInit={props.guessInit}
                     />
                 ))}
 
             </div>
             <div>
-                <EnterKey 
-                entryCount={props.entryCount}
-                currentGuess={props.currentGuess}
-                setGuess1={props.setGuess1}
-                compareEntry={props.compareEntry}
-                setCurrentGuess={props.setCurrentGuess}
-                setEntryCount={props.setEntryCount}
+                <EnterKey
+                    entryCount={props.entryCount}
+                    currentGuess={props.currentGuess}
+                    setGuess1={props.setGuess1}
+                    guess2={props.guess2}
+                    setGuess2={props.setGuess2}
+                    guess3={props.guess3}
+                    setGuess3={props.setGuess3}
+                    guess4={props.guess4}
+                    setGuess4={props.setGuess4}
+                    guess5={props.guess5}
+                    setGuess5={props.setGuess5}
+                    guess6={props.guess6}
+                    setGuess6={props.setGuess6}
+                    compareEntry={props.compareEntry}
+                    setCurrentGuess={props.setCurrentGuess}
+                    setEntryCount={props.setEntryCount}
+                    currentGuessCount={props.currentGuessCount}
+                    setCurrentGuessCount={props.setCurrentGuessCount}
                 />
                 {botRow.map((letter) => (
                     <KeyCard
@@ -70,11 +106,23 @@ export default function KeyBoardContainer(props) {
                         guessInit={props.guessInit}
                         guess1={props.guess1}
                         setGuess1={props.setGuess1}
+                        guess2={props.guess2}
+                        setGuess2={props.setGuess2}
+                        guess3={props.guess3}
+                        setGuess3={props.setGuess3}
+                        guess4={props.guess4}
+                        setGuess4={props.setGuess4}
+                        guess5={props.guess5}
+                        setGuess5={props.setGuess5}
+                        guess6={props.guess6}
+                        setGuess6={props.setGuess6}
                         key={letter.toString()}
                         letter={letter}
                         compareEntry={props.compareEntry}
                         entryCount={props.entryCount}
                         setEntryCount={props.setEntryCount}
+                        currentGuessCount={props.currentGuessCount}
+                        setCurrentGuessCount={props.setCurrentGuessCount}
                     // guessInit={props.guessInit}
                     />
                 ))}
@@ -82,9 +130,21 @@ export default function KeyBoardContainer(props) {
                     entryCount={props.entryCount}
                     currentGuess={props.currentGuess}
                     setGuess1={props.setGuess1}
+                    guess2={props.guess2}
+                    setGuess2={props.setGuess2}
+                    guess3={props.guess3}
+                    setGuess3={props.setGuess3}
+                    guess4={props.guess4}
+                    setGuess4={props.setGuess4}
+                    guess5={props.guess5}
+                    setGuess5={props.setGuess5}
+                    guess6={props.guess6}
+                    setGuess6={props.setGuess6}
                     compareEntry={props.compareEntry}
                     setCurrentGuess={props.setCurrentGuess}
                     setEntryCount={props.setEntryCount}
+                    currentGuessCount={props.currentGuessCount}
+                    setCurrentGuessCount={props.setCurrentGuessCount}
                 />
 
             </div>

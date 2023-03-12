@@ -12,6 +12,7 @@ function App() {
   let isCorrect = "green"
   let inWord = "yellow"
   let notInWord = "gray"
+  let blankEntry = "white"
 
 
   const [user, setUser] = useState(getUser());//1
@@ -23,20 +24,20 @@ function App() {
   const [answer, setAnswer] = useState(['t', 'r', 'e', 'e', 's'])//4
 
   const [currentGuess, setCurrentGuess] = useState(['', '', '', '', ''])//5
-  const [currentGuessCount, setCurrentGuessCount] = useState()//6
+  const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
 
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
-  const [guess1bg, setGuess1bg] = useState([notInWord, notInWord, notInWord, notInWord, notInWord])
+  const [guess1bg, setGuess1bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess2, setGuess2] = useState(['', '', '', '', ''])//8
-  const [guess2bg, setGuess2bg] = useState([notInWord, notInWord, notInWord, notInWord, notInWord])
+  const [guess2bg, setGuess2bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess3, setGuess3] = useState(['', '', '', '', ''])//9
-  const [guess3bg, setGuess3bg] = useState([notInWord, notInWord, notInWord, notInWord, notInWord])
+  const [guess3bg, setGuess3bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess4, setGuess4] = useState(['', '', '', '', ''])//10
-  const [guess4bg, setGuess4bg] = useState([notInWord, notInWord, notInWord, notInWord, notInWord])
+  const [guess4bg, setGuess4bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess5, setGuess5] = useState(['', '', '', '', ''])//11
-  const [guess5bg, setGuess5bg] = useState([notInWord, notInWord, notInWord, notInWord, notInWord])
+  const [guess5bg, setGuess5bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
-  const [guess6bg, setGuess6bg] = useState([notInWord, notInWord, notInWord, notInWord, notInWord])
+  const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
 
   const guessInit = ['', '', '', '', '']
 
@@ -58,22 +59,24 @@ function App() {
 
   // function checkIfLetterGuessed(){
   function compareEntry() {
+    // checkIfWord()
+
     let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
     let tempBG1 = tempBG
     console.log(tempBG)
     for (let i = 0; i < answer.length; i++) {
-      console.log(i, answer[i], guess1[i])
-      if (answer[i] === guess1[i]) {
+      console.log(i, answer[i], currentGuess[i])
+      if (answer[i] === currentGuess[i]) {
         console.log("letter correct  ", tempBG.splice(i, 1, isCorrect))
         tempBG.splice(i, 1, isCorrect)
-      } else if (answer.find(guess => guess === guess1[i])) {
+      } else if (answer.find(guess => guess === currentGuess[i])) {
         //find index of answer
-        console.log("letter in word", guess1[i])
+        console.log("letter in word", currentGuess[i])
         console.log(answer)
-        let indices = answer.map((e, k) => e === guess1[i] ? k : '').filter(String)
+        let indices = answer.map((e, k) => e === currentGuess[i] ? k : '').filter(String)
         let occursMoreThanOnce = false
         indices.every(function (idx) {
-          if (answer[idx] === guess1[idx]) {
+          if (answer[idx] === currentGuess[idx]) {
             return occursMoreThanOnce = true;
           }
         })
@@ -85,39 +88,61 @@ function App() {
         }
         console.log(occursMoreThanOnce)
 
-        if (indices.length === 1 && (answer[indices[0]] === guess1[indices[0]])) {
+        if (indices.length === 1 && (answer[indices[0]] === currentGuess[indices[0]])) {
           tempBG.splice(i, 1, notInWord)
           console.log("turn gray ", tempBG)
         }
-        if (indices.length === 1 && (answer[indices[0]] !== guess1[indices[0]])) {
+        if (indices.length === 1 && (answer[indices[0]] !== currentGuess[indices[0]])) {
           tempBG.splice(i, 1, inWord)
           console.log("turn yellow ", tempBG)
         }
-        if (indices.length === 2 && ((answer[indices[0]] === guess1[indices[0]]) && answer[indices[1]] !== guess1[indices[1]])) {
+        if (indices.length === 2 && ((answer[indices[0]] === currentGuess[indices[0]]) && answer[indices[1]] !== currentGuess[indices[1]])) {
           tempBG.splice(i, 1, inWord)
           console.log("turn yellow ", tempBG)
         }
-        if (indices.length === 2 && ((answer[indices[0]] !== guess1[indices[0]]) && answer[indices[1]] === guess1[indices[1]])) {
+        if (indices.length === 2 && ((answer[indices[0]] !== currentGuess[indices[0]]) && answer[indices[1]] === currentGuess[indices[1]])) {
           tempBG.splice(i, 1, inWord)
           console.log("turn yellow ", tempBG)
         }
         //   answer.reduce(function(a, e, k) {
-        //     if (e === guess1[i])
+        //     if (e ===currentGuess[i])
         //         a.push(k);
         //     return a ;
         // }, []); 
 
         console.log(indices)
       } else {
-        console.log("not in word, turn gray ", guess1[i])
+        console.log("not in word, turn gray ", currentGuess[i])
         tempBG.splice(i, 1, notInWord)
         console.log(tempBG)
       }
 
 
     }
-    setGuess1bg(tempBG1)
-    if (answer.join() === guess1.join()) {
+    // setGuess1bg(tempBG1)
+    console.log("current guess count: ", currentGuessCount)
+    if (currentGuessCount === 1) {
+      setGuess1bg(tempBG)
+    }
+    if (currentGuessCount === 2) {
+      setGuess2bg(tempBG)
+    }
+    if (currentGuessCount === 3) {
+      setGuess3bg(tempBG)
+    }
+    if (currentGuessCount === 4) {
+      setGuess4bg(tempBG)
+    }
+    if (currentGuessCount === 5) {
+      setGuess5bg(tempBG)
+    }
+    if (currentGuessCount === 6) {
+      setGuess6bg(tempBG)
+    }
+
+
+
+    if (answer.join() === currentGuess.join()) {
       setCompare(true)
       console.log("join compare true")
     } else {
@@ -127,7 +152,9 @@ function App() {
     }
 
     console.log(compare)
-    checkIfWord()
+    setCurrentGuessCount(currentGuessCount + 1)
+    setEntryCount(1)
+    setCurrentGuess(['', '', '', '', ''])
   }
 
   // function compareEntry() {
@@ -186,7 +213,7 @@ function App() {
 
   // }
 
-  console.log("BG: ", guess1bg)
+  // console.log("BG: ", guess1bg)
   console.log(compare)
   if (compare) {
     console.log("True")
@@ -203,7 +230,7 @@ function App() {
 
   useEffect(() => {
     console.log("UseEffect Engaged")
-    compareEntry()
+    // compareEntry()
   }, [compare])
 
   return (
@@ -232,6 +259,13 @@ function App() {
             entryCount={entryCount}
             // background = {background}
             guess1bg={guess1bg}
+            guess2bg={guess2bg}
+            guess3bg={guess3bg}
+            guess4bg={guess4bg}
+            guess5bg={guess5bg}
+            guess6bg={guess6bg}
+            currentGuessCount={currentGuessCount}
+            setCurrentGuessCount={setCurrentGuessCount}
 
           />
 
