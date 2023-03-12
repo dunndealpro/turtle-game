@@ -56,6 +56,7 @@ export default function LandingPage(props) {
         entryCount={props.entryCount}
         setEntryCount={props.setEntryCount}
         background = {props.background}
+        guess1bg={props.guess1bg}
 
 
       />

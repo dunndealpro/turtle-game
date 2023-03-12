@@ -5,7 +5,7 @@ export default function BackKey(props){
     const handleKeyPress = (e) => {
         if(props.entryCount > 1){
         console.log("back key clicked")
-        props.compareEntry()
+        // props.compareEntry()
         // props.setCurrentGuess(["b","u","n","c","h"])
         props.setEntryCount(props.entryCount-1)
         let temp = props.currentGuess

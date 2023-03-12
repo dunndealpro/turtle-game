@@ -26,7 +26,7 @@ export default function GameBoardContainer(props) {
                             <LetterCard
                                 key={letter.toString() + '_' + index}
                                 letter={letter}
-                                background={props.background}
+                                background={props.guess1bg[index]}
                             />
                         ))}
                     </Row>
