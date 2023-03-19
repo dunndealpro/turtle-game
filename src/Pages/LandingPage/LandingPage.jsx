@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 
 export default function LandingPage(props) {
-  
+  console.log("landing page! ", { props }) 
 
   // const guessInit = ['', '', '', '', '']
 
@@ -31,10 +31,7 @@ export default function LandingPage(props) {
   //   }
 
   // }
-
-
-
-  console.log("landing page! ", { props })
+ 
 
   return (
     <>

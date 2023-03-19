@@ -11,7 +11,7 @@ export default function KeyBoardContainer(props) {
     const midRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
     const botRow = ["z", "x", "c", "v", "b", "n", "m"]
 
-    console.log(props.guess1)
+    // console.log(props.guess1)
 
 
     return (

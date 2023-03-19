@@ -28,10 +28,12 @@ function App() {
   const [currentGuess, setCurrentGuess] = useState(['', '', '', '', ''])//5
   const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
   const [isWord, setIsWord] = useState(false)
+  // const [isUrbanWord, setIsUrbanWord] = useState(false)
+  const [randomUrbanWord, setRandomUrbanWord] = useState('')
 
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
   const [guess1bg, setGuess1bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
-  
+
   const [guess2, setGuess2] = useState(['', '', '', '', ''])//8
   const [guess2bg, setGuess2bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess3, setGuess3] = useState(['', '', '', '', ''])//9
@@ -45,7 +47,9 @@ function App() {
   const [urbandDef, setUrbanDef] = useState()
   const [modalShow, setModalShow] = useState(false);
 
-  function onHide(){
+  let isUrbanWord = false
+
+  function onHide() {
     setModalShow(false)
     setCompare(false)
     setGuess1(['', '', '', '', ''])
@@ -65,27 +69,73 @@ function App() {
     setCurrentGuessCount(1)
     setEntryCount(1)
     setIsWord(false)
+    // setIsUrbanWord(false)
+    getNewAnswer()
 
   }
 
-const getNewAnswer = async () => {
-  const randomWord = await fetch(`https://api.urbandictionary.com/v0/random`).then(res => res.json());
-  console.log(randomWord)
-  let words = randomWord.list
-  console.log(words)
-  let newAnswer = false
-
   
 
-  words.forEach((word)=>{
-    if(word.word.length === 5){
-      console.log("YES")
-      newAnswer=true
-    }
-  })
- 
+  const getNewAnswer = async () => {
+    const randomWord = await fetch(`https://api.urbandictionary.com/v0/random`).then(res => res.json());
+    console.log(randomWord)
+    let words = randomWord.list
+    console.log(words)
+    let isFiveLetters = false
+    let newAnswer
 
-}
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].word.length === 5) {
+        console.log("YES")
+        newAnswer = words[i].word.toLowerCase()
+        checkIfUrbanWord(newAnswer)
+        if (isUrbanWord) {
+          newAnswer = newAnswer.split("")
+          console.log(newAnswer)
+          isFiveLetters = true
+          break
+        }
+      }
+      
+    }
+    // words.forEach((word) => {
+    //   if (word.word.length === 5) {
+    //     console.log("YES")
+    //     newAnswer = word.word.toLowerCase()
+    //     // setRandomUrbanWord(newAnswer)
+    //     checkIfUrbanWord(newAnswer)
+    //     // if (isUrbanWord) {
+    //       // if (isUrbanWord){
+    //       newAnswer = newAnswer.split("")
+    //       console.log(newAnswer)
+    //       isFiveLetters = true}
+    //     // }
+    //   // }
+    // })
+
+    if (!isUrbanWord) {
+      getNewAnswer()
+    }
+  }
+
+  const checkIfUrbanWord = async (newAnswer) => {
+    let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${newAnswer}`
+    console.log(searchUrl)
+    try {
+      const response = await fetch(searchUrl).then(res => res.json());
+      console.log("URBAN ", response)
+      if (response[0].word) {
+        console.log("OH URBAN YEA")
+        // setIsUrbanWord(true)
+        isUrbanWord = true
+        console.log(response[0].word)
+        setAnswer(response[0].word.split(""))
+        
+      }
+    } catch (error) {
+      console.log("Error: ", error)
+    }
+  }
 
   const getUrbanDef = async () => {
     let urbanSearchUrl = `https://api.urbandictionary.com/v0/define?term=${currentGuess.join('')}`
@@ -97,7 +147,6 @@ const getNewAnswer = async () => {
     } catch (error) {
       console.log("Error: ", error)
     }
-
   }
 
   // const getRandomWord = async = ()=>{
@@ -113,7 +162,7 @@ const getNewAnswer = async () => {
       if (response[0].word) {
         console.log("OH YEA")
         compareEntry()
-        
+
         // setIsWord(true)
       }
 
@@ -282,12 +331,12 @@ const getNewAnswer = async () => {
   // }
 
   // console.log("BG: ", guess1bg)
-  console.log(compare)
-  if (compare) {
-    console.log("True")
-  } else {
-    console.log("False")
-  }
+  // console.log(compare)
+  // if (compare) {
+  // console.log("True")
+  // } else {
+  console.log("False")
+  // }
 
 
   // useEffect(function () {
@@ -298,7 +347,7 @@ const getNewAnswer = async () => {
 
   useEffect(() => {
     console.log("UseEffect Engaged")
-    getNewAnswer()
+    // getNewAnswer()
     // compareEntry()
   }, [compare])
 
@@ -338,15 +387,16 @@ const getNewAnswer = async () => {
             checkIfWord={checkIfWord}
             isWord={isWord}
             setIsWord={setIsWord}
-            
-            
-            />
+
+
+
+          />
           <WinModal
             show={modalShow}
             onHide={onHide}
-            urbanDef = {urbandDef}
+            urbanDef={urbandDef}
             answer={answer}
-            />
+          />
 
         </>
         :
