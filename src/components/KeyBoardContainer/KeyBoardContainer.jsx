@@ -98,6 +98,9 @@ export default function KeyBoardContainer(props) {
                     setEntryCount={props.setEntryCount}
                     currentGuessCount={props.currentGuessCount}
                     setCurrentGuessCount={props.setCurrentGuessCount}
+                    checkIfWord = {props.checkIfWord}
+                    isWord={props.isWord}
+                    setIsWord={props.setIsWord}
                 />
                 {botRow.map((letter) => (
                     <KeyCard

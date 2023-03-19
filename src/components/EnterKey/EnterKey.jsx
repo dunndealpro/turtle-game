@@ -5,7 +5,9 @@ export default function EnterKey(props){
     const handleKeyPress = () => {
         if(props.entryCount === 6){
         console.log("enter key clicked")
-        props.compareEntry()
+    props.checkIfWord()
+        // if(props.isWord){
+        // props.compareEntry()}
         // props.setCurrentGuess(["b","u","n","c","h"])
     //     props.setEntryCount(props.entryCount-1)
     //     let temp = props.currentGuess

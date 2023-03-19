@@ -7,12 +7,14 @@ import { useEffect, useState } from 'react'
 import { getUser } from '../../utilities/users-service';
 import LandingPage from '../LandingPage/LandingPage';
 import NavBar from '../../components/NavBar/NavBar';
+import WinModal from '../../components/WinModal/WinModal';
 
 function App() {
   let isCorrect = "green"
   let inWord = "yellow"
   let notInWord = "gray"
   let blankEntry = "white"
+  const guessInit = ['', '', '', '', '']
 
 
   const [user, setUser] = useState(getUser());//1
@@ -25,9 +27,11 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState(['', '', '', '', ''])//5
   const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
+  const [isWord, setIsWord] = useState(false)
 
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
   const [guess1bg, setGuess1bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+  
   const [guess2, setGuess2] = useState(['', '', '', '', ''])//8
   const [guess2bg, setGuess2bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess3, setGuess3] = useState(['', '', '', '', ''])//9
@@ -38,18 +42,79 @@ function App() {
   const [guess5bg, setGuess5bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
   const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+  const [urbandDef, setUrbanDef] = useState()
+  const [modalShow, setModalShow] = useState(false);
 
-  const guessInit = ['', '', '', '', '']
+  function onHide(){
+    setModalShow(false)
+    setCompare(false)
+    setGuess1(['', '', '', '', ''])
+    setGuess1bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess2(['', '', '', '', ''])
+    setGuess2bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess3(['', '', '', '', ''])
+    setGuess3bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess4(['', '', '', '', ''])
+    setGuess4bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess5(['', '', '', '', ''])
+    setGuess5bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess6(['', '', '', '', ''])
+    setGuess6bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setCurrentGuess(['', '', '', '', ''])
+    setUrbanDef()
+    setCurrentGuessCount(1)
+    setEntryCount(1)
+    setIsWord(false)
 
+  }
+
+const getNewAnswer = async () => {
+  const randomWord = await fetch(`https://api.urbandictionary.com/v0/random`).then(res => res.json());
+  console.log(randomWord)
+  let words = randomWord.list
+  console.log(words)
+  let newAnswer = false
+
+  
+
+  words.forEach((word)=>{
+    if(word.word.length === 5){
+      console.log("YES")
+      newAnswer=true
+    }
+  })
+ 
+
+}
+
+  const getUrbanDef = async () => {
+    let urbanSearchUrl = `https://api.urbandictionary.com/v0/define?term=${currentGuess.join('')}`
+    try {
+      const response = await fetch(urbanSearchUrl).then(res => res.json());
+      setUrbanDef(response)
+      let rndInt = Math.floor(Math.random() * 10) + 1
+      console.log(response.list[rndInt].definition)
+    } catch (error) {
+      console.log("Error: ", error)
+    }
+
+  }
+
+  // const getRandomWord = async = ()=>{
+  //   let randomWordUrl = ''
+  // }
 
   const checkIfWord = async () => {
-    let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${guess1.join('')}`
+    let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${currentGuess.join('')}`
     console.log(searchUrl)
     try {
       const response = await fetch(searchUrl).then(res => res.json());
       console.log(response)
       if (response[0].word) {
         console.log("OH YEA")
+        compareEntry()
+        
+        // setIsWord(true)
       }
 
     } catch (error) {
@@ -59,7 +124,7 @@ function App() {
 
   // function checkIfLetterGuessed(){
   function compareEntry() {
-    // checkIfWord()
+
 
     let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
     let tempBG1 = tempBG
@@ -145,6 +210,8 @@ function App() {
     if (answer.join() === currentGuess.join()) {
       setCompare(true)
       console.log("join compare true")
+      getUrbanDef()
+      setModalShow(true)
     } else {
       console.log("join compare false")
 
@@ -155,6 +222,7 @@ function App() {
     setCurrentGuessCount(currentGuessCount + 1)
     setEntryCount(1)
     setCurrentGuess(['', '', '', '', ''])
+    setIsWord(false)
   }
 
   // function compareEntry() {
@@ -230,6 +298,7 @@ function App() {
 
   useEffect(() => {
     console.log("UseEffect Engaged")
+    getNewAnswer()
     // compareEntry()
   }, [compare])
 
@@ -266,8 +335,18 @@ function App() {
             guess6bg={guess6bg}
             currentGuessCount={currentGuessCount}
             setCurrentGuessCount={setCurrentGuessCount}
-
-          />
+            checkIfWord={checkIfWord}
+            isWord={isWord}
+            setIsWord={setIsWord}
+            
+            
+            />
+          <WinModal
+            show={modalShow}
+            onHide={onHide}
+            urbanDef = {urbandDef}
+            answer={answer}
+            />
 
         </>
         :

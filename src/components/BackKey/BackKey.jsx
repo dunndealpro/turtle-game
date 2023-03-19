@@ -13,7 +13,7 @@ export default function BackKey(props){
         temp.splice((props.entryCount-2), 1, '')
         props.setCurrentGuess(temp)
         console.log(props.currentGuess)
-       props.setGuess1(props.currentGuess)
+    //    props.setGuess1(props.currentGuess)
        }
     }
 

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 
 export default function LandingPage(props) {
+  
 
   // const guessInit = ['', '', '', '', '']
 
@@ -64,6 +65,10 @@ export default function LandingPage(props) {
         guess6bg={props.guess6bg}
         currentGuessCount={props.currentGuessCount}
         setCurrentGuessCount={props.setCurrentGuessCount}
+        checkIfWord = {props.checkIfWord}
+        isWord={props.isWord}
+        setIsWord={props.setIsWord}
+
 
 
       />
@@ -104,6 +109,9 @@ export default function LandingPage(props) {
         setEntryCount={props.setEntryCount}
         currentGuessCount={props.currentGuessCount}
         setCurrentGuessCount={props.setCurrentGuessCount}
+        checkIfWord = {props.checkIfWord}
+        isWord={props.isWord}
+        setIsWord={props.setIsWord}
       />
 
 
