@@ -10,14 +10,8 @@ export default function KeyBoardContainer(props) {
     const topRow = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
     const midRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
     const botRow = ["z", "x", "c", "v", "b", "n", "m"]
-
-    // console.log(props.guess1)
-
-
     return (
         <>
-
-
             <div>
                 {topRow.map((letter) => (
                     <KeyCard

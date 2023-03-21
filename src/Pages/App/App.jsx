@@ -17,7 +17,6 @@ function App() {
   let blankEntry = "white"
   const guessInit = ['', '', '', '', '']
 
-
   const [user, setUser] = useState(getUser());//1
   const [entryCount, setEntryCount] = useState(1)//2
 
@@ -51,68 +50,6 @@ function App() {
 
   let isUrbanWord = false
 
-  // useEffect(()=>{
-  //   document.addEventListener('keypress', detectKeyPress)
-  // },[])
-
-  // const detectKeyPress = (e)=>{
-  //   console.log("Yo dawg, you pressed ",  e.key)
-  //   console.log("ENTRY COUNT: ", entryCount)
-
-  //   if (entryCount < 6) {
-  //     console.log("ENTRY COUNT: ", entryCount)
-  //     let key = e.key
-  //     setEntryCount(entryCount + 1)
-  //     console.log("ENTRY COUNT: ", entryCount)
-
-  //     console.log("Current Guess #: ", currentGuessCount)
-  //     console.log("keyboard key pressed: ", e.key)
-  //     console.log("Current guess state: ", currentGuess)
-  //     let idx = currentGuess.indexOf('')
-  //     // console.log(guess1)
-  //     console.log("index of the current guess: ", idx)  
-  //     if (idx < 5 && idx > -1) {
-  //         let temp = currentGuess
-  //         console.log(temp)
-  //         temp.splice(idx, 1, key)
-  //         console.log("Temp entry array: ", temp)
-  //         setCurrentGuess(temp)
-  //         console.log("Current guess state: ", currentGuess)
-  //         if (currentGuessCount === 1) {
-  //             setGuess1(currentGuess)
-  //             console.log(guess1)
-  //         }
-  //         if (currentGuessCount === 2) {
-  //             setGuess2(currentGuess)
-  //             console.log(guess2)
-  //         }
-  //         if (currentGuessCount === 3) {
-  //             setGuess3(currentGuess)
-  //             console.log(guess3)
-  //         }
-  //         if (currentGuessCount === 4) {
-  //             setGuess4(currentGuess)
-  //             console.log(guess4)
-  //         }
-  //         if (currentGuessCount === 5) {
-  //             setGuess5(currentGuess)
-  //             console.log(guess5)
-  //         }
-  //         if (currentGuessCount === 6) {
-  //             setGuess6(currentGuess)
-  //             console.log(guess6)
-  //         }
-  //     }
-
-  // } else {
-  //     console.log("no more entries")
-  // }
-
-
-  // }
-
-  // console.log("ENTRY COUNT: ", entryCount)
-
   function onHide() {
     setWinModalShow(false)
     setLoseModalShow(false)
@@ -135,9 +72,7 @@ function App() {
     console.log("Im hiding up in this ish")
     setEntryCount(1)
     setIsWord(false)
-    // setIsUrbanWord(false)
     getNewAnswer()
-
   }
 
   const getNewAnswer = async () => {
@@ -160,22 +95,7 @@ function App() {
           break
         }
       }
-
     }
-    // words.forEach((word) => {
-    //   if (word.word.length === 5) {
-    //     console.log("YES")
-    //     newAnswer = word.word.toLowerCase()
-    //     // setRandomUrbanWord(newAnswer)
-    //     checkIfUrbanWord(newAnswer)
-    //     // if (isUrbanWord) {
-    //       // if (isUrbanWord){
-    //       newAnswer = newAnswer.split("")
-    //       console.log(newAnswer)
-    //       isFiveLetters = true}
-    //     // }
-    //   // }
-    // })
 
     if (!isUrbanWord) {
       getNewAnswer()
@@ -190,7 +110,6 @@ function App() {
       console.log("URBAN ", response)
       if (response[0].word) {
         console.log("OH URBAN YEA")
-        // setIsUrbanWord(true)
         isUrbanWord = true
         console.log(response[0].word)
         setAnswer(response[0].word.split(""))
@@ -213,10 +132,6 @@ function App() {
     }
   }
 
-  // const getRandomWord = async = ()=>{
-  //   let randomWordUrl = ''
-  // }
-
   const checkIfWord = async () => {
     let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${currentGuess.join('')}`
     console.log(searchUrl)
@@ -226,8 +141,6 @@ function App() {
       if (response[0].word) {
         console.log("OH YEA")
         compareEntry()
-
-        // setIsWord(true)
       }
 
     } catch (error) {
@@ -235,10 +148,7 @@ function App() {
     }
   }
 
-  // function checkIfLetterGuessed(){
   function compareEntry() {
-
-
     let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
     let tempBG1 = tempBG
     console.log(tempBG)
@@ -282,22 +192,14 @@ function App() {
           tempBG.splice(i, 1, inWord)
           console.log("turn yellow ", tempBG)
         }
-        //   answer.reduce(function(a, e, k) {
-        //     if (e ===currentGuess[i])
-        //         a.push(k);
-        //     return a ;
-        // }, []); 
-
         console.log(indices)
       } else {
         console.log("not in word, turn gray ", currentGuess[i])
         tempBG.splice(i, 1, notInWord)
         console.log(tempBG)
       }
-
-
     }
-    // setGuess1bg(tempBG1)
+
     console.log("current guess count: ", currentGuessCount)
     if (currentGuessCount === 1) {
       setGuess1bg(tempBG)
@@ -318,8 +220,6 @@ function App() {
       setGuess6bg(tempBG)
     }
 
-
-
     if (answer.join() === currentGuess.join()) {
       setCompare(true)
       console.log("join compare true")
@@ -332,7 +232,6 @@ function App() {
 
     else {
       console.log("join compare false")
-
       setCompare(false)
     }
 
@@ -343,94 +242,16 @@ function App() {
     setIsWord(false)
   }
 
-  // function compareEntry() {
-  //   // checkIfLetterGuessed()
-  //   checkIfWord()
-
-  //   let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
-  //   console.log(
-  //     "answer: ", answer,
-  //     " guess: ", guess1,
-  //     " BACKGROUND: ", guess1bg,
-  //     " tempBG: ", tempBG
-  //   )
-
-  //   // for (let i = 0; i < 5; i++) {
-  //   //   if (answer[i] == guess1[i]) {
-  //   //     // console.log(i, answer[i], guess1[i])
-  //   //     setCompare(true)
-  //   //   } else { setCompare(false) }
-  //   // }
-
-  //   // let tempBG1 = tempBG
-  //   for (let i = 0; i < 5; i++) {
-  //     console.log(i, answer[i], guess1[i])
-  //     if (answer[i] == guess1[i]) {
-  //       console.log("letter correct")
-  //       tempBG.splice(i, 1, isCorrect)
-  //       console.log(tempBG)
-  //       // console.log(tempBG1)
-
-  //     } else if (answer.find(guess => guess === guess1[i])) {
-  //       console.log("letter in word")
-  //       tempBG.splice(i, 1, inWord)
-  //       console.log(tempBG)
-  //       // console.log(tempBG1)
-
-  //     } else {
-  //       console.log("not in word")
-  //       tempBG.splice(i, 1, notInWord)
-  //       console.log(tempBG)
-  //       // console.log(tempBG1)
-  //     }
-  //   }
-  //   console.log("tempBG: ", tempBG)
-  //   setGuess1bg(tempBG)
-  //   if (answer.join() === guess1.join()) {
-  //     setCompare(true)
-  //     console.log("join compare true")
-  //   } else {
-  //     console.log("join compare false")
-
-  //     setCompare(false)
-  //   }
-
-  //   console.log(compare)
-
-  // }
-
-  // console.log("BG: ", guess1bg)
-  // console.log(compare)
-  // if (compare) {
-  // console.log("True")
-  // } else {
   console.log("False")
-  // }
-
-
-  // useEffect(function () {
-  //   console.log("UE HUH")
-  //   // compareEntry()
-  //   console.log("Entry count: ", entryCount)
-  // }, [entryCount]);
 
   useEffect(() => {
     console.log("UseEffect Engaged")
-    // document.addEventListener('keydown', detectKeyPress)
-    // getNewAnswer()
-    // compareEntry()
   }, [compare])
-
- 
-
-
-
 
   return (
     <main className="App">
       {user ?
         <>
-        
           <NavBar user={user} setUser={setUser} />
           <LandingPage
             currentGuess={currentGuess}
@@ -451,7 +272,6 @@ function App() {
             guessInit={guessInit}
             setEntryCount={setEntryCount}
             entryCount={entryCount}
-            // background = {background}
             guess1bg={guess1bg}
             guess2bg={guess2bg}
             guess3bg={guess3bg}
@@ -470,7 +290,6 @@ function App() {
             urbanDef={urbandDef}
             answer={answer}
           />
-
           <LoseModal
             show={loseModalShow}
             onHide={onHide}
@@ -478,13 +297,10 @@ function App() {
             answer={answer}
             guess6={guess6}
           />
-
         </>
         :
         <AuthPage setUser={setUser} />
       }
-
-
     </main>
   );
 }

@@ -7,15 +7,7 @@ import { useState } from "react";
 
 export default function GameBoardContainer(props) {
 
-    //     const [guess1, setGuess1] = useState(['', '', '', '', ''])
-    //   const [guess2, setGuess2] = useState(['', '', '', '', ''])
-    //   const [guess3, setGuess3] = useState(['', '', '', '', ''])
-    //   const [guess4, setGuess4] = useState(['', '', '', '', ''])
-    //   const [guess5, setGuess5] = useState(['', '', '', '', ''])
-    //   const [guess6, setGuess6] = useState(['', '', '', '', ''])
-
-
-    console.log("huh ")
+    console.log("Gameboard Container")
 
     return (
         <>

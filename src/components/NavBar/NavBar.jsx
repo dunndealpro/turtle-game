@@ -28,13 +28,7 @@ export default function NavBar({ user, setUser }) {
             <Nav variant="pills" className=" " defaultActiveKey="/">
             <Nav.Item className=" ">
                 <Nav.Link href="#home">Home</Nav.Link> &nbsp;&nbsp;
-              </Nav.Item>
-              {/* <Nav.Item className=''>
-                <Nav.Link href="#mywatch">myWatch</Nav.Link> &nbsp;&nbsp;
-              </Nav.Item>
-              <Nav.Item className=''>
-                <Nav.Link href="#search">Search</Nav.Link>&nbsp;&nbsp;
-              </Nav.Item> */}
+              </Nav.Item>            
             <NavDropdown className="position-absolute end-0 me-3" title={title} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={handleLogOut} href="">Logout</NavDropdown.Item>
             </NavDropdown>
