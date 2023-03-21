@@ -8,6 +8,7 @@ import { getUser } from '../../utilities/users-service';
 import LandingPage from '../LandingPage/LandingPage';
 import NavBar from '../../components/NavBar/NavBar';
 import WinModal from '../../components/WinModal/WinModal';
+import LoseModal from '../../components/LoseModal/LoseModal';
 
 function App() {
   let isCorrect = "green"
@@ -45,12 +46,76 @@ function App() {
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
   const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [urbandDef, setUrbanDef] = useState()
-  const [modalShow, setModalShow] = useState(false);
+  const [winModalShow, setWinModalShow] = useState(false);
+  const [loseModalShow, setLoseModalShow] = useState(false);
 
   let isUrbanWord = false
 
+  // useEffect(()=>{
+  //   document.addEventListener('keypress', detectKeyPress)
+  // },[])
+
+  // const detectKeyPress = (e)=>{
+  //   console.log("Yo dawg, you pressed ",  e.key)
+  //   console.log("ENTRY COUNT: ", entryCount)
+
+  //   if (entryCount < 6) {
+  //     console.log("ENTRY COUNT: ", entryCount)
+  //     let key = e.key
+  //     setEntryCount(entryCount + 1)
+  //     console.log("ENTRY COUNT: ", entryCount)
+
+  //     console.log("Current Guess #: ", currentGuessCount)
+  //     console.log("keyboard key pressed: ", e.key)
+  //     console.log("Current guess state: ", currentGuess)
+  //     let idx = currentGuess.indexOf('')
+  //     // console.log(guess1)
+  //     console.log("index of the current guess: ", idx)  
+  //     if (idx < 5 && idx > -1) {
+  //         let temp = currentGuess
+  //         console.log(temp)
+  //         temp.splice(idx, 1, key)
+  //         console.log("Temp entry array: ", temp)
+  //         setCurrentGuess(temp)
+  //         console.log("Current guess state: ", currentGuess)
+  //         if (currentGuessCount === 1) {
+  //             setGuess1(currentGuess)
+  //             console.log(guess1)
+  //         }
+  //         if (currentGuessCount === 2) {
+  //             setGuess2(currentGuess)
+  //             console.log(guess2)
+  //         }
+  //         if (currentGuessCount === 3) {
+  //             setGuess3(currentGuess)
+  //             console.log(guess3)
+  //         }
+  //         if (currentGuessCount === 4) {
+  //             setGuess4(currentGuess)
+  //             console.log(guess4)
+  //         }
+  //         if (currentGuessCount === 5) {
+  //             setGuess5(currentGuess)
+  //             console.log(guess5)
+  //         }
+  //         if (currentGuessCount === 6) {
+  //             setGuess6(currentGuess)
+  //             console.log(guess6)
+  //         }
+  //     }
+
+  // } else {
+  //     console.log("no more entries")
+  // }
+
+
+  // }
+
+  // console.log("ENTRY COUNT: ", entryCount)
+
   function onHide() {
-    setModalShow(false)
+    setWinModalShow(false)
+    setLoseModalShow(false)
     setCompare(false)
     setGuess1(['', '', '', '', ''])
     setGuess1bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
@@ -67,14 +132,13 @@ function App() {
     setCurrentGuess(['', '', '', '', ''])
     setUrbanDef()
     setCurrentGuessCount(1)
+    console.log("Im hiding up in this ish")
     setEntryCount(1)
     setIsWord(false)
     // setIsUrbanWord(false)
     getNewAnswer()
 
   }
-
-  
 
   const getNewAnswer = async () => {
     const randomWord = await fetch(`https://api.urbandictionary.com/v0/random`).then(res => res.json());
@@ -96,7 +160,7 @@ function App() {
           break
         }
       }
-      
+
     }
     // words.forEach((word) => {
     //   if (word.word.length === 5) {
@@ -130,7 +194,7 @@ function App() {
         isUrbanWord = true
         console.log(response[0].word)
         setAnswer(response[0].word.split(""))
-        
+
       }
     } catch (error) {
       console.log("Error: ", error)
@@ -260,8 +324,13 @@ function App() {
       setCompare(true)
       console.log("join compare true")
       getUrbanDef()
-      setModalShow(true)
-    } else {
+      setWinModalShow(true)
+    } else if (currentGuessCount === 6) {
+      setLoseModalShow(true)
+      getUrbanDef()
+    }
+
+    else {
       console.log("join compare false")
 
       setCompare(false)
@@ -347,14 +416,21 @@ function App() {
 
   useEffect(() => {
     console.log("UseEffect Engaged")
+    // document.addEventListener('keydown', detectKeyPress)
     // getNewAnswer()
     // compareEntry()
   }, [compare])
+
+ 
+
+
+
 
   return (
     <main className="App">
       {user ?
         <>
+        
           <NavBar user={user} setUser={setUser} />
           <LandingPage
             currentGuess={currentGuess}
@@ -387,21 +463,28 @@ function App() {
             checkIfWord={checkIfWord}
             isWord={isWord}
             setIsWord={setIsWord}
-
-
-
           />
           <WinModal
-            show={modalShow}
+            show={winModalShow}
             onHide={onHide}
             urbanDef={urbandDef}
             answer={answer}
+          />
+
+          <LoseModal
+            show={loseModalShow}
+            onHide={onHide}
+            urbanDef={urbandDef}
+            answer={answer}
+            guess6={guess6}
           />
 
         </>
         :
         <AuthPage setUser={setUser} />
       }
+
+
     </main>
   );
 }
