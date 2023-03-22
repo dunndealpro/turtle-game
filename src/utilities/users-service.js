@@ -12,6 +12,7 @@ export async function signUp(userData) {
   }
 
   export function getToken() {
+    console.log("GET TOKEN>><<??")
     // getItem returns null if there's no string
     const token = localStorage.getItem('token');
     if (!token) return null;

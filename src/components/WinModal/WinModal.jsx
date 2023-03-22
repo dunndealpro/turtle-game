@@ -5,8 +5,10 @@ import Button from 'react-bootstrap/Button';
 export default function WinModal(props) {
     console.log(props.urbanDef)
     let def
-    let rndInt = Math.floor(Math.random() * 10) + 1
+    
     if (props.urbanDef) {
+        let max = props.urbanDef.list.length
+        let rndInt = Math.floor(Math.random() * max) + 1
         def = props.urbanDef.list[rndInt].definition
     }
 
@@ -19,7 +21,7 @@ export default function WinModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Player is a Winner!
+                    {props.user.name} is a Winner!
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">

@@ -2,17 +2,12 @@ import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export default function LoseModal(props) {
-    console.log(props.urbanDef)
-    let def
-    if (props.urbanDef) {
-        let max = props.urbanDef.list.length
-        let rndInt = Math.floor(Math.random() * max) + 1
-        def = props.urbanDef.list[rndInt].definition
-    }
+export default function WelcomeModal(props){
+    console.log("Welcome Modal!")
 
-    return (
-        <Modal
+    return(
+        <>
+         <Modal
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
@@ -20,12 +15,14 @@ export default function LoseModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                {props.user.name}is a Loser!
+                    Welcome {props.user.name}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
 
-                Really, <span className="strong">{props.guess6}</span>?  Well, since you are the loser of the game, here is a definition of the correct word.  Have fun figuring out what it is/  DEF:  {def}
+                {props.answer}:  {def}
+
+                <Button onClick={createNewGame}>Click to Play!</Button>
             </Modal.Body>
             <Modal.Footer>
                 <Button
@@ -33,6 +30,6 @@ export default function LoseModal(props) {
                     onClick={props.onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
-
+        </>
     )
 }

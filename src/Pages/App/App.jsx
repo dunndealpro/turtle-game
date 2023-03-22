@@ -129,6 +129,7 @@ function App() {
       console.log(response.list[rndInt].definition)
     } catch (error) {
       console.log("Error: ", error)
+      
     }
   }
 
@@ -140,6 +141,7 @@ function App() {
       console.log(response)
       if (response[0].word) {
         console.log("OH YEA")
+        
         compareEntry()
       }
 
@@ -283,14 +285,17 @@ function App() {
             checkIfWord={checkIfWord}
             isWord={isWord}
             setIsWord={setIsWord}
+            user={user}
           />
           <WinModal
+          user={user}
             show={winModalShow}
             onHide={onHide}
             urbanDef={urbandDef}
             answer={answer}
           />
           <LoseModal
+          user={user}
             show={loseModalShow}
             onHide={onHide}
             urbanDef={urbandDef}

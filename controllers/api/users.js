@@ -37,12 +37,6 @@ async function login(req, res) {
 
 async function create(req, res) {
   console.log("Create starting");
-  // const user = await User.findOne({
-  //   where: {
-  //     username: req.body.username,
-  //   },
-  // });
-  // if (user) throw new Error();
   try {
     // Add the user to the database
     // const user = await User.create(req.body);
@@ -53,30 +47,7 @@ async function create(req, res) {
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
-    // .then(user => {
-    //   if (req.body.roles) {
-    //     Role.findAll({
-    //       where: {
-    //         name: {
-    //           [Op.or]: req.body.roles
-    //         }
-    //       }
-    //     }).then(roles => {
-    //       user.setRoles(roles).then(() => {
-    //         res.send();
-    //       });
-    //     });
-    //   } else {
-    //     // user role = 1
-    //     user.setRoles([1]).then(() => {
-    //       res.send();
-    //     });
-    //   }
-    // })
-    // .catch(err => {
-    //   res.status(500).send({ message: err.message });
-    // });
-    console.log("UserName: ", user.username);
+   
     const token = createJWT(user);
     console.log("creating a token perhaps?");
     console.log(user.toJSON);
@@ -89,6 +60,7 @@ async function create(req, res) {
     console.log("NO token perhaps?");
     res.status(400).json(err);
   }
+  console.log("UserName: ", user.name);
 }
 
 /*-- Helper Functions --*/

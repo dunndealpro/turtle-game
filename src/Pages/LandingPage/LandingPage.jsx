@@ -13,34 +13,8 @@ export default function LandingPage(props) {
       <div style={{'background': "RGB(25,35,25,1)", "height": '100vh'}}>
 
         <GameBoardContainer
-          guess1={props.guess1}
-          guess2={props.guess2}
-          guess3={props.guess3}
-          guess4={props.guess4}
-          guess5={props.guess5}
-          guess6={props.guess6}
-          setGuess1={props.setGuess1}
-          setGuess2={props.setGuess2}
-          setGuess3={props.setGuess3}
-          setGuess4={props.setGuess4}
-          setGuess5={props.setGuess5}
-          setGuess6={props.setGuess6}
-          compareEntry={props.compareEntry}
-          guessInit={props.guessInit}
-          entryCount={props.entryCount}
-          setEntryCount={props.setEntryCount}
-          background={props.background}
-          guess1bg={props.guess1bg}
-          guess2bg={props.guess2bg}
-          guess3bg={props.guess3bg}
-          guess4bg={props.guess4bg}
-          guess5bg={props.guess5bg}
-          guess6bg={props.guess6bg}
-          currentGuessCount={props.currentGuessCount}
-          setCurrentGuessCount={props.setCurrentGuessCount}
-          checkIfWord={props.checkIfWord}
-          isWord={props.isWord}
-          setIsWord={props.setIsWord}
+        {...props}
+
         />
 
         <KeyBoardContainer
