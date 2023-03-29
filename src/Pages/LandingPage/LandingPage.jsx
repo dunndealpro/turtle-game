@@ -1,48 +1,67 @@
-import GameBoardContainer from "../../components/GameBoardContainer/GameBoardContainer";
-import KeyBoardContainer from "../../components/KeyBoardContainer/KeyBoardContainer";
-import LetterCard from "../../components/LetterCard/LetterCard";
-import { useState, useEffect } from "react";
+import RWGamePage from "../RWGamePage/RWGamePage";
+import { useEffect, useState } from 'react'
 
-import { Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Card } from "react-bootstrap"
+import WarningModal from "../../components/WarningModal/WarningModal";
 
-export default function LandingPage(props) {
-  console.log("landing page! ", { props })
 
-  return (
-    <>
-      <div style={{'background': "RGB(25,35,25,1)", "height": '100vh'}}>
+export default function MenuPage(props) {
 
-        <GameBoardContainer
+    const [randomWordGame, setRandomWordGame] = useState(false)
+
+    function onClick() {
+        console.log("onClick")
+        setRandomWordGame(!randomWordGame)
+    }
+
+    function onHide(){
+        setRandomWordGame(false)
+    }
+
+    return (
+        <>
+            <h1>Game's Page</h1>
+
+            <span>This will show all available games</span>
+            <br />
+            <Card className="m-2">
+                <Card.Body>
+                    <Card.Title>
+                        Random Turtle
+                    </Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Unlimited Turtles!</Card.Subtitle>
+                    <Button
+                        onClick={onClick}
+                        style={{ backgroundColor: 'rgb(0, 200, 0)', borderColor: 'rgb(0,0, 0)' }}
+                    > Click to Play!</Button>
+                </Card.Body>
+            </Card>
+
+            <Card className="m-2">
+                <Card.Body>
+                    <Card.Title>
+                        Daily Turtle
+                    </Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">1 word, 1 day to play</Card.Subtitle>
+                    <Button
+                    disabled
+                        onClick={onClick}
+                        style={{ backgroundColor: 'rgb(0, 20, 0)', borderColor: 'rgb(0,0, 0)' }}
+                    > coming soon!</Button>
+                </Card.Body>
+            </Card>
+
+            <WarningModal
+            show={randomWordGame}
+            onHide={onHide}
+            user={props.user}
+            />
+
+            {/* <RWGamePage
         {...props}
+        /> */}
+        </>
+    )
 
-        />
-
-        <KeyBoardContainer
-          currentGuess={props.currentGuess}
-          setCurrentGuess={props.setCurrentGuess}
-          guess1={props.guess1}
-          setGuess1={props.setGuess1}
-          guess2={props.guess2}
-          setGuess2={props.setGuess2}
-          guess3={props.guess3}
-          setGuess3={props.setGuess3}
-          guess4={props.guess4}
-          setGuess4={props.setGuess4}
-          guess5={props.guess5}
-          setGuess5={props.setGuess5}
-          guess6={props.guess6}
-          setGuess6={props.setGuess6}
-          compareEntry={props.compareEntry}
-          guessInit={props.guessInit}
-          entryCount={props.entryCount}
-          setEntryCount={props.setEntryCount}
-          currentGuessCount={props.currentGuessCount}
-          setCurrentGuessCount={props.setCurrentGuessCount}
-          checkIfWord={props.checkIfWord}
-          isWord={props.isWord}
-          setIsWord={props.setIsWord}
-        />
-      </div>
-    </>
-  )
 }

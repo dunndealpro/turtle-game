@@ -45,7 +45,7 @@ function initial() {
 
 console.log("Database.js file starting step 2");
 
-module.exports = {
+module.exports = { 
   HOST: "localhost",
   USER: "postgres",
   PASSWORD: "$unBe4r!",

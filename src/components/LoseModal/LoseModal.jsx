@@ -6,9 +6,10 @@ export default function LoseModal(props) {
     console.log(props.urbanDef)
     let def
     if (props.urbanDef) {
-        let max = props.urbanDef.list.length
-        let rndInt = Math.floor(Math.random() * max) + 1
-        def = props.urbanDef.list[rndInt].definition
+        // let max = props.urbanDef.list.length
+        // let rndInt = Math.floor(Math.random() * max) + 1
+        // def = props.urbanDef.list[rndInt].definition
+        def=props.urbanDef
     }
 
     return (

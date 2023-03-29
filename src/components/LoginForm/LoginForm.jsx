@@ -47,7 +47,12 @@ export default function LoginForm({ setUser }) {
                             <Form.Group className='mb-3'>
                                 <Form.Control type="password" placeholder="Enter Password" name="password" value={credentials.password} onChange={handleChange} required />
                             </Form.Group>
-                            <Button className="" variant="primary " type="submit" >Login</Button>
+                            <span className="m-2">
+                                This website uses information from www.urbandictionary.com.  Some(most) of the content from www.urbandictionary.com may be considered inappropriate for younger users and/or “not safe for work.”  By logging in to this website, you are acknowledging that you may see or read disturbing content and you will not hold the developers and creators responsible for any feelings you may have.  
+
+                                </span>  <br />
+
+                            <Button className="m-2" variant="primary " type="submit" >Login</Button>
                             <p className="error-message">&nbsp;{error}</p>
                         </Form>
 

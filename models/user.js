@@ -11,6 +11,7 @@ module.exports = (sequelize, Sequelize) => {
       password: {
         type: Sequelize.STRING
       }
+     
     });
     console.log("models/user.js file ending")
     return User;

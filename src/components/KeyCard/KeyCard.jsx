@@ -8,6 +8,9 @@ import { useEffect, useState } from 'react'
 export default function KeyCard(props) {
   
     const handleKeyPress = (e) => {
+        console.log(props.entryCount)
+
+
         // e.preventDefault();
         if (props.entryCount < 6) {
             let key = e.target.innerText || e.key

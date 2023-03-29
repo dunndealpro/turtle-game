@@ -50,7 +50,7 @@ export default class SignUpForm extends Component {
         const disable = this.state.password !== this.state.confirm;
         return (
             <div>
-                <Container className="p-2">
+                <Container className="p-2 m-2">
                     <Row>
                         <Col>
                             <Form autoComplete="off" onSubmit={this.handleSubmit}>
@@ -66,7 +66,13 @@ export default class SignUpForm extends Component {
                                 <Form.Group className="mb-3" >
                                     <Form.Control type="password" placeholder="Confirm Password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
                                 </Form.Group>
-                                <Button className="" variant="primary" type="submit" disabled={disable}>Sign Up</Button>
+
+                                <span className="m-2">
+                                This website uses information from www.urbandictionary.com.  Some(most) of the content from www.urbandictionary.com may be considered inappropriate for younger users and/or “not safe for work.”  By signing up to use this website, you are acknowledging that you may see or read disturbing content and you will not hold the developers and creators responsible for any feelings you may have.  
+
+                                </span> <br />
+
+                                <Button className="m-2" variant="primary" type="submit" disabled={disable}>Sign Up</Button>
                             </Form>
                         </Col>
                     </Row>

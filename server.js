@@ -70,8 +70,9 @@ app.use(require('./config/checkToken'));
 
 // require('./routes/api/auth')(app);
 // require('./routes/api/users')(app);
-
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/games', require('./routes/api/games')); 
+// app.use('/api/words', require('./routes/api/words'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
