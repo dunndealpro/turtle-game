@@ -33,6 +33,7 @@ export default function RWGamePage(props) {
   const [currentGuess, setCurrentGuess] = useState(['', '', '', '', ''])//5
   const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
   const [isWord, setIsWord] = useState(false)
+  const [gameId, setGameId] = useState()
 
   // const [randomUrbanWord, setRandomUrbanWord] = useState('')
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
@@ -112,6 +113,7 @@ export default function RWGamePage(props) {
         let tempAnswer = await gamesAPI.addWordToTurtleDB(response[0].word)
         setAnswerInfo(tempAnswer)
         setAnswer(tempAnswer.word.split(""))
+        startNewRandomGame()
       }
     } catch (error) {
       console.log("Error: ", error)
@@ -146,6 +148,7 @@ export default function RWGamePage(props) {
     console.log("saving random score", pointsWon)
 
     let score = {
+      gameId: gameId,
       wordId: answerInfo.id,
       userId: props.user.id,
       name: props.user.name,
@@ -162,6 +165,31 @@ export default function RWGamePage(props) {
     console.log(newScore)
     updateStreakCount(streakCount)
   }
+
+const startNewRandomGame = async () => {
+  let pointsWon = 0
+    console.log("STARTING random word game")
+
+    let score = {
+      wordId: answerInfo.id,
+      userId: props.user.id,
+      name: props.user.name,
+      guess1: guess1.join(''),
+      guess2: guess2.join(''),
+      guess3: guess3.join(''),
+      guess4: guess4.join(''),
+      guess5: guess5.join(''),
+      guess6: guess6.join(''),
+      score: pointsWon,
+      streakcount: streakCount
+    }
+    const newGame = await gamesAPI.startRandomWordGame(score)
+    console.log(newGame)
+    setGameId(newGame.id)
+    // updateStreakCount(streakCount)
+  }
+
+
 
   function compareEntry() {
     console.log("COMPARE START: LOADED ANSWER = ", answer)

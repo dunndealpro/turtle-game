@@ -12,6 +12,7 @@ module.exports = {
   createNewGame,
   getUserScores,
   updateStreak,
+  startRandomGame
 };
 
 async function getUserScores(req, res) {
@@ -79,6 +80,28 @@ console.log("user retrieved: ", user)
   res.json(updatedUser);
 }
 
+async function startRandomGame(req, res) {
+  console.log("new game process started");
+
+  const newRandomGame = await Game.create({
+    wordId: req.body.wordId,
+    userId: req.body.userId,
+    userName: req.body.name,
+    guess1: req.body.guess1,
+    guess2: req.body.guess2,
+    guess3: req.body.guess3,
+    guess4: req.body.guess4,
+    guess5: req.body.guess5,
+    guess6: req.body.guess6,
+    score: req.body.score,
+    gameWon: req.body.gameWon
+  });
+  console.log(req.body);
+  console.log(newRandomGame);  
+  res.json(newRandomGame);
+  }
+
+
 async function saveRandomScore(req, res) {
   console.log("BE Saving Game", req.body);
 
@@ -106,7 +129,7 @@ async function saveRandomScore(req, res) {
   //   })
   // console.log("User test: ", updatedUser);
 
-  const newScore = await Game.create({
+  const newScore = await Game.update({
     wordId: req.body.wordId,
     userId: req.body.userId,
     userName: req.body.name,
@@ -117,7 +140,12 @@ async function saveRandomScore(req, res) {
     guess5: req.body.guess5,
     guess6: req.body.guess6,
     score: req.body.score,
-  });
+    gameWon: req.body.gameWon
+  },
+  {
+    where:{ id: req.body.gameId},
+  }
+  );
   console.log(req.body);
   console.log(newScore);
 
@@ -130,6 +158,7 @@ async function saveRandomScore(req, res) {
 
   res.json(newScore);
 }
+
 
 async function createNewGame(req, res) {
   console.log("new game process started");

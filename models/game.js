@@ -48,6 +48,12 @@ module.exports = (sequelize, Sequelize) => {
     score: {
       type: Sequelize.INTEGER,
     },
+
+    gameWon: {
+      type: Sequelize.BOOLEAN, 
+      defaultValue: false
+    }
+
   });
   console.log("models/game.js file ending");
   return Game;

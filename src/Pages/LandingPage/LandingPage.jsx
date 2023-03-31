@@ -12,9 +12,10 @@ export default function MenuPage(props) {
 
     function onClick() {
         console.log("onClick")
-        setRandomWordGame(!randomWordGame)    }
+        setRandomWordGame(!randomWordGame)
+    }
 
-    function onHide(){
+    function onHide() {
         setRandomWordGame(false)
     }
 
@@ -44,7 +45,7 @@ export default function MenuPage(props) {
                     </Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">1 word, 1 day to play</Card.Subtitle>
                     <Button
-                    disabled
+                        disabled
                         onClick={onClick}
                         style={{ backgroundColor: 'rgb(0, 20, 0)', borderColor: 'rgb(0,0, 0)' }}
                     > coming soon!</Button>
@@ -52,9 +53,9 @@ export default function MenuPage(props) {
             </Card>
 
             <WarningModal
-            show={randomWordGame}
-            onHide={onHide}
-            user={props.user}
+                show={randomWordGame}
+                onHide={onHide}
+                user={props.user}
             />
 
             {/* <RWGamePage
