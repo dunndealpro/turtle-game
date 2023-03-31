@@ -7,11 +7,11 @@ import * as gamesAPI from "../../utilities/games-api"
 
 export default function UserScoreDisplay(props) {
     // const [userScore, setUserScore] = useState([])
-    const getUserScores = async (userId) => {
-        let tempUserScore = await gamesAPI.getUserScores(userId)
-        console.log(tempUserScore)
-        props.setUserScore(tempUserScore)
-    }
+    // const getUserScores = async (userId) => {
+    //     let tempUserScore = await gamesAPI.getUserScores(userId)
+    //     console.log(tempUserScore)
+    //     props.setUserScore(tempUserScore)
+    // }
 
     let tempDisp
 
@@ -23,17 +23,16 @@ export default function UserScoreDisplay(props) {
         tempDisp = props.userScore[0].guess1
     }
 
-    useEffect(() => {
-        console.log("UseEffect Engaged ", props.user.id)
-        getUserScores(props.user.id)
+    // useEffect(() => {
+    //     console.log("UseEffect Engaged ", props.user.id)
+    //     getUserScores(props.user.id)
 
-    }, [])
+    // }, [])
 
     return (
         <>
-            {props.user.name}
-            <br />
-            {tempDisp}
+            {props.user.name} has a current streak of {props.streakCount} games!
+            {/* {tempDisp} */}
             <br />
             {props.answer}
             {/* {userScore[0].guess1} */}

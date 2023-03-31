@@ -1,26 +1,20 @@
-import AuthPage from '../AuthPage/AuthPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { useEffect, useState } from 'react'
-import { getUser } from '../../utilities/users-service';
+
 import WinModal from '../../components/WinModal/WinModal';
 import LoseModal from '../../components/LoseModal/LoseModal';
 
-
 import GameBoardContainer from "../../components/GameBoardContainer/GameBoardContainer";
 import KeyBoardContainer from "../../components/KeyBoardContainer/KeyBoardContainer";
-import LetterCard from "../../components/LetterCard/LetterCard";
-
-import { Container } from "react-bootstrap";
 
 import * as gamesAPI from "../../utilities/games-api"
 import UserScoreDisplay from '../../components/UserScoreDisplay/UserScoreDisplay';
-// import { user } from '../../../models';
-// import { saveRandomScore } from '../../controllers/api/games';
+
 
 export default function RWGamePage(props) {
-  console.log("landing page! ", { props })
+  console.log("RWGamePage! ", { props })
 
   let isCorrect = "green"
   let inWord = "yellow"
@@ -34,13 +28,13 @@ export default function RWGamePage(props) {
   const [compare, setCompare] = useState(false)//3
   // const [answer, setAnswer] = useState(['c', 'a', 'r', 'e', 's'])//4
   // const [answer, setAnswer] = useState(['t', 'r', 'e', 'e', 's'])//4
-  const [answer, setAnswer] = useState( ['', '', '', '', ''])//4
+  const [answer, setAnswer] = useState(['', '', '', '', ''])//4
   const [answerInfo, setAnswerInfo] = useState({})//4
   const [currentGuess, setCurrentGuess] = useState(['', '', '', '', ''])//5
   const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
   const [isWord, setIsWord] = useState(false)
-  // const [isUrbanWord, setIsUrbanWord] = useState(false)
-  const [randomUrbanWord, setRandomUrbanWord] = useState('')
+
+  // const [randomUrbanWord, setRandomUrbanWord] = useState('')
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
   const [guess1bg, setGuess1bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
 
@@ -55,6 +49,7 @@ export default function RWGamePage(props) {
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
   const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [urbanDef, setUrbanDef] = useState()
+  const [streakCount, setStreakCount] = useState(props.user.streakcount)
 
   const [userScore, setUserScore] = useState([])
 
@@ -85,30 +80,24 @@ export default function RWGamePage(props) {
     setEntryCount(1)
     setIsWord(false)
     getNewAnswer()
+    getUserScores(props.user.userId)
+    updateStreakCount(streakCount)
   }
 
   const getNewAnswer = async () => {
     const randomWord = await fetch(`https://api.urbandictionary.com/v0/random`).then(res => res.json());
-    console.log(randomWord)
     let words = randomWord.list
-    console.log(words)
-    let isFiveLetters = false
     let newAnswer
-
     for (let i = 0; i < words.length; i++) {
       if (words[i].word.length === 5) {
-        console.log("YES")
         newAnswer = words[i].word.toLowerCase()
         checkIfUrbanWord(newAnswer)
         if (isUrbanWord) {
           newAnswer = newAnswer.split("")
-          console.log("NEW ANSWER: ", newAnswer)
-          isFiveLetters = true
           break
         }
       }
     }
-
     if (!isUrbanWord) {
       getNewAnswer()
     }
@@ -116,19 +105,13 @@ export default function RWGamePage(props) {
 
   const checkIfUrbanWord = async (newAnswer) => {
     let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${newAnswer}`
-    console.log(searchUrl)
     try {
       const response = await fetch(searchUrl).then(res => res.json());
-      console.log("URBAN ", response)
       if (response[0].word) {
-        console.log("OH URBAN YEA")
         isUrbanWord = true
-        console.log(response[0].word)
         let tempAnswer = await gamesAPI.addWordToTurtleDB(response[0].word)
-        console.log(tempAnswer)
         setAnswerInfo(tempAnswer)
         setAnswer(tempAnswer.word.split(""))
-
       }
     } catch (error) {
       console.log("Error: ", error)
@@ -141,33 +124,27 @@ export default function RWGamePage(props) {
       const response = await fetch(urbanSearchUrl).then(res => res.json());
       let rndInt = Math.floor(Math.random() * 10) + 1
       setUrbanDef(response.list[rndInt].definition)
-      console.log(response.list[rndInt].definition)
     } catch (error) {
       console.log("Error: ", error)
-
     }
   }
 
   const checkIfWord = async () => {
     let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${currentGuess.join('')}`
-    console.log(searchUrl)
     try {
       const response = await fetch(searchUrl).then(res => res.json());
-      console.log(response)
       if (response[0].word) {
-        console.log("OH YEA")
-
         compareEntry()
       }
-
     } catch (error) {
       console.log("Error: ", error)
     }
   }
 
-const saveRandomScore = async () => {
-  let pointsWon = 7-currentGuessCount
-  console.log("saving score", pointsWon)
+  const saveRandomScore = async () => {
+    let pointsWon = 7 - currentGuessCount
+    console.log("saving random score", pointsWon)
+
     let score = {
       wordId: answerInfo.id,
       userId: props.user.id,
@@ -178,10 +155,12 @@ const saveRandomScore = async () => {
       guess4: guess4.join(''),
       guess5: guess5.join(''),
       guess6: guess6.join(''),
-      score: pointsWon
+      score: pointsWon,
+      streakcount: streakCount
     }
     const newScore = await gamesAPI.saveRandomWordGame(score)
     console.log(newScore)
+    updateStreakCount(streakCount)
   }
 
   function compareEntry() {
@@ -258,19 +237,22 @@ const saveRandomScore = async () => {
     }
 
     if (answer.join() === currentGuess.join()) {
+      setStreakCount(streakCount + 1)
       setCompare(true)
       console.log("join compare true")
       getUrbanDef()
       setWinModalShow(true)
       saveRandomScore()
     } else if (currentGuessCount === 6) {
-      setLoseModalShow(true)
+      setStreakCount(0)
       getUrbanDef()
+      setLoseModalShow(true)
     }
 
     else {
       console.log("join compare false")
       setCompare(false)
+      // setStreakCount(0)
     }
 
     console.log(compare)
@@ -280,21 +262,41 @@ const saveRandomScore = async () => {
     setIsWord(false)
   }
 
+  const getUserScores = async (userId) => {
+    let tempUserScore = await gamesAPI.getUserScores(userId)
+    console.log(tempUserScore)
+    setUserScore(tempUserScore)
+  }
+
+  const updateStreakCount = async (streakCount) => {
+    console.log("streak count: ", streakCount)
+    let streakCountJson = {
+      userId: props.user.id,
+      streakCount: streakCount
+    }
+    let updatedStreakCount = await gamesAPI.updateStreakCount(streakCountJson)
+    console.log("UPDATED STREAK: ", updatedStreakCount)
+  }
+
   console.log("False")
 
   useEffect(() => {
     console.log("UseEffect Engaged")
     getNewAnswer()
-  },[])
+
+  }, [])
+
+
 
   return (
     <>
       <UserScoreDisplay
         userScore={userScore}
         setUserScore={setUserScore}
-          user={props.user}
-          answer={answer}
-          />
+        user={props.user}
+        answer={answer}
+        streakCount={streakCount}
+      />
       <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
 
         <GameBoardContainer
@@ -334,31 +336,31 @@ const saveRandomScore = async () => {
 
         <KeyBoardContainer
           {...props}
-        currentGuess={currentGuess}
-        setCurrentGuess={setCurrentGuess}
-        guess1={guess1}
-        setGuess1={setGuess1}
-        guess2={guess2}
-        setGuess2={setGuess2}
-        guess3={guess3}
-        setGuess3={setGuess3}
-        guess4={guess4}
-        setGuess4={setGuess4}
-        guess5={guess5}
-        setGuess5={setGuess5}
-        guess6={guess6}
-        setGuess6={setGuess6}
-        compareEntry={compareEntry}
-        guessInit={guessInit}
-        entryCount={entryCount}
-        setEntryCount={setEntryCount}
-        currentGuessCount={currentGuessCount}
-        setCurrentGuessCount={setCurrentGuessCount}
-        checkIfWord={checkIfWord}
-        isWord={isWord}
-        setIsWord={setIsWord}
+          currentGuess={currentGuess}
+          setCurrentGuess={setCurrentGuess}
+          guess1={guess1}
+          setGuess1={setGuess1}
+          guess2={guess2}
+          setGuess2={setGuess2}
+          guess3={guess3}
+          setGuess3={setGuess3}
+          guess4={guess4}
+          setGuess4={setGuess4}
+          guess5={guess5}
+          setGuess5={setGuess5}
+          guess6={guess6}
+          setGuess6={setGuess6}
+          compareEntry={compareEntry}
+          guessInit={guessInit}
+          entryCount={entryCount}
+          setEntryCount={setEntryCount}
+          currentGuessCount={currentGuessCount}
+          setCurrentGuessCount={setCurrentGuessCount}
+          checkIfWord={checkIfWord}
+          isWord={isWord}
+          setIsWord={setIsWord}
         />
-        
+
         <WinModal
           user={props.user}
           show={winModalShow}

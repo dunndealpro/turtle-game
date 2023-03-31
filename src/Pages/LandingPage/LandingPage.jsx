@@ -12,8 +12,7 @@ export default function MenuPage(props) {
 
     function onClick() {
         console.log("onClick")
-        setRandomWordGame(!randomWordGame)
-    }
+        setRandomWordGame(!randomWordGame)    }
 
     function onHide(){
         setRandomWordGame(false)

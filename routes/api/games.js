@@ -9,5 +9,6 @@ router.post('/random-turtles/:rwfud',  gamesCtrl.addRwfud)
 
 router.get('/random-turtles/:userId', gamesCtrl.getUserScores)
 
+router.put('/random-turtles/updateStreak', gamesCtrl.updateStreak)
 
 module.exports = router;

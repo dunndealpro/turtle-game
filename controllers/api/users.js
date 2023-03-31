@@ -2,10 +2,14 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const db = require("../../models");
 const config = require("../../config/auth");
+const { QueryInterface, DataTypes } = require("sequelize");
+const { Sequelize } = require("../../models");
 const User = db.user;
 const Role = db.role;
 
 const Op = db.Sequelize.Op;
+
+const queryInterface = db.sequelize
 
 module.exports = {
   create,
@@ -37,6 +41,7 @@ async function login(req, res) {
 
 async function create(req, res) {
   console.log("Create starting");
+  // queryInterface.addColumn('Users', 'streakCount', {type: DataTypes.INTEGER})
   try {
     // Add the user to the database
     // const user = await User.create(req.body);
@@ -46,6 +51,7 @@ async function create(req, res) {
       name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
+      streakCount: 0
     });
    
     const token = createJWT(user);

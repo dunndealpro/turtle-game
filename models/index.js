@@ -18,10 +18,13 @@ const sequelize = new Sequelize(`postgres://my_user:root@127.0.0.1:5432/turtlega
   // }
 });
 
+
 const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
+
 
 // db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 console.log("Is this printing? ")

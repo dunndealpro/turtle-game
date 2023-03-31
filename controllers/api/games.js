@@ -11,6 +11,7 @@ module.exports = {
   addRwfud,
   createNewGame,
   getUserScores,
+  updateStreak,
 };
 
 async function getUserScores(req, res) {
@@ -25,15 +26,14 @@ async function getUserScores(req, res) {
   const userScores = await Game.findAll({
     // where: { userId: req.user.id },
     attributes: [
-      "userName", 'userId',
+      "userName",
+      "userId",
 
       [Sequelize.fn("SUM", Sequelize.col("score")), "total_score"],
     ],
-    group: ['userName','userId'],
+    group: ["userName", "userId"],
 
-    order: [
-      ['total_score', 'DESC']
-    ]
+    order: [["total_score", "DESC"]],
 
     // include: [{
     //   model: User,
@@ -46,17 +46,66 @@ async function getUserScores(req, res) {
   res.json(userScores);
 }
 
+async function updateStreak(req, res) {
+  console.log("Get Streak Count" ,req.body);
+  const user = await User.findAll({
+    where: {
+      id: req.user.id,
+    },
+  });
+console.log("user retrieved: ", user)
+//   user.streakcount = req.body.streakCount;
 
+  const updatedUser = await User.update(
+    { streakcount: req.body.streakCount },
+    {
+      where: {
+        id: req.body.userId,
+      },
+    }
+  );
+  // await  updatedUser.save()
+  // await updatedUser.reload()
+  // console.log(updatedUser);
+  console.log("user updated?: ", updatedUser.streakcount)
+  
+  let user2 = await User.findAll({
+    where: {
+      id: req.user.id,
+    },
+  });
+  console.log(user2)
+
+  res.json(updatedUser);
+}
 
 async function saveRandomScore(req, res) {
   console.log("BE Saving Game", req.body);
-  await Game.destroy({ 
-    where: {
-      userId: null
-    }
-  
-    // truncate: true
-  })
+
+  // const userTest = await User.findAll({
+  //   where: {
+  //     id: req.user.id,
+  //   },
+  // });
+
+  // user.set({streakcount: req.body.streakcount})
+
+  // userTest.streakCount = req.body.streakcount;
+  // console.log("USERTEST ", userTest.streakCount);
+
+  // const updatedUser = await User.save(userTest.streakCount = req.body.streakcount)
+
+  // const updatedUser = await User.update({streakcount: req.body.streakcount},{
+  //     where:{
+  //       id: req.body.userId}
+  //     })
+  // await user.save({streakcount: req.body.streakcount})
+  //  await User.update({streakcount: req.body.streakcount},{
+  //   where:{
+  //     id: req.body.userId}
+  //   })
+  // console.log("User test: ", updatedUser);
+
   const newScore = await Game.create({
     wordId: req.body.wordId,
     userId: req.body.userId,
@@ -81,8 +130,6 @@ async function saveRandomScore(req, res) {
 
   res.json(newScore);
 }
-
-
 
 async function createNewGame(req, res) {
   console.log("new game process started");
