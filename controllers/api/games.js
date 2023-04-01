@@ -98,6 +98,15 @@ async function startRandomGame(req, res) {
   });
   console.log(req.body);
   console.log(newRandomGame);  
+
+  const updatedUser = await User.update(
+    { gameWone: false },
+    {
+      where: {
+        id: req.body.userId,
+      },
+    }
+  );
   res.json(newRandomGame);
   }
 

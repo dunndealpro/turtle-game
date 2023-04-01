@@ -34,6 +34,7 @@ export default function RWGamePage(props) {
   const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
   const [isWord, setIsWord] = useState(false)
   const [gameId, setGameId] = useState()
+  const [gameWon, setGameWon] = useState(props.user.gameWon)
 
   // const [randomUrbanWord, setRandomUrbanWord] = useState('')
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
@@ -50,8 +51,15 @@ export default function RWGamePage(props) {
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
   const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [urbanDef, setUrbanDef] = useState()
-  const [streakCount, setStreakCount] = useState(props.user.streakcount)
 
+let streakCountInit
+if(gameWon){
+  streakCountInit = props.user.streakcount
+}else{
+  streakCountInit = 0
+}
+
+  const [streakCount, setStreakCount] = useState(streakCountInit)
   const [userScore, setUserScore] = useState([])
 
 
@@ -159,6 +167,7 @@ export default function RWGamePage(props) {
       guess5: guess5.join(''),
       guess6: guess6.join(''),
       score: pointsWon,
+      gameWon: gameWon,
       streakcount: streakCount
     }
     const newScore = await gamesAPI.saveRandomWordGame(score)
@@ -166,8 +175,8 @@ export default function RWGamePage(props) {
     updateStreakCount(streakCount)
   }
 
-const startNewRandomGame = async () => {
-  let pointsWon = 0
+  const startNewRandomGame = async () => {
+    let pointsWon = 0
     console.log("STARTING random word game")
 
     let score = {
@@ -188,8 +197,6 @@ const startNewRandomGame = async () => {
     setGameId(newGame.id)
     // updateStreakCount(streakCount)
   }
-
-
 
   function compareEntry() {
     console.log("COMPARE START: LOADED ANSWER = ", answer)
@@ -269,17 +276,20 @@ const startNewRandomGame = async () => {
       setCompare(true)
       console.log("join compare true")
       getUrbanDef()
+      setGameWon(true)
       setWinModalShow(true)
       saveRandomScore()
     } else if (currentGuessCount === 6) {
       setStreakCount(0)
       getUrbanDef()
+      setGameWon(false)
       setLoseModalShow(true)
     }
 
     else {
       console.log("join compare false")
       setCompare(false)
+      setGameWon(false)
       // setStreakCount(0)
     }
 
