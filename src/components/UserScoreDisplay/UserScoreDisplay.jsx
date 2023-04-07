@@ -13,6 +13,12 @@ export default function UserScoreDisplay(props) {
     //     props.setUserScore(tempUserScore)
     // }
 
+    // const getUserScores = async (userId) => {
+    //     let tempUserScore = await gamesAPI.getUserScores(userId)
+    //     console.log(tempUserScore)
+    //     props.setUserScore(tempUserScore)
+    //   }
+
     let tempDisp
 
     console.log("Huh", props.userScore)
@@ -23,11 +29,11 @@ export default function UserScoreDisplay(props) {
         tempDisp = props.userScore[0].guess1
     }
 
-    // useEffect(() => {
-    //     console.log("UseEffect Engaged ", props.user.id)
-    //     getUserScores(props.user.id)
+    useEffect(() => {
+        console.log("USerScrore UseEffect Engaged ", props.user.id)
+        props.getUserScores(props.user.id)
 
-    // }, [])
+    }, [])
 
     return (
         <>

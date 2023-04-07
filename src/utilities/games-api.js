@@ -18,7 +18,7 @@ export function saveRandomWordGame(score){
     console.log("Saving score?")
     console.log(score)
 
-    return sendRequest(`${BASE_URL}/random-turtles/save-random`, 'POST', score)
+    return sendRequest(`${BASE_URL}/random-turtles/save-random`, 'PUT', score)
 }
 
 export function getUserScores(userId){
@@ -29,4 +29,8 @@ export function getUserScores(userId){
 export function updateStreakCount(streakCount){
     console.log("updating streak count?")    
     return sendRequest(`${BASE_URL}/random-turtles/updateStreak`, "PUT", streakCount)
+}
+
+export function checkLastGame(userId){
+    return sendRequest(`${BASE_URL}/random-turtles/checkLastGame/${userId}`)
 }

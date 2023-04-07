@@ -4,31 +4,32 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 
-export default function LoseModal(props) {
-    console.log(props.urbanDef)
-    let def
-    if (props.urbanDef) {
-        // let max = props.urbanDef.list.length
-        // let rndInt = Math.floor(Math.random() * max) + 1
-        // def = props.urbanDef.list[rndInt].definition
-        def=props.urbanDef
-    }
+export default function StartGameModal(props){
 
-    return (
-        <Modal
+
+
+
+    return(
+       <Modal
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                {props.user.name}is a Loser!
+                    {props.user.name} Are you ready to Play!
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
 
-                Really, <span className="strong">{props.guess6}</span>?  Well, since you are the loser of the game, here is a definition of the correct word.  Have fun figuring out what it is/  DEF:  {def}
+                The Users stats will go here:
+                <br />
+                Longest Streak
+                <br />
+                Total Score
+                <br />
+                Best Score
             </Modal.Body>
             <Modal.Footer>
                 <Button
@@ -37,11 +38,10 @@ export default function LoseModal(props) {
                     <Link to="/">
                     <Button
                     style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
-                    onClick={props.onHideQuit}>No More!</Button>
+                    onClick={props.onHideQuit}>i am not ready to play</Button>
                         
                     </Link>
             </Modal.Footer>
         </Modal>
-
     )
 }

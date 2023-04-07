@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+
 
 export default function WinModal(props) {
     console.log(props.urbanDef)
@@ -32,7 +34,13 @@ export default function WinModal(props) {
             <Modal.Footer>
                 <Button
                     style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
-                    onClick={props.onHide}>Close</Button>
+                    onClick={props.onHideNew}>New Game</Button>
+                    <Link to="/">
+                    <Button
+                    style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                    onClick={props.onHideQuit}>No More!</Button>
+                        
+                    </Link>
             </Modal.Footer>
         </Modal>
 

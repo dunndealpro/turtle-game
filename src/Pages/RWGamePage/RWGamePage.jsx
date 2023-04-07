@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 import WinModal from '../../components/WinModal/WinModal';
 import LoseModal from '../../components/LoseModal/LoseModal';
+import StartGameModal from '../../components/StartGameModal/StartGameModal';
 
 import GameBoardContainer from "../../components/GameBoardContainer/GameBoardContainer";
 import KeyBoardContainer from "../../components/KeyBoardContainer/KeyBoardContainer";
@@ -15,6 +16,7 @@ import UserScoreDisplay from '../../components/UserScoreDisplay/UserScoreDisplay
 
 export default function RWGamePage(props) {
   console.log("RWGamePage! ", { props })
+  // console.log("User Streak Count on page load: ", props.user.streakcount)
 
   let isCorrect = "green"
   let inWord = "yellow"
@@ -34,7 +36,9 @@ export default function RWGamePage(props) {
   const [currentGuessCount, setCurrentGuessCount] = useState(1)//6
   const [isWord, setIsWord] = useState(false)
   const [gameId, setGameId] = useState()
-  const [gameWon, setGameWon] = useState(props.user.gameWon)
+  // const [gameWon, setGameWon] = useState(false)
+
+  let gameWon = false
 
   // const [randomUrbanWord, setRandomUrbanWord] = useState('')
   const [guess1, setGuess1] = useState(['', '', '', '', ''])//7
@@ -51,22 +55,68 @@ export default function RWGamePage(props) {
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
   const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [urbanDef, setUrbanDef] = useState()
+  const [streakCount, setStreakCount] = useState(props.user.streakcount)
+  
 
-let streakCountInit
-if(gameWon){
-  streakCountInit = props.user.streakcount
-}else{
-  streakCountInit = 0
-}
+  // let streakCountInit
+  const checkLastGame = async () => {
+    let results = await gamesAPI.checkLastGame(props.user.id)
+    console.log("CHECK LAST GAME*****   ", results.lastgame[0].gameWon)
+    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)
+    if (results[0].gameWon === true) {
+      
+      setStreakCount(results.streakcount[0].streakcount)
+    } else {
+      setStreakCount(0)
+    }
 
-  const [streakCount, setStreakCount] = useState(streakCountInit)
+
+  }
+  // console.log("gameWon: ", gameWon)
+
   const [userScore, setUserScore] = useState([])
 
 
   const [winModalShow, setWinModalShow] = useState(false);
   const [loseModalShow, setLoseModalShow] = useState(false);
+  const [gameStartModalShow, setGameStartModalShow] = useState(true);
 
-  function onHide() {
+  function onHideNew() {
+    // saveRandomScore()
+    updateStreakCount(streakCount)
+    checkLastGame(props.user.id)
+    setWinModalShow(false)
+    setLoseModalShow(false)
+    setGameStartModalShow(false)
+    setCompare(false)
+    setGuess1(['', '', '', '', ''])
+    setGuess1bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess2(['', '', '', '', ''])
+    setGuess2bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess3(['', '', '', '', ''])
+    setGuess3bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess4(['', '', '', '', ''])
+    setGuess4bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess5(['', '', '', '', ''])
+    setGuess5bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setGuess6(['', '', '', '', ''])
+    setGuess6bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
+    setCurrentGuess(['', '', '', '', ''])
+    setUrbanDef()
+    setCurrentGuessCount(1)
+    console.log("Im hiding up in this ish")
+    setEntryCount(1)
+    setIsWord(false)
+    // getUserScores(props.user.userId)
+    // updateStreakCount(streakCount)
+    getNewAnswer()
+  }
+
+  function onHideQuit() {
+    // saveRandomScore()
+    updateStreakCount(streakCount)
+    setGameStartModalShow(false)
+
     setWinModalShow(false)
     setLoseModalShow(false)
     setCompare(false)
@@ -88,9 +138,9 @@ if(gameWon){
     console.log("Im hiding up in this ish")
     setEntryCount(1)
     setIsWord(false)
-    getNewAnswer()
-    getUserScores(props.user.userId)
-    updateStreakCount(streakCount)
+    // getNewAnswer()
+    // getUserScores(props.user.userId)
+    // updateStreakCount(streakCount)
   }
 
   const getNewAnswer = async () => {
@@ -101,10 +151,11 @@ if(gameWon){
       if (words[i].word.length === 5) {
         newAnswer = words[i].word.toLowerCase()
         checkIfUrbanWord(newAnswer)
-        if (isUrbanWord) {
-          newAnswer = newAnswer.split("")
-          break
-        }
+        break
+        // if (isUrbanWord) {
+        //   newAnswer = newAnswer.split("")
+        //   break
+        // }
       }
     }
     if (!isUrbanWord) {
@@ -152,6 +203,7 @@ if(gameWon){
   }
 
   const saveRandomScore = async () => {
+
     let pointsWon = 7 - currentGuessCount
     console.log("saving random score", pointsWon)
 
@@ -172,10 +224,18 @@ if(gameWon){
     }
     const newScore = await gamesAPI.saveRandomWordGame(score)
     console.log(newScore)
-    updateStreakCount(streakCount)
+    // updateStreakCount(streakCount)
   }
 
   const startNewRandomGame = async () => {
+    // let streakC 
+    // let results = await gamesAPI.checkLastGame(props.user.id)
+    // if (results.gameWon === true){
+    //    streakC = props.user.streakcount
+    // }else if (results.gameWon === false){
+    //   streakC = 0
+    // }
+
     let pointsWon = 0
     console.log("STARTING random word game")
 
@@ -183,18 +243,20 @@ if(gameWon){
       wordId: answerInfo.id,
       userId: props.user.id,
       name: props.user.name,
-      guess1: guess1.join(''),
-      guess2: guess2.join(''),
-      guess3: guess3.join(''),
-      guess4: guess4.join(''),
-      guess5: guess5.join(''),
-      guess6: guess6.join(''),
+      guess1: '',
+      guess2: '',
+      guess3: '',
+      guess4: '',
+      guess5: '',
+      guess6: '',
       score: pointsWon,
-      streakcount: streakCount
+      streakcount: streakCount,
+      gameWon: false
     }
     const newGame = await gamesAPI.startRandomWordGame(score)
     console.log(newGame)
     setGameId(newGame.id)
+    // setGameWon(false)
     // updateStreakCount(streakCount)
   }
 
@@ -276,20 +338,24 @@ if(gameWon){
       setCompare(true)
       console.log("join compare true")
       getUrbanDef()
-      setGameWon(true)
+      // setGameWon(true)
+      gameWon = true
       setWinModalShow(true)
       saveRandomScore()
     } else if (currentGuessCount === 6) {
       setStreakCount(0)
       getUrbanDef()
-      setGameWon(false)
-      setLoseModalShow(true)
-    }
+      // setGameWon(false)
+      gameWon = false
 
+      setLoseModalShow(true)
+      saveRandomScore()
+
+    }
     else {
       console.log("join compare false")
       setCompare(false)
-      setGameWon(false)
+      // setGameWon(false)
       // setStreakCount(0)
     }
 
@@ -316,15 +382,14 @@ if(gameWon){
     console.log("UPDATED STREAK: ", updatedStreakCount)
   }
 
-  console.log("False")
+  // console.log("False")
+  console.log(userScore)
 
-  useEffect(() => {
-    console.log("UseEffect Engaged")
-    getNewAnswer()
+  // useEffect(() => {
+  //   console.log("UseEffect Engaged")
+  //   getNewAnswer()
 
-  }, [])
-
-
+  // }, [])
 
   return (
     <>
@@ -334,9 +399,10 @@ if(gameWon){
         user={props.user}
         answer={answer}
         streakCount={streakCount}
+        getUserScores={getUserScores}
       />
-      <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
 
+      <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
         <GameBoardContainer
           // {...props}
           currentGuess={currentGuess}
@@ -362,14 +428,12 @@ if(gameWon){
           checkIfWord={checkIfWord}
           isWord={isWord}
           setIsWord={setIsWord}
-
           guess1bg={guess1bg}
           guess2bg={guess2bg}
           guess3bg={guess3bg}
           guess4bg={guess4bg}
           guess5bg={guess5bg}
           guess6bg={guess6bg}
-
         />
 
         <KeyBoardContainer
@@ -398,18 +462,27 @@ if(gameWon){
           isWord={isWord}
           setIsWord={setIsWord}
         />
+        <StartGameModal
+          user={props.user}
+          show={gameStartModalShow}
+          onHideNew={onHideNew}
+          onHideQuit={onHideQuit}
+
+        />
 
         <WinModal
           user={props.user}
           show={winModalShow}
-          onHide={onHide}
+          onHideNew={onHideNew}
+          onHideQuit={onHideQuit}
           urbanDef={urbanDef}
           answer={answer}
         />
         <LoseModal
           user={props.user}
           show={loseModalShow}
-          onHide={onHide}
+          onHideNew={onHideNew}
+          onHideQuit={onHideQuit}
           urbanDef={urbanDef}
           answer={answer}
           guess6={guess6}
