@@ -51,7 +51,7 @@ module.exports = (sequelize, Sequelize) => {
 
     gameWon: {
       type: Sequelize.BOOLEAN, 
-      defaultValue: false
+      defaultValue: null
     }
 
   });

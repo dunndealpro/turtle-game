@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function LoseModal(props) {
-    console.log(props.urbanDef)
+    // console.log(props.urbanDef)
     let def
     if (props.urbanDef) {
         // let max = props.urbanDef.list.length
@@ -33,11 +33,11 @@ export default function LoseModal(props) {
             <Modal.Footer>
                 <Button
                     style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
-                    onClick={props.onHideNew}>New Game</Button>
+                    onClick={props.hideNew}>New Game</Button>
                     <Link to="/">
                     <Button
                     style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
-                    onClick={props.onHideQuit}>No More!</Button>
+                    onClick={props.hideQuit}>No More!</Button>
                         
                     </Link>
             </Modal.Footer>

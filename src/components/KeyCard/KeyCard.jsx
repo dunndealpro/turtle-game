@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 export default function KeyCard(props) {
   
     const handleKeyPress = (e) => {
-        console.log(props.entryCount)
+        // console.log(props.entryCount)
 
 
         // e.preventDefault();

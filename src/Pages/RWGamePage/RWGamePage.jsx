@@ -81,7 +81,7 @@ export default function RWGamePage(props) {
   const [loseModalShow, setLoseModalShow] = useState(false);
   const [gameStartModalShow, setGameStartModalShow] = useState(true);
 
-  function onHideNew() {
+  function hideNew() {
     // saveRandomScore()
     updateStreakCount(streakCount)
     checkLastGame(props.user.id)
@@ -104,7 +104,7 @@ export default function RWGamePage(props) {
     setCurrentGuess(['', '', '', '', ''])
     setUrbanDef()
     setCurrentGuessCount(1)
-    console.log("Im hiding up in this ish")
+    // console.log("Im hiding up in this ish")
     setEntryCount(1)
     setIsWord(false)
     // getUserScores(props.user.userId)
@@ -112,7 +112,7 @@ export default function RWGamePage(props) {
     getNewAnswer()
   }
 
-  function onHideQuit() {
+  function hideQuit() {
     // saveRandomScore()
     updateStreakCount(streakCount)
     setGameStartModalShow(false)
@@ -135,7 +135,7 @@ export default function RWGamePage(props) {
     setCurrentGuess(['', '', '', '', ''])
     setUrbanDef()
     setCurrentGuessCount(1)
-    console.log("Im hiding up in this ish")
+    // console.log("Im hiding up in this ish")
     setEntryCount(1)
     setIsWord(false)
     // getNewAnswer()
@@ -251,7 +251,7 @@ export default function RWGamePage(props) {
       guess6: '',
       score: pointsWon,
       streakcount: streakCount,
-      gameWon: false
+      gameWon: null
     }
     const newGame = await gamesAPI.startRandomWordGame(score)
     console.log(newGame)
@@ -261,19 +261,19 @@ export default function RWGamePage(props) {
   }
 
   function compareEntry() {
-    console.log("COMPARE START: LOADED ANSWER = ", answer)
+    // console.log("COMPARE START: LOADED ANSWER = ", answer)
     let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
     let tempBG1 = tempBG
-    console.log(tempBG)
+    // console.log(tempBG)
     for (let i = 0; i < answer.length; i++) {
-      console.log(i, answer[i], currentGuess[i])
+      // console.log(i, answer[i], currentGuess[i])
       if (answer[i] === currentGuess[i]) {
-        console.log("letter correct  ", tempBG.splice(i, 1, isCorrect))
+        // console.log("letter correct  ", tempBG.splice(i, 1, isCorrect))
         tempBG.splice(i, 1, isCorrect)
       } else if (answer.find(guess => guess === currentGuess[i])) {
         //find index of answer
-        console.log("letter in word", currentGuess[i])
-        console.log(answer)
+        // console.log("letter in word", currentGuess[i])
+        // console.log(answer)
         let indices = answer.map((e, k) => e === currentGuess[i] ? k : '').filter(String)
         let occursMoreThanOnce = false
         indices.every(function (idx) {
@@ -282,38 +282,38 @@ export default function RWGamePage(props) {
           }
         })
         if (!occursMoreThanOnce) {
-          console.log(tempBG1[i])
-          console.log(tempBG1)
+          // console.log(tempBG1[i])
+          // console.log(tempBG1)
           tempBG.splice(i, 1, inWord)
-          console.log("turn yellow! ", tempBG)
+          // console.log("turn yellow! ", tempBG)
         }
-        console.log(occursMoreThanOnce)
+        // console.log(occursMoreThanOnce)
 
         if (indices.length === 1 && (answer[indices[0]] === currentGuess[indices[0]])) {
           tempBG.splice(i, 1, notInWord)
-          console.log("turn gray ", tempBG)
+          // console.log("turn gray ", tempBG)
         }
         if (indices.length === 1 && (answer[indices[0]] !== currentGuess[indices[0]])) {
           tempBG.splice(i, 1, inWord)
-          console.log("turn yellow ", tempBG)
+          // console.log("turn yellow ", tempBG)
         }
         if (indices.length === 2 && ((answer[indices[0]] === currentGuess[indices[0]]) && answer[indices[1]] !== currentGuess[indices[1]])) {
           tempBG.splice(i, 1, inWord)
-          console.log("turn yellow ", tempBG)
+          // console.log("turn yellow ", tempBG)
         }
         if (indices.length === 2 && ((answer[indices[0]] !== currentGuess[indices[0]]) && answer[indices[1]] === currentGuess[indices[1]])) {
           tempBG.splice(i, 1, inWord)
-          console.log("turn yellow ", tempBG)
+          // console.log("turn yellow ", tempBG)
         }
         console.log(indices)
       } else {
-        console.log("not in word, turn gray ", currentGuess[i])
+        // console.log("not in word, turn gray ", currentGuess[i])
         tempBG.splice(i, 1, notInWord)
-        console.log(tempBG)
+        // console.log(tempBG)
       }
     }
 
-    console.log("current guess count: ", currentGuessCount)
+    // console.log("current guess count: ", currentGuessCount)
     if (currentGuessCount === 1) {
       setGuess1bg(tempBG)
     }
@@ -336,7 +336,7 @@ export default function RWGamePage(props) {
     if (answer.join() === currentGuess.join()) {
       setStreakCount(streakCount + 1)
       setCompare(true)
-      console.log("join compare true")
+      // console.log("join compare true")
       getUrbanDef()
       // setGameWon(true)
       gameWon = true
@@ -353,13 +353,13 @@ export default function RWGamePage(props) {
 
     }
     else {
-      console.log("join compare false")
+      // console.log("join compare false")
       setCompare(false)
       // setGameWon(false)
       // setStreakCount(0)
     }
 
-    console.log(compare)
+    // console.log(compare)
     setCurrentGuessCount(currentGuessCount + 1)
     setEntryCount(1)
     setCurrentGuess(['', '', '', '', ''])
@@ -368,22 +368,22 @@ export default function RWGamePage(props) {
 
   const getUserScores = async (userId) => {
     let tempUserScore = await gamesAPI.getUserScores(userId)
-    console.log(tempUserScore)
+    // console.log(tempUserScore)
     setUserScore(tempUserScore)
   }
 
   const updateStreakCount = async (streakCount) => {
-    console.log("streak count: ", streakCount)
+    // console.log("streak count: ", streakCount)
     let streakCountJson = {
       userId: props.user.id,
       streakCount: streakCount
     }
     let updatedStreakCount = await gamesAPI.updateStreakCount(streakCountJson)
-    console.log("UPDATED STREAK: ", updatedStreakCount)
+    // console.log("UPDATED STREAK: ", updatedStreakCount)
   }
 
   // console.log("False")
-  console.log(userScore)
+  // console.log(userScore)
 
   // useEffect(() => {
   //   console.log("UseEffect Engaged")
@@ -465,24 +465,23 @@ export default function RWGamePage(props) {
         <StartGameModal
           user={props.user}
           show={gameStartModalShow}
-          onHideNew={onHideNew}
-          onHideQuit={onHideQuit}
-
+          hideNew={hideNew}
+          hideQuit={hideQuit}
         />
 
         <WinModal
           user={props.user}
           show={winModalShow}
-          onHideNew={onHideNew}
-          onHideQuit={onHideQuit}
+          hideNew={hideNew}
+          hideQuit={hideQuit}
           urbanDef={urbanDef}
           answer={answer}
         />
         <LoseModal
           user={props.user}
           show={loseModalShow}
-          onHideNew={onHideNew}
-          onHideQuit={onHideQuit}
+          hideNew={hideNew}
+          hideQuit={hideQuit}
           urbanDef={urbanDef}
           answer={answer}
           guess6={guess6}

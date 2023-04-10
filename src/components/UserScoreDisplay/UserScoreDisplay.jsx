@@ -21,16 +21,16 @@ export default function UserScoreDisplay(props) {
 
     let tempDisp
 
-    console.log("Huh", props.userScore)
+    // console.log("Huh", props.userScore)
 
     // getUserScores(props.user.id)
     if (props.userScore[0]) {
-        console.log(props.userScore[0].guess1)
+        // console.log(props.userScore[0].guess1)
         tempDisp = props.userScore[0].guess1
     }
 
     useEffect(() => {
-        console.log("USerScrore UseEffect Engaged ", props.user.id)
+        // console.log("USerScrore UseEffect Engaged ", props.user.id)
         props.getUserScores(props.user.id)
 
     }, [])

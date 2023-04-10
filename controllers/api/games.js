@@ -103,13 +103,14 @@ async function startRandomGame(req, res) {
     wordId: req.body.wordId,
     userId: req.body.userId,
     userName: req.body.name,
-    guess1: req.body.guess1,
-    guess2: req.body.guess2,
-    guess3: req.body.guess3,
-    guess4: req.body.guess4,
-    guess5: req.body.guess5,
-    guess6: req.body.guess6,
-    score: req.body.score,
+    guess1: '',
+    guess2: '',
+    guess3: '',
+    guess4: '',
+    guess5: '',
+    guess6: '',
+    score: 0,
+    gameWon: false
   });
   console.log(req.body);
   console.log(newRandomGame);
