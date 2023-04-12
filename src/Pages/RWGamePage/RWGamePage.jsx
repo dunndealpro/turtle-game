@@ -59,19 +59,7 @@ export default function RWGamePage(props) {
   
 
   // let streakCountInit
-  const checkLastGame = async () => {
-    let results = await gamesAPI.checkLastGame(props.user.id)
-    console.log("CHECK LAST GAME*****   ", results.lastgame[0].gameWon)
-    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)
-    if (results[0].gameWon === true) {
-      
-      setStreakCount(results.streakcount[0].streakcount)
-    } else {
-      setStreakCount(0)
-    }
-
-
-  }
+ 
   // console.log("gameWon: ", gameWon)
 
   const [userScore, setUserScore] = useState([])
@@ -80,6 +68,17 @@ export default function RWGamePage(props) {
   const [winModalShow, setWinModalShow] = useState(false);
   const [loseModalShow, setLoseModalShow] = useState(false);
   const [gameStartModalShow, setGameStartModalShow] = useState(true);
+
+  const checkLastGame = async () => {
+    let results = await gamesAPI.checkLastGame(props.user.id)
+    console.log("CHECK LAST GAME*****   ", results.lastgame[0].gameWon)
+    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)
+    if (results.lastgame[0].gameWon === true) {      
+      setStreakCount(results.streakcount[0].streakcount)
+    } else {
+      setStreakCount(0)
+    }
+  }
 
   function hideNew() {
     // saveRandomScore()
@@ -226,6 +225,10 @@ export default function RWGamePage(props) {
     console.log(newScore)
     // updateStreakCount(streakCount)
   }
+
+  // startNewRandomGame 
+  // checkLastGame
+
 
   const startNewRandomGame = async () => {
     // let streakC 
