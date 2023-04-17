@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const { QueryTypes } = require('sequelize');
 
 const db = require("../../models");
 
@@ -13,8 +14,26 @@ module.exports = {
   getUserScores,
   updateStreak,
   startRandomGame,
-  checkLastGame
+  checkLastGame,
+  getLongStreak
 };
+
+async function getLongStreak(req, res){
+  console.log("long streak search")
+  let result = await db.sequelize.query(`
+  select "userName", "gameWon", count(*)
+  from (select *,
+    (row_number() over (order by id) - 
+    row_number() over (partition by "gameWon" order by id)
+    )as grp
+    from "Games"
+    )"Games" where "gameWon" = 't'
+    group by grp, "gameWon", "userName"
+    order by count desc;
+  `, {type: QueryTypes.SELECT})
+  console.log(result)
+  return result;
+}
 
 /*
 - Need to write query that finds last game played by user
@@ -40,7 +59,8 @@ async function checkLastGame(req, res){
     },
   });
 console.log("STREAK ", streakcount[0].dataValues.streakcount)
-  res.json({lastgame, streakcount})
+getLongStreak()
+  res.json({lastgame, streakcount, getLongStreak})
 }
 
 async function getUserScores(req, res) {
@@ -57,11 +77,63 @@ async function getUserScores(req, res) {
     order: [["total_score", "DESC"]],
   });
 
+  const totalScore = await Game.findAll({
+    where: { userId: req.user.id },
+    attributes: [
+      "userName",
+      "userId",
+
+      [Sequelize.fn("SUM", Sequelize.col("score")), "total_score"],
+    ],
+    group: ["userName", "userId"],
+    order: [["total_score", "DESC"]],
+    limit: 1,
+  });
+
   console.log("USER SCORES: ", userScores);
-  res.json(userScores);
+  let userName = req.user.name
+  let playerLongStreak = await db.sequelize.query(`
+  select "userName", "gameWon", count(*)
+  from (select *,
+    (row_number() over (order by id) - 
+    row_number() over (partition by "gameWon" order by id)
+    )as grp
+    from "Games"
+    )"Games" where "gameWon" = 't' AND "userName" = '${userName}'
+    group by grp, "gameWon", "userName"
+    order by count desc
+    limit 10
+    ;
+  `, {type: QueryTypes.SELECT})
+
+  let longStreak = await db.sequelize.query(`
+  select "userName", "gameWon", count(*)
+  from (select *,
+    (row_number() over (order by id) - 
+    row_number() over (partition by "gameWon" order by id)
+    )as grp
+    from "Games"
+    )"Games" where "gameWon" = 't'
+    group by grp, "gameWon", "userName"
+    order by count desc
+    limit 1;
+  `, {type: QueryTypes.SELECT})
+
+  let playerHighScore = await Game.findAll({
+    where: { userId: req.user.id },
+    attributes: [
+      "userName",
+      "userId",
+      "score"
+      
+    ],
+    group: ["userName", "userId", "score"],
+    order: [["score", "DESC"]],
+    limit: 5,
+  });
+
+  res.json({userScores, longStreak, playerLongStreak, totalScore, playerHighScore});
 }
-
-
 
 async function updateStreak(req, res) {
   console.log("Get Streak Count", req.body);
@@ -84,7 +156,7 @@ async function updateStreak(req, res) {
     }
   );
 
-  console.log("user updated?: ", updatedUser.streakcount)
+  console.log("user updated?: ", updatedUser.streakCount)
 
   let user2 = await User.findAll({
     where: {

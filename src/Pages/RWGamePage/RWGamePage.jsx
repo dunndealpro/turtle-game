@@ -72,7 +72,8 @@ export default function RWGamePage(props) {
   const checkLastGame = async () => {
     let results = await gamesAPI.checkLastGame(props.user.id)
     console.log("CHECK LAST GAME*****   ", results.lastgame[0].gameWon)
-    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)
+    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)    
+    console.log("****+----****:  ", results.getLongStreak)
     if (results.lastgame[0].gameWon === true) {      
       setStreakCount(results.streakcount[0].streakcount)
     } else {
@@ -139,7 +140,7 @@ export default function RWGamePage(props) {
     setIsWord(false)
     // getNewAnswer()
     // getUserScores(props.user.userId)
-    // updateStreakCount(streakCount)
+    updateStreakCount()
   }
 
   const getNewAnswer = async () => {
@@ -228,7 +229,6 @@ export default function RWGamePage(props) {
 
   // startNewRandomGame 
   // checkLastGame
-
 
   const startNewRandomGame = async () => {
     // let streakC 
@@ -375,7 +375,7 @@ export default function RWGamePage(props) {
     setUserScore(tempUserScore)
   }
 
-  const updateStreakCount = async (streakCount) => {
+  const updateStreakCount = async () => {
     // console.log("streak count: ", streakCount)
     let streakCountJson = {
       userId: props.user.id,
@@ -466,6 +466,7 @@ export default function RWGamePage(props) {
           setIsWord={setIsWord}
         />
         <StartGameModal
+        userScore={userScore}
           user={props.user}
           show={gameStartModalShow}
           hideNew={hideNew}

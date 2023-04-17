@@ -6,7 +6,21 @@ import { Link } from 'react-router-dom';
 
 export default function StartGameModal(props){
 
+    console.log(props.userScore, props.user)
+    let totalScore
+    let longStreak
+    let bestScore
+    if(props.userScore.totalScore){
+        totalScore = props.userScore.totalScore[0].total_score
+    }
+    if(props.userScore.playerLongStreak){
+        longStreak = props.userScore.playerLongStreak[0].count
+    }
+    if(props.userScore.playerHighScore){
+        bestScore = props.userScore.playerHighScore[0].score
+    }
 
+    
 
 
     return(
@@ -25,11 +39,15 @@ export default function StartGameModal(props){
 
                 The Users stats will go here:
                 <br />
-                Longest Streak
+                Longest Streak: {longStreak}
                 <br />
-                Total Score
+                Total Score: {totalScore}
+                
+                
                 <br />
-                Best Score
+                Best Score {bestScore}
+                <br />
+                Current Streak: {props.user.streakcount}
             </Modal.Body>
             <Modal.Footer>
                 <Button
