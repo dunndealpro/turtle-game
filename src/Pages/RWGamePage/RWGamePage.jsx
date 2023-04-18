@@ -83,7 +83,7 @@ export default function RWGamePage(props) {
 
   function hideNew() {
     // saveRandomScore()
-    updateStreakCount(streakCount)
+    updateStreakCount()
     checkLastGame(props.user.id)
     setWinModalShow(false)
     setLoseModalShow(false)
