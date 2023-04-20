@@ -193,7 +193,7 @@ export default function RWGamePage(props) {
     try {
       const response = await fetch(urbanSearchUrl).then(res => res.json());
       console.log("URBAN DEFINITION: ", response)
-      let rndInt = Math.floor(Math.random() * 10) + 1
+      let rndInt = Math.floor(Math.random() * response.list.length) + 1
       setUrbanDef(response.list[rndInt].definition)
       console.log(response.list[rndInt].definition)
     } catch (error) {

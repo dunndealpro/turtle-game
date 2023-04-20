@@ -29,6 +29,8 @@ export default function UserScoreDisplay(props) {
         tempDisp = props.userScore[0].guess1
     }
 
+ 
+
     useEffect(() => {
         // console.log("USerScrore UseEffect Engaged ", props.user.id)
         props.getUserScores(props.user.id)
@@ -37,7 +39,7 @@ export default function UserScoreDisplay(props) {
 
     return (
         <>
-            {props.user.name} has a current streak of {props.streakCount} games!
+            {props.user.name} has a current streak of {props.userScore.playerCurrentStreak} games!
             {/* {tempDisp} */}
             <br />
             {props.answer}

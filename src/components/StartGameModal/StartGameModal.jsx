@@ -22,7 +22,7 @@ export default function StartGameModal(props){
     }
     if(props.userScore.playerCurrentStreak){
         currentStreak= props.userScore.playerCurrentStreak
-    }
+    }else{currentStreak = 0}
 
     console.log("CURRENT STREAK FROM START MODAL: ", currentStreak)
     
@@ -37,10 +37,33 @@ export default function StartGameModal(props){
         >
             <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    {props.user.name} Are you ready to Play!
+                    {props.user.name} - are you ready to play?!
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className="show-grid">
+            <Modal.Body>
+                {currentStreak === 0 &&
+                <>                
+                Looks like you need to work on your game a bit...
+                </>
+                }
+                {(currentStreak > 0 && currentStreak < 5) &&
+                <>
+                    Thats a cute little streak you got there
+                </>
+                }
+                 {(currentStreak > 5 && currentStreak < 10) &&
+                <>
+                    your streak...not bad.  
+                </>
+                }
+                 {currentStreak > 10 &&
+                <>
+                    You know what they say about people with a big streak...
+                </>
+                }
+
+            </Modal.Body>
+            {/* <Modal.Body className="show-grid">
 
                 The Users stats will go here:
                 <br />
@@ -53,7 +76,7 @@ export default function StartGameModal(props){
                 Best Score {bestScore}
                 <br />
                 Current Streak: {currentStreak}
-            </Modal.Body>
+            </Modal.Body> */}
             <Modal.Footer>
                 <Button
                     style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
