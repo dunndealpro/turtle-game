@@ -23,7 +23,7 @@ export default function LoseModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                {props.user.name}is a Loser!
+                {props.user.name} is a Loser!
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">

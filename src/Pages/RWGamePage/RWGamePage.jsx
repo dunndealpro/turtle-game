@@ -55,6 +55,7 @@ export default function RWGamePage(props) {
   const [guess6, setGuess6] = useState(['', '', '', '', ''])//12
   const [guess6bg, setGuess6bg] = useState([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
   const [urbanDef, setUrbanDef] = useState()
+  const [normalDef, setNormalDef] = useState()
   const [streakCount, setStreakCount] = useState(props.user.streakcount)
   
 
@@ -110,6 +111,7 @@ export default function RWGamePage(props) {
     // getUserScores(props.user.userId)
     // updateStreakCount(streakCount)
     getNewAnswer()
+    
   }
 
   function hideQuit() {
@@ -150,7 +152,7 @@ export default function RWGamePage(props) {
     for (let i = 0; i < words.length; i++) {
       if (words[i].word.length === 5) {
         newAnswer = words[i].word.toLowerCase()
-        checkIfUrbanWord(newAnswer)
+        await checkIfUrbanWord(newAnswer)
         break
         // if (isUrbanWord) {
         //   newAnswer = newAnswer.split("")
@@ -165,26 +167,35 @@ export default function RWGamePage(props) {
 
   const checkIfUrbanWord = async (newAnswer) => {
     let searchUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${newAnswer}`
+    let response
     try {
-      const response = await fetch(searchUrl).then(res => res.json());
+      response = await fetch(searchUrl).then(res => res.json());
       if (response[0].word) {
         isUrbanWord = true
         let tempAnswer = await gamesAPI.addWordToTurtleDB(response[0].word)
         setAnswerInfo(tempAnswer)
         setAnswer(tempAnswer.word.split(""))
+        console.log(response[0].meanings[0].definitions[0].definition)
+        setNormalDef(response[0].meanings[0].definitions[0].definition)
+        getUrbanDef(tempAnswer.word)
         startNewRandomGame()
       }
+      
     } catch (error) {
+      
       console.log("Error: ", error)
     }
   }
 
-  const getUrbanDef = async () => {
-    let urbanSearchUrl = `https://api.urbandictionary.com/v0/define?term=${currentGuess.join('')}`
+  const getUrbanDef = async (word) => {
+    console.log(word)
+    let urbanSearchUrl = `https://api.urbandictionary.com/v0/define?term=${word}`
     try {
       const response = await fetch(urbanSearchUrl).then(res => res.json());
+      console.log("URBAN DEFINITION: ", response)
       let rndInt = Math.floor(Math.random() * 10) + 1
       setUrbanDef(response.list[rndInt].definition)
+      console.log(response.list[rndInt].definition)
     } catch (error) {
       console.log("Error: ", error)
     }
@@ -340,14 +351,14 @@ export default function RWGamePage(props) {
       setStreakCount(streakCount + 1)
       setCompare(true)
       // console.log("join compare true")
-      getUrbanDef()
+      // getUrbanDef(answer)
       // setGameWon(true)
       gameWon = true
       setWinModalShow(true)
       saveRandomScore()
     } else if (currentGuessCount === 6) {
       setStreakCount(0)
-      getUrbanDef()
+      // getUrbanDef()
       // setGameWon(false)
       gameWon = false
 
@@ -479,6 +490,7 @@ export default function RWGamePage(props) {
           hideNew={hideNew}
           hideQuit={hideQuit}
           urbanDef={urbanDef}
+          normalDef = {normalDef}
           answer={answer}
         />
         <LoseModal

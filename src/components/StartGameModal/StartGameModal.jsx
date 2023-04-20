@@ -10,16 +10,21 @@ export default function StartGameModal(props){
     let totalScore
     let longStreak
     let bestScore
+    let currentStreak
     if(props.userScore.totalScore){
         totalScore = props.userScore.totalScore[0].total_score
     }
-    if(props.userScore.playerLongStreak){
-        longStreak = props.userScore.playerLongStreak[0].count
-    }
+    // if(props.userScore.playerLongStreak){
+        longStreak = props.userScore.playerLongStreak
+    // }
     if(props.userScore.playerHighScore){
         bestScore = props.userScore.playerHighScore[0].score
     }
+    if(props.userScore.playerCurrentStreak){
+        currentStreak= props.userScore.playerCurrentStreak
+    }
 
+    console.log("CURRENT STREAK FROM START MODAL: ", currentStreak)
     
 
 
@@ -47,7 +52,7 @@ export default function StartGameModal(props){
                 <br />
                 Best Score {bestScore}
                 <br />
-                Current Streak: {props.user.streakcount}
+                Current Streak: {currentStreak}
             </Modal.Body>
             <Modal.Footer>
                 <Button
