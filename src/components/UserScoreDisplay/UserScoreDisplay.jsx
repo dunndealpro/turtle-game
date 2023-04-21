@@ -39,7 +39,7 @@ export default function UserScoreDisplay(props) {
 
     return (
         <>
-            {props.user.name} has a current streak of {props.userScore.playerCurrentStreak} games!
+            {props.user.name} has a current win streak of {props.userScore.playerCurrentStreak} games!
             {/* {tempDisp} */}
             <br />
             {props.answer}

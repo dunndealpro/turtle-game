@@ -38,14 +38,6 @@ async function getLongStreak(req, res) {
   return result;
 }
 
-/*
-- Need to write query that finds last game played by user
-- if last game was won, then carry streak over
-
-
-
-*/
-
 async function checkLastGame(req, res) {
   console.log("checking last game: ", req.user.id);
   lastgame = await Game.findAll({
@@ -68,6 +60,30 @@ async function checkLastGame(req, res) {
 
 async function getUserScores(req, res) {
   console.log("getting user scores", req.user);
+
+  const totalGames = await Game.count({
+    where: {
+      userId: req.user.id,
+    },
+  });
+
+  const totalWin = await Game.count({
+    where: {
+      userId: req.user.id,
+      gameWon: "t",
+    },
+  });
+
+  const totalLoss = await Game.count({
+    where: {
+      userId: req.user.id,
+      gameWon: "f",
+    },
+  });
+
+  let totalWinPercent = Math.round((totalWin / totalGames) * 100);
+  let totalLossPercent = Math.round((totalLoss / totalGames) * 100);
+
   const userScores = await Game.findAll({
     // where: { userId: req.user.id },
     attributes: [
@@ -96,91 +112,73 @@ async function getUserScores(req, res) {
   console.log("USER SCORES: ", userScores);
   let userName = req.user.name;
 
-  //active players current win streak
-  // let playerCurrentStreak = await db.sequelize.query(`
-  // select "userName", "gameWon", "updatedAt", count(*)
-  // from (select *,
-  //   (row_number() over (order by id) -
-  //   row_number() over (partition by "gameWon" order by id)
-  //   )as grp
-  //   from "Games"
-  //   )"Games" where "gameWon" = 't' AND "userName" = '${userName}'
-  //   group by grp, "gameWon", "userName", "updatedAt"
-  //   order by count desc, "updatedAt" desc
-
-  //   ;
-  // `, {type: QueryTypes.SELECT})
-
   let playerCurrentStreak = 0;
+  let playerCurrentLoseStreak = 0;
+
   let tempPlayerCurrentStreak = await Game.findAll({
     where: { userId: req.user.id },
     order: [["id", "DESC"]],
-    
   });
 
-  console.log("STREAK STREAK:  ", tempPlayerCurrentStreak)
-  
-  if (tempPlayerCurrentStreak[0].gameWon){
-    console.log("PLAYER STREAK is TRUE")
-    for(let i=0; i<tempPlayerCurrentStreak.length; i++){
-      if(tempPlayerCurrentStreak[i].gameWon){
-        playerCurrentStreak =  playerCurrentStreak +1
-        console.log("PLAYER STREAK: COUNTING IN PROGRESS", playerCurrentStreak)
-      }else{
-        
-        break
+  console.log("STREAK STREAK:  ", tempPlayerCurrentStreak);
+
+  if (tempPlayerCurrentStreak[0].gameWon) {
+    console.log("PLAYER STREAK is TRUE");
+    for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
+      if (tempPlayerCurrentStreak[i].gameWon) {
+        playerCurrentStreak = playerCurrentStreak + 1;
+        console.log("PLAYER STREAK: COUNTING IN PROGRESS", playerCurrentStreak);
+      } else {
+        break;
       }
     }
-  }else{
-    playerCurrentStreak=0
+  } else {
+    playerCurrentStreak = 0;
   }
 
-  console.log("PLAYER STREAK: ", playerCurrentStreak)
+  if (!tempPlayerCurrentStreak[0].gameWon) {
+    console.log("PLAYER LOSE STREAK is TRUE");
+    for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
+      if (!tempPlayerCurrentStreak[i].gameWon) {
+        playerCurrentLoseStreak = playerCurrentLoseStreak + 1;
+        console.log("PLAYER Lose STREAK: COUNTING IN PROGRESS", playerCurrentLoseStreak);
+      } else {
+        break;
+      }
+    }
+  } else {
+    playerCurrentLoseStreak = 0;
+  }
 
-  //active player's longest win streak
-  // let playerLongStreak = await db.sequelize.query(
-  //   `
-  // select "userName", "gameWon", count(*)
-  // from (select *,
-  //   (row_number() over (order by id) - 
-  //   row_number() over (partition by "gameWon" order by id)
-  //   )as grp
-  //   from "Games"
-  //   )"Games" where "gameWon" = 't' AND "userName" = '${userName}'
-  //   group by grp, "gameWon", "userName"
-  //   order by count desc
-  //   limit 10
-  //   ;
-  // `,
-  //   { type: QueryTypes.SELECT }
-  // );
+  console.log("PLAYER STREAK: ", playerCurrentStreak);
 
   let tempPlayerLongStreak = await Game.findAll({
     where: { userId: req.user.id },
     order: [["id", "DESC"]],
-    
   });
 
-  console.log("STREAK STREAK:  ", tempPlayerLongStreak)
+  console.log("STREAK STREAK:  ", tempPlayerLongStreak);
 
-  let playerLongStreak = 0
-  let winStreak = 0
-  let loseStreak = 0
-  
-    for(let i=0; i<tempPlayerLongStreak.length; i++){
-      if(tempPlayerLongStreak[i].gameWon){
-        loseStreak = 0
-       winStreak =  winStreak +1
-        if(winStreak > playerLongStreak){
-          playerLongStreak = winStreak
-        }
-      }else{
-        winStreak = 0
-        loseStreak = loseStreak +1
-        
+  let playerLongStreak = 0;
+  let winStreak = 0;
+  let loseStreak = 0;
+  let playerLossLongStreak = 0;
+
+  for (let i = 0; i < tempPlayerLongStreak.length; i++) {
+    if (tempPlayerLongStreak[i].gameWon) {
+      loseStreak = 0;
+      winStreak = winStreak + 1;
+      if (winStreak > playerLongStreak) {
+        playerLongStreak = winStreak;
+      }
+    } else {
+      winStreak = 0;
+      loseStreak = loseStreak + 1;
+      if (loseStreak > playerLossLongStreak) {
+        playerLossLongStreak = loseStreak;
       }
     }
-  
+  }
 
   // longest win streak of all players
   let longStreak = await db.sequelize.query(
@@ -194,7 +192,14 @@ async function getUserScores(req, res) {
     )"Games" where "gameWon" = 't'
     group by grp, "gameWon", "userName"
     order by count desc
-    limit 1;
+    limit 10;
+  `,
+    { type: QueryTypes.SELECT }
+  );
+
+  let guessDist = await db.sequelize.query(
+    `
+    select "score", count(*) from "Games" where "userId" = ${req.user.id} group by "score";
   `,
     { type: QueryTypes.SELECT }
   );
@@ -208,13 +213,19 @@ async function getUserScores(req, res) {
   });
 
   res.json({
+    guessDist,
     userScores,
     longStreak,
     playerLongStreak,
     totalScore,
     playerHighScore,
     playerCurrentStreak,
-    tempPlayerCurrentStreak
+    playerCurrentLoseStreak,
+    tempPlayerCurrentStreak,
+    totalGames,
+    totalWinPercent,
+    totalLossPercent,
+    playerLossLongStreak
   });
 }
 

@@ -57,10 +57,10 @@ export default function RWGamePage(props) {
   const [urbanDef, setUrbanDef] = useState()
   const [normalDef, setNormalDef] = useState()
   const [streakCount, setStreakCount] = useState(props.user.streakcount)
-  
+
 
   // let streakCountInit
- 
+
   // console.log("gameWon: ", gameWon)
 
   const [userScore, setUserScore] = useState([])
@@ -73,9 +73,9 @@ export default function RWGamePage(props) {
   const checkLastGame = async () => {
     let results = await gamesAPI.checkLastGame(props.user.id)
     console.log("CHECK LAST GAME*****   ", results.lastgame[0].gameWon)
-    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)    
+    console.log("****USER STREAK COUNT:  ", results.streakcount[0].streakcount)
     console.log("****+----****:  ", results.getLongStreak)
-    if (results.lastgame[0].gameWon === true) {      
+    if (results.lastgame[0].gameWon === true) {
       setStreakCount(results.streakcount[0].streakcount)
     } else {
       setStreakCount(0)
@@ -85,6 +85,7 @@ export default function RWGamePage(props) {
   function hideNew() {
     // saveRandomScore()
     updateStreakCount()
+    
     checkLastGame(props.user.id)
     setWinModalShow(false)
     setLoseModalShow(false)
@@ -111,7 +112,7 @@ export default function RWGamePage(props) {
     // getUserScores(props.user.userId)
     // updateStreakCount(streakCount)
     getNewAnswer()
-    
+
   }
 
   function hideQuit() {
@@ -180,9 +181,9 @@ export default function RWGamePage(props) {
         getUrbanDef(tempAnswer.word)
         startNewRandomGame()
       }
-      
+
     } catch (error) {
-      
+
       console.log("Error: ", error)
     }
   }
@@ -355,7 +356,8 @@ export default function RWGamePage(props) {
       // setGameWon(true)
       gameWon = true
       setWinModalShow(true)
-      saveRandomScore()
+       saveRandomScore()
+       getUserScores()
     } else if (currentGuessCount === 6) {
       setStreakCount(0)
       // getUrbanDef()
@@ -364,6 +366,7 @@ export default function RWGamePage(props) {
 
       setLoseModalShow(true)
       saveRandomScore()
+      getUserScores()
 
     }
     else {
@@ -477,7 +480,7 @@ export default function RWGamePage(props) {
           setIsWord={setIsWord}
         />
         <StartGameModal
-        userScore={userScore}
+          userScore={userScore}
           user={props.user}
           show={gameStartModalShow}
           hideNew={hideNew}
@@ -485,20 +488,25 @@ export default function RWGamePage(props) {
         />
 
         <WinModal
+        getUserScores={getUserScores}
+          userScore={userScore}
           user={props.user}
           show={winModalShow}
           hideNew={hideNew}
           hideQuit={hideQuit}
           urbanDef={urbanDef}
-          normalDef = {normalDef}
+          normalDef={normalDef}
           answer={answer}
         />
         <LoseModal
+        getUserScores={getUserScores}
+        userScore={userScore}
           user={props.user}
           show={loseModalShow}
           hideNew={hideNew}
           hideQuit={hideQuit}
           urbanDef={urbanDef}
+          normalDef={normalDef}
           answer={answer}
           guess6={guess6}
         />
