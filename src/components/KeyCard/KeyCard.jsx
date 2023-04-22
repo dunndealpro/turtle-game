@@ -6,18 +6,13 @@ import { useEffect, useState } from 'react'
 
 
 export default function KeyCard(props) {
-  
+
     const handleKeyPress = (e) => {
-        // console.log(props.entryCount)
-
-
-        // e.preventDefault();
         if (props.entryCount < 6) {
             let key = e.target.innerText || e.key
             props.setEntryCount(props.entryCount + 1)
-
             let idx = props.currentGuess.indexOf('')
-            // console.log(props.guess1)
+
             if (idx < 5 && idx > -1) {
                 let temp = props.currentGuess
                 temp.splice(idx, 1, key)
@@ -41,16 +36,85 @@ export default function KeyCard(props) {
                     props.setGuess6(props.currentGuess)
                 }
             }
-            
+
         } else {
             console.log("no more entries")
         }
     }
 
+    // if (){
+
+    // }
+
+    let background = "LightGrey"
+
+    let priorGuess
+    let idx
+
+
+    const isMatch = (element) => element === props.letter
+    if (props.currentGuessCount === 1) {
+        background = "LightGrey"
+    }
+    if (props.currentGuessCount === 2) {
+        priorGuess = props.guess1
+        if (priorGuess.findIndex(isMatch) > -1) {
+            console.log(priorGuess.findIndex(isMatch))
+            idx = priorGuess.findIndex(isMatch)
+            background = props.guess1bg[idx]
+            console.log("wierd stuff bro ", props.letter)
+        }
+    }
+    if (props.currentGuessCount === 3) {
+        priorGuess = props.guess2
+
+        if (priorGuess.findIndex(isMatch) > -1) {
+            console.log(priorGuess.findIndex(isMatch))
+            idx = priorGuess.findIndex(isMatch)
+            background = props.guess2bg[idx]
+
+            console.log("wierd stuff bro ", props.letter)
+        }
+    }
+    if (props.currentGuessCount === 4) {
+        priorGuess = props.guess3
+
+        if (priorGuess.findIndex(isMatch) > -1) {
+            console.log(priorGuess.findIndex(isMatch))
+            idx = priorGuess.findIndex(isMatch)
+            background = props.guess3bg[idx]
+            console.log("wierd stuff bro ", props.letter)
+        }
+    }
+    if (props.currentGuessCount === 5) {
+        priorGuess = props.guess4
+
+        if (priorGuess.findIndex(isMatch) > -1) {
+            console.log(priorGuess.findIndex(isMatch))
+            idx = priorGuess.findIndex(isMatch)
+            background = props.guess4bg[idx]
+            console.log("wierd stuff bro ", props.letter)
+        }
+    }
+    if (props.currentGuessCount === 6) {
+        priorGuess = props.guess5
+
+        if (priorGuess.findIndex(isMatch) > -1) {
+            console.log(priorGuess.findIndex(isMatch))
+            idx = priorGuess.findIndex(isMatch)
+            background = props.guess5bg[idx]
+            console.log("wierd stuff bro ", props.letter)
+        }
+    }
+
+    // if (priorGuess.findIndex(props.letter)) {
+    //     console.log("wierd stuff bro")
+    // }
+
     return (
         <>
-            <Button className="" onClick={handleKeyPress}  style={{ 'margin': '1px', 'padding': '10px', 'height': '60px' }}>
-                <div className='' accessKey={props.letter}>{props.letter}</div>
+            <Button className="" onClick={handleKeyPress} style={{ 'margin': '1px', 'padding': '8px', 'height': '60px', 'width': '2em', 'background-color': `${background}`, 'border': 'LightGrey', 'color': 'black' }}>
+                <div className='' accessKey={props.letter}><strong>{props.letter}</strong></div>
             </Button>
 
 

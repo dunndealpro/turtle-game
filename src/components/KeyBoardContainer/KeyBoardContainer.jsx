@@ -7,14 +7,20 @@ import BackKey from "../BackKey/BackKey";
 
 export default function KeyBoardContainer(props) {
 
-    const topRow = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
-    const midRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
-    const botRow = ["z", "x", "c", "v", "b", "n", "m"]
+    const topRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
+    const midRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
+    const botRow = ["Z", "X", "C", "V", "B", "N", "M"]
     return (
         <>
             <div>
                 {topRow.map((letter) => (
                     <KeyCard
+                        guess1bg={props.guess1bg}
+                        guess2bg={props.guess2bg}
+                        guess3bg={props.guess3bg}
+                        guess4bg={props.guess4bg}
+                        guess5bg={props.guess5bg}
+                        guess6bg={props.guess6bg}
                         currentGuess={props.currentGuess}
                         setCurrentGuess={props.setCurrentGuess}
                         guess1={props.guess1}
@@ -45,6 +51,12 @@ export default function KeyBoardContainer(props) {
             <div>
                 {midRow.map((letter) => (
                     <KeyCard
+                        guess1bg={props.guess1bg}
+                        guess2bg={props.guess2bg}
+                        guess3bg={props.guess3bg}
+                        guess4bg={props.guess4bg}
+                        guess5bg={props.guess5bg}
+                        guess6bg={props.guess6bg}
                         currentGuess={props.currentGuess}
                         setCurrentGuess={props.setCurrentGuess}
                         guessInit={props.guessInit}
@@ -92,12 +104,18 @@ export default function KeyBoardContainer(props) {
                     setEntryCount={props.setEntryCount}
                     currentGuessCount={props.currentGuessCount}
                     setCurrentGuessCount={props.setCurrentGuessCount}
-                    checkIfWord = {props.checkIfWord}
+                    checkIfWord={props.checkIfWord}
                     isWord={props.isWord}
                     setIsWord={props.setIsWord}
                 />
                 {botRow.map((letter) => (
                     <KeyCard
+                        guess1bg={props.guess1bg}
+                        guess2bg={props.guess2bg}
+                        guess3bg={props.guess3bg}
+                        guess4bg={props.guess4bg}
+                        guess5bg={props.guess5bg}
+                        guess6bg={props.guess6bg}
                         currentGuess={props.currentGuess}
                         setCurrentGuess={props.setCurrentGuess}
                         guessInit={props.guessInit}

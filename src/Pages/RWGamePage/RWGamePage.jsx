@@ -20,7 +20,7 @@ export default function RWGamePage(props) {
 
   let isCorrect = "green"
   let inWord = "yellow"
-  let notInWord = "gray"
+  let notInWord = "DimGray"
   let blankEntry = "white"
 
   let isUrbanWord = false
@@ -175,7 +175,7 @@ export default function RWGamePage(props) {
         isUrbanWord = true
         let tempAnswer = await gamesAPI.addWordToTurtleDB(response[0].word)
         setAnswerInfo(tempAnswer)
-        setAnswer(tempAnswer.word.split(""))
+        setAnswer(tempAnswer.word.toUpperCase().split(""))
         console.log(response[0].meanings[0].definitions[0].definition)
         setNormalDef(response[0].meanings[0].definitions[0].definition)
         getUrbanDef(tempAnswer.word)
@@ -478,6 +478,12 @@ export default function RWGamePage(props) {
           checkIfWord={checkIfWord}
           isWord={isWord}
           setIsWord={setIsWord}
+          guess1bg={guess1bg}
+          guess2bg={guess2bg}
+          guess3bg={guess3bg}
+          guess4bg={guess4bg}
+          guess5bg={guess5bg}
+          guess6bg={guess6bg}
         />
         <StartGameModal
           userScore={userScore}
