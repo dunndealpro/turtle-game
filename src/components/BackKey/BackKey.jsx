@@ -1,6 +1,9 @@
 import Button from 'react-bootstrap/Button';
+import { useHotkeys } from 'react-hotkeys-hook';
+
 
 export default function BackKey(props) {
+    useHotkeys('backspace', () => handleKeyPress())
 
     const handleKeyPress = (e) => {
         if (props.entryCount > 1) {

@@ -3,13 +3,50 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react'
-
+import { useHotkeys } from 'react-hotkeys-hook';
 
 export default function KeyCard(props) {
 
-    const handleKeyPress = (e) => {
+    useHotkeys(props.letter, () => handleKeyBoardPress(props.letter))
+
+    const handleKeyBoardPress = (event) => {
         if (props.entryCount < 6) {
-            let key = e.target.innerText || e.key
+            let key =event 
+            props.setEntryCount(props.entryCount + 1)
+            let idx = props.currentGuess.indexOf('')
+
+            if (idx < 5 && idx > -1) {
+                let temp = props.currentGuess
+                temp.splice(idx, 1, key)
+                props.setCurrentGuess(temp)
+                if (props.currentGuessCount === 1) {
+                    props.setGuess1(props.currentGuess)
+                }
+                if (props.currentGuessCount === 2) {
+                    props.setGuess2(props.currentGuess)
+                }
+                if (props.currentGuessCount === 3) {
+                    props.setGuess3(props.currentGuess)
+                }
+                if (props.currentGuessCount === 4) {
+                    props.setGuess4(props.currentGuess)
+                }
+                if (props.currentGuessCount === 5) {
+                    props.setGuess5(props.currentGuess)
+                }
+                if (props.currentGuessCount === 6) {
+                    props.setGuess6(props.currentGuess)
+                }
+            }
+
+        } else {
+            console.log("no more entries")
+        }
+    }
+
+    const handleKeyPress = (event) => {
+        if (props.entryCount < 6) {
+            let key = event.target.innerText || event.key
             props.setEntryCount(props.entryCount + 1)
             let idx = props.currentGuess.indexOf('')
 
@@ -110,11 +147,13 @@ export default function KeyCard(props) {
     // if (priorGuess.findIndex(props.letter)) {
     //     console.log("wierd stuff bro")
     // }
+   
 
     return (
         <>
-            <Button className="" onClick={handleKeyPress} style={{ 'margin': '1px', 'padding': '8px', 'height': '60px', 'width': '2em', 'background-color': `${background}`, 'border': 'LightGrey', 'color': 'black' }}>
-                <div className='' accessKey={props.letter}><strong>{props.letter}</strong></div>
+            <Button data-key={props.letter} className="" onClick={handleKeyPress} style={{ 'margin': '1px', 'padding': '8px', 'height': '60px', 'width': '2em', 'background-color': `${background}`, 'border': 'LightGrey', 'color': 'black' }}>
+                <div className='' data-key={props.letter} accessKey={props.letter}><strong>{props.letter}</strong></div>
+                
             </Button>
 
 
