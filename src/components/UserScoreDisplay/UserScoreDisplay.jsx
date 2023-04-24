@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
+import { motion } from "framer-motion";
+import './UserScoreDisplay.css';
 
 import * as gamesAPI from "../../utilities/games-api"
 
@@ -39,6 +41,7 @@ export default function UserScoreDisplay(props) {
 
     return (
         <>
+       
             {props.user.name} has a current win streak of {props.userScore.playerCurrentStreak} games!
             {/* {tempDisp} */}
             <br />

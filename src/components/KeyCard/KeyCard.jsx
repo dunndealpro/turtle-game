@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook';
+import { motion } from "framer-motion";
+
 
 export default function KeyCard(props) {
 
