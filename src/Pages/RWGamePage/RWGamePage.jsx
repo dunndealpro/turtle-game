@@ -366,7 +366,10 @@ export default function RWGamePage(props) {
       // getUrbanDef(answer)
       // setGameWon(true)
       gameWon = true
-      setWinModalShow(true)
+      setTimeout(() => {
+        setWinModalShow(true)
+        
+      }, 2500);
       saveRandomScore()
       getUserScores()
     } else if (currentGuessCount === 6) {
@@ -374,8 +377,10 @@ export default function RWGamePage(props) {
       // getUrbanDef()
       // setGameWon(false)
       gameWon = false
-
-      setLoseModalShow(true)
+      setTimeout(() => {
+        setLoseModalShow(true)
+        
+      }, 2500);
       saveRandomScore()
       getUserScores()
 
