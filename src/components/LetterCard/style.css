@@ -1,9 +1,303 @@
 .border  {
+    background-color: white;
     width: 3em;
     height: 3em;
     margin: 4px;
-    padding: 10px 
-    
-    
-    
+    padding: 10px;     
+    animation-name: enterpulse;
+    animation-duration: .25s;
+    animation-delay: 0;
+    transition: background-color 5s;
   }
+
+  @keyframes enterpulse {
+    from {
+      transform: scale(1);
+    }
+
+    50%{
+      transform: scale(1.2);
+    
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .borderflip {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flip;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .25s;
+  }
+
+  .borderflipG0  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .25s;
+    background-color: green;
+    /* transition: background-color .5s; */
+  }
+
+  .borderflipG1  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .5s;
+    background-color: green;
+    /* transition: background-color .5s; */
+  }
+
+  .borderflipG2  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .75s;
+    background-color: green;
+    /* transition: background-color .5s; */
+  }
+
+  .borderflipG3  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: 1.0s;
+    background-color: green;
+    /* transition: background-color .5s; */
+  }
+
+  .borderflipG4  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: 1.25s;
+    background-color: green;
+    /* transition: background-color .5s; */
+  }
+
+  .borderflipY0  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipY;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .25s;
+    background-color: yellow;
+  }
+
+  .borderflipY1  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipY;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .5s;
+    background-color: yellow;
+  }
+
+  .borderflipY2  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipY;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .75s;
+    background-color: yellow;
+  }
+
+  .borderflipY3  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipY;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: 1.0s;
+    background-color: yellow;
+  }
+
+  .borderflipY4  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipY;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: 1.25s;
+    background-color: yellow;
+  }
+
+  .borderflipDG0  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipDG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .25s;
+    background-color: DimGray;
+  }
+
+  .borderflipDG1  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipDG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .5s;
+    background-color: DimGray;
+  }
+
+  .borderflipDG2  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipDG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: .75s;
+    background-color: DimGray;
+  }
+
+  .borderflipDG3  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipDG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: none; */
+    animation-delay: 1.0s;
+    background-color: DimGray;
+  }
+
+  .borderflipDG4  {
+    width: 3em;
+    height: 3em;
+    margin: 4px;
+    padding: 10px;     
+    animation-name: flipDG;
+    animation-duration: .4s;
+    animation-fill-mode: forward;
+    /* animation-fill-mode: forward; */
+    animation-delay: 1.25s;
+    background-color: DimGray;
+  }
+
+
+
+
+  @keyframes flipG {
+    from {
+      transform: scaley(1);
+      background-color: white;
+    }
+
+    50%{
+      transform: scaley(0);
+      background-color: green;
+
+    
+    }
+
+    to {
+      transform: scaley(1);
+      background-color: green;
+    }
+  }
+
+  @keyframes flipY {
+    from {
+      transform: scaley(1);
+      background-color: white;
+      
+    }
+
+    50%{
+      transform: scaley(0);
+      background-color: yellow;
+
+    
+    }
+
+    to {
+      transform: scaley(1);
+      background-color: yellow;
+
+    }
+  }
+
+  @keyframes flipDG {
+    from {
+      transform: scaley(1);
+      background-color: white;
+    }
+
+    50%{
+      transform: scaley(0);
+      background-color: dimgray;
+    
+    }
+
+    to {
+      transform: scaley(1);
+      background-color: dimgray;
+    }
+  }
+
+
+
+  

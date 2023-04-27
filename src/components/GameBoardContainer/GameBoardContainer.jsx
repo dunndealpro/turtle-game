@@ -9,6 +9,8 @@ export default function GameBoardContainer(props) {
 
     console.log("Gameboard Container")
 
+
+
     return (
         <>
             <div >
@@ -19,52 +21,60 @@ export default function GameBoardContainer(props) {
                                 key={letter.toString() + '_' + index}
                                 letter={letter}
                                 background={props.guess1bg[index]}
+                                index={index}
                             />
                         ))}
                     </Row>
                     <Row className='justify-content-center'>
                         {props.guess2.map((letter, index) => (
                             <LetterCard
-                            key={letter.toString() + '_' + index}
-                            letter={letter}
-                            background={props.guess2bg[index]}
-                        />
+                                key={letter.toString() + '_' + index}
+                                letter={letter}
+                                background={props.guess2bg[index]}
+                                index={index}
+                            />
                         ))}
                     </Row>
+
+
                     <Row className='justify-content-center'>
                         {props.guess3.map((letter, index) => (
                             <LetterCard
-                            key={letter.toString() + '_' + index}
-                            letter={letter}
-                            background={props.guess3bg[index]}
-                        />
+                                key={letter.toString() + '_' + index}
+                                letter={letter}
+                                background={props.guess3bg[index]}
+                                index={index}
+                            />
                         ))}
                     </Row>
                     <Row className='justify-content-center'>
                         {props.guess4.map((letter, index) => (
-                             <LetterCard
-                             key={letter.toString() + '_' + index}
-                             letter={letter}
-                             background={props.guess4bg[index]}
-                         />
+                            <LetterCard
+                                key={letter.toString() + '_' + index}
+                                letter={letter}
+                                background={props.guess4bg[index]}
+                                index={index}
+                            />
                         ))}
                     </Row>
                     <Row className='justify-content-center'>
                         {props.guess5.map((letter, index) => (
                             <LetterCard
-                            key={letter.toString() + '_' + index}
-                            letter={letter}
-                            background={props.guess5bg[index]}
-                        />
+                                key={letter.toString() + '_' + index}
+                                letter={letter}
+                                background={props.guess5bg[index]}
+                                index={index}
+                            />
                         ))}
                     </Row>
                     <Row className='justify-content-center'>
                         {props.guess6.map((letter, index) => (
                             <LetterCard
-                            key={letter.toString() + '_' + index}
-                            letter={letter}
-                            background={props.guess6bg[index]}
-                        />
+                                key={letter.toString() + '_' + index}
+                                letter={letter}
+                                background={props.guess6bg[index]}
+                                index={index}
+                            />
                         ))}
                     </Row>
 

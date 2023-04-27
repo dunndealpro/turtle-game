@@ -85,7 +85,7 @@ export default function RWGamePage(props) {
   function hideNew() {
     // saveRandomScore()
     updateStreakCount()
-    
+
     checkLastGame(props.user.id)
     setWinModalShow(false)
     setLoseModalShow(false)
@@ -275,60 +275,54 @@ export default function RWGamePage(props) {
     // updateStreakCount(streakCount)
   }
 
-  function compareEntry() {
-    // console.log("COMPARE START: LOADED ANSWER = ", answer)
-    let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
-    let tempBG1 = tempBG
-    // console.log(tempBG)
-    for (let i = 0; i < answer.length; i++) {
-      // console.log(i, answer[i], currentGuess[i])
-      if (answer[i] === currentGuess[i]) {
-        // console.log("letter correct  ", tempBG.splice(i, 1, isCorrect))
-        tempBG.splice(i, 1, isCorrect)
-      } else if (answer.find(guess => guess === currentGuess[i])) {
-        //find index of answer
-        // console.log("letter in word", currentGuess[i])
-        // console.log(answer)
-        let indices = answer.map((e, k) => e === currentGuess[i] ? k : '').filter(String)
-        let occursMoreThanOnce = false
-        indices.every(function (idx) {
-          if (answer[idx] === currentGuess[idx]) {
-            return occursMoreThanOnce = true;
-          }
-        })
-        if (!occursMoreThanOnce) {
-          // console.log(tempBG1[i])
-          // console.log(tempBG1)
-          tempBG.splice(i, 1, inWord)
-          // console.log("turn yellow! ", tempBG)
-        }
-        // console.log(occursMoreThanOnce)
+  let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
 
-        if (indices.length === 1 && (answer[indices[0]] === currentGuess[indices[0]])) {
-          tempBG.splice(i, 1, notInWord)
-          // console.log("turn gray ", tempBG)
+
+  function checkGuess(i) {   
+    if (answer[i] === currentGuess[i]) {
+      // console.log("letter correct  ", tempBG.splice(i, 1, isCorrect))
+      tempBG.splice(i, 1, isCorrect)
+    } else if (answer.find(guess => guess === currentGuess[i])) {
+      //find index of answer
+      // console.log("letter in word", currentGuess[i])
+      // console.log(answer)
+      let indices = answer.map((e, k) => e === currentGuess[i] ? k : '').filter(String)
+      let occursMoreThanOnce = false
+      indices.every(function (idx) {
+        if (answer[idx] === currentGuess[idx]) {
+          return occursMoreThanOnce = true;
         }
-        if (indices.length === 1 && (answer[indices[0]] !== currentGuess[indices[0]])) {
-          tempBG.splice(i, 1, inWord)
-          // console.log("turn yellow ", tempBG)
-        }
-        if (indices.length === 2 && ((answer[indices[0]] === currentGuess[indices[0]]) && answer[indices[1]] !== currentGuess[indices[1]])) {
-          tempBG.splice(i, 1, inWord)
-          // console.log("turn yellow ", tempBG)
-        }
-        if (indices.length === 2 && ((answer[indices[0]] !== currentGuess[indices[0]]) && answer[indices[1]] === currentGuess[indices[1]])) {
-          tempBG.splice(i, 1, inWord)
-          // console.log("turn yellow ", tempBG)
-        }
-        console.log(indices)
-      } else {
-        // console.log("not in word, turn gray ", currentGuess[i])
-        tempBG.splice(i, 1, notInWord)
-        // console.log(tempBG)
+      })
+      if (!occursMoreThanOnce) {
+        // console.log(tempBG1[i])
+        // console.log(tempBG1)
+        tempBG.splice(i, 1, inWord)
+        // console.log("turn yellow! ", tempBG)
       }
-    }
+      // console.log(occursMoreThanOnce)
 
-    // console.log("current guess count: ", currentGuessCount)
+      if (indices.length === 1 && (answer[indices[0]] === currentGuess[indices[0]])) {
+        tempBG.splice(i, 1, notInWord)
+        // console.log("turn gray ", tempBG)
+      }
+      if (indices.length === 1 && (answer[indices[0]] !== currentGuess[indices[0]])) {
+        tempBG.splice(i, 1, inWord)
+        // console.log("turn yellow ", tempBG)
+      }
+      if (indices.length === 2 && ((answer[indices[0]] === currentGuess[indices[0]]) && answer[indices[1]] !== currentGuess[indices[1]])) {
+        tempBG.splice(i, 1, inWord)
+        // console.log("turn yellow ", tempBG)
+      }
+      if (indices.length === 2 && ((answer[indices[0]] !== currentGuess[indices[0]]) && answer[indices[1]] === currentGuess[indices[1]])) {
+        tempBG.splice(i, 1, inWord)
+        // console.log("turn yellow ", tempBG)
+      }
+      console.log(indices)
+    } else {
+      // console.log("not in word, turn gray ", currentGuess[i])
+      tempBG.splice(i, 1, notInWord)
+      // console.log(tempBG)
+    }
     if (currentGuessCount === 1) {
       setGuess1bg(tempBG)
     }
@@ -348,6 +342,23 @@ export default function RWGamePage(props) {
       setGuess6bg(tempBG)
     }
 
+  }
+
+  function compareEntry() {
+    // console.log("COMPARE START: LOADED ANSWER = ", answer)
+    // let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
+    // let tempBG1 = tempBG
+    // console.log(tempBG)
+
+
+    for (let i = 0; i < answer.length; i++) {
+      // console.log(i, answer[i], currentGuess[i])
+      checkGuess(i)      
+    }
+
+
+    // console.log("current guess count: ", currentGuessCount)
+
     if (answer.join() === currentGuess.join()) {
       setStreakCount(streakCount + 1)
       setCompare(true)
@@ -356,8 +367,8 @@ export default function RWGamePage(props) {
       // setGameWon(true)
       gameWon = true
       setWinModalShow(true)
-       saveRandomScore()
-       getUserScores()
+      saveRandomScore()
+      getUserScores()
     } else if (currentGuessCount === 6) {
       setStreakCount(0)
       // getUrbanDef()
@@ -404,7 +415,7 @@ export default function RWGamePage(props) {
 
   // useEffect(() => {
   //   console.log("UseEffect Engaged")
-  //   getNewAnswer()
+  //   // getNewAnswer()
 
   // }, [])
 
@@ -494,7 +505,7 @@ export default function RWGamePage(props) {
         />
 
         <WinModal
-        getUserScores={getUserScores}
+          getUserScores={getUserScores}
           userScore={userScore}
           user={props.user}
           show={winModalShow}
@@ -505,8 +516,8 @@ export default function RWGamePage(props) {
           answer={answer}
         />
         <LoseModal
-        getUserScores={getUserScores}
-        userScore={userScore}
+          getUserScores={getUserScores}
+          userScore={userScore}
           user={props.user}
           show={loseModalShow}
           hideNew={hideNew}
