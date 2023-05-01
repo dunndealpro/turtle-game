@@ -1,0 +1,29 @@
+.key {
+  background-color: LightGrey;
+  margin: 1px;
+  padding: 8px;
+  height: 60px;
+  width: 2em;
+  border: LightGrey;
+  color: black;
+}
+
+.is-correct {
+  background-color: green;
+  transition-delay: 2s;
+}
+
+.in-word {
+  background-color: rgb(184; 184, 0);
+  transition-delay: 2s;
+}
+
+.not-in-word {
+  background-color: Dimgray;
+  transition-delay: 2s;
+}
+
+.blank {
+  background-color: LightGrey;
+  transition-delay: 2s;
+}

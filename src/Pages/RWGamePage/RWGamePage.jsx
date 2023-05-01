@@ -19,7 +19,7 @@ export default function RWGamePage(props) {
   // console.log("User Streak Count on page load: ", props.user.streakcount)
 
   let isCorrect = "green"
-  let inWord = "yellow"
+  let inWord = "rgb(184, 184, 0)"
   let notInWord = "DimGray"
   let blankEntry = "white"
 
@@ -278,7 +278,7 @@ export default function RWGamePage(props) {
   let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
 
 
-  function checkGuess(i) {   
+  function checkGuess(i) {
     if (answer[i] === currentGuess[i]) {
       // console.log("letter correct  ", tempBG.splice(i, 1, isCorrect))
       tempBG.splice(i, 1, isCorrect)
@@ -353,7 +353,7 @@ export default function RWGamePage(props) {
 
     for (let i = 0; i < answer.length; i++) {
       // console.log(i, answer[i], currentGuess[i])
-      checkGuess(i)      
+      checkGuess(i)
     }
 
 
@@ -368,7 +368,7 @@ export default function RWGamePage(props) {
       gameWon = true
       setTimeout(() => {
         setWinModalShow(true)
-        
+
       }, 2500);
       saveRandomScore()
       getUserScores()
@@ -379,7 +379,7 @@ export default function RWGamePage(props) {
       gameWon = false
       setTimeout(() => {
         setLoseModalShow(true)
-        
+
       }, 2500);
       saveRandomScore()
       getUserScores()

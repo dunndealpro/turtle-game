@@ -1,0 +1,629 @@
+.bordertest {
+  border: 1px solid white;
+}
+
+.font-size {
+  align-content: center;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tile {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 3em;
+  height: 3em;
+  margin: 4px;
+  padding: 0 0 4px 0;
+}
+
+@keyframes enterpulse {
+  from {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.is-correct {
+  background-color: green;
+}
+
+.is-in-word {
+  background-color: rgb(184, 184, 0);
+}
+
+.not-in-word {
+  background-color: darkgrey;
+}
+
+.borderflip {
+  border: 81px solid red;
+
+  animation-name: flip;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  /* animation-fill-mode: none; */
+  animation-delay: 0.25s;
+}
+
+.borderflipG0 {
+  animation-name: flipG0;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: green;
+}
+
+.borderflipG1 {
+  animation-name: flipG1;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: green;
+}
+
+.borderflipG2 {
+  animation-name: flipG2;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: green;
+}
+
+.borderflipG3 {
+  animation-name: flipG3;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: green;
+}
+
+.borderflipG4 {
+  animation-name: flipG4;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: green;
+}
+
+.borderflipY0 {
+  animation-name: flipY0;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: rgb(184, 184, 0);
+}
+
+.borderflipY1 {
+  animation-name: flipY1;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: rgb(184, 184, 0);
+}
+
+.borderflipY2 {
+  animation-name: flipY2;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: rgb(184, 184, 0);
+}
+
+.borderflipY3 {
+  animation-name: flipY3;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: rgb(184, 184, 0);
+}
+
+.borderflipY4 {
+  animation-name: flipY4;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: rgb(184, 184, 0);
+}
+
+.borderflipDG0 {
+  animation-name: flipDG0;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: DimGray;
+}
+
+.borderflipDG1 {
+  animation-name: flipDG1;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: DimGray;
+}
+
+.borderflipDG2 {
+  animation-name: flipDG2;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: DimGray;
+}
+
+.borderflipDG3 {
+  animation-name: flipDG3;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: DimGray;
+}
+
+.borderflipDG4 {
+  animation-name: flipDG4;
+  animation-duration: 2s;
+  animation-fill-mode: forward;
+  background-color: DimGray;
+}
+
+@keyframes flipG {
+  from {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  50% {
+    transform: scaley(0);
+    background-color: green;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: green;
+  }
+}
+
+@keyframes flipG0 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  10% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  20% {
+    transform: scaley(1);
+    background-color: green;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: green;
+  }
+}
+
+@keyframes flipG1 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+  20% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  30% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  40% {
+    transform: scaley(1);
+    background-color: green;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: green;
+  }
+}
+
+@keyframes flipG2 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  40% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  50% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  60% {
+    transform: scaley(1);
+    background-color: green;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: green;
+  }
+}
+
+@keyframes flipG3 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+  60% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  70% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  80% {
+    transform: scaley(1);
+    background-color: green;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: green;
+  }
+}
+
+@keyframes flipG4 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  80% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  90% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  100% {
+    transform: scaley(1);
+    background-color: green;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: green;
+  }
+}
+
+@keyframes flipY {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  50% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: rgb(184, 184, 0);
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+}
+
+@keyframes flipY0 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  10% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  20% {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+}
+
+@keyframes flipY1 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  20% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  30% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  40% {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+}
+
+@keyframes flipY2 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  40% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  50% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  60% {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+}
+
+@keyframes flipY3 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  60% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  70% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  80% {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+}
+
+@keyframes flipY4 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  80% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  90% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  100% {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: rgb(184, 184, 0);
+  }
+}
+
+@keyframes flipDG {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  50% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: dimgray;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: dimgray;
+  }
+}
+
+@keyframes flipDG0 {
+  from {
+    border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  10% {
+    border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  20% {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+}
+
+@keyframes flipDG1 {
+  from {border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  20% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  30% {border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  40% {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+}
+
+@keyframes flipDG2 {
+  from {border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  40% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  50% {border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  60% {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+}
+
+@keyframes flipDG3 {
+  from {border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  60% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  70% {border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  80% {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+}
+
+@keyframes flipDG4 {
+  from {border: 2px solid white;
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  80% {
+    transform: scaley(1);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  90% {border: 0px solid white;
+    transform: scaley(0);
+    background-color: RGB(25, 35, 25, 1);
+  }
+
+  100% {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+
+  to {
+    transform: scaley(1);
+    background-color: dimgrey;
+  }
+}
