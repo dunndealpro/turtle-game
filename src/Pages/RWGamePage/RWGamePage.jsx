@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import WinModal from '../../components/WinModal/WinModal';
 import LoseModal from '../../components/LoseModal/LoseModal';
 import StartGameModal from '../../components/StartGameModal/StartGameModal';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
 import GameBoardContainer from "../../components/GameBoardContainer/GameBoardContainer";
 import KeyBoardContainer from "../../components/KeyBoardContainer/KeyBoardContainer";
@@ -69,6 +70,7 @@ export default function RWGamePage(props) {
   const [winModalShow, setWinModalShow] = useState(false);
   const [loseModalShow, setLoseModalShow] = useState(false);
   const [gameStartModalShow, setGameStartModalShow] = useState(true);
+  const [loadingModalShow, setLoadingModalShow]=useState(null)
 
   const checkLastGame = async () => {
     let results = await gamesAPI.checkLastGame(props.user.id)
@@ -147,6 +149,7 @@ export default function RWGamePage(props) {
   }
 
   const getNewAnswer = async () => {
+    setLoadingModalShow(true)
     const randomWord = await fetch(`https://api.urbandictionary.com/v0/random`).then(res => res.json());
     let words = randomWord.list
     let newAnswer
@@ -273,6 +276,7 @@ export default function RWGamePage(props) {
     setGameId(newGame.id)
     // setGameWon(false)
     // updateStreakCount(streakCount)
+    setLoadingModalShow(false)
   }
 
   let tempBG = [notInWord, notInWord, notInWord, notInWord, notInWord]
@@ -531,6 +535,10 @@ export default function RWGamePage(props) {
           normalDef={normalDef}
           answer={answer}
           guess6={guess6}
+        />
+        <LoadingModal
+        show={loadingModalShow}
+        // hide={}
         />
       </div>
     </>

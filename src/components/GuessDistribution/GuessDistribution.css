@@ -1,0 +1,15 @@
+.guess{
+    /* display: block; */
+    margin: 3px,0,3px,0;
+    background-color: darkgreen;
+    border-radius: 2px;
+    padding-right: 8px;
+    text-align: end;
+    /* width: 75%; */
+}
+
+.one-guess1{
+    display: block;
+    background-color: darkgreen;
+    width: 30%;
+}

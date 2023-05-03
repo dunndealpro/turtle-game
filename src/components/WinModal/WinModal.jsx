@@ -4,18 +4,19 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 import Table from 'react-bootstrap/Table';
-
+import BarChart from "../GuessDistribution/GuessDistribution"
+import GuessDistribution from '../GuessDistribution/GuessDistribution';
 
 export default function WinModal(props) {
     // console.log(props.urbanDef)
-// props.getUserScores()
-let winPercent
+    // props.getUserScores()
+    let winPercent
     let totalGames
     let longStreak
     let bestScore
     let currentStreak
 
-    if (props.userScore.totalWinPercent){
+    if (props.userScore.totalWinPercent) {
         winPercent = props.userScore.totalWinPercent
     }
     if (props.userScore.totalScore) {
@@ -43,6 +44,9 @@ let winPercent
     if (props.normalDef) {
         normalDef = props.normalDef
     }
+    let totalScore
+    if(props.userScore.totalScore){
+        totalScore = props.userScore.totalScore[0].total_score}
 
     // useEffect(() => {
     //     // console.log("USerScrore UseEffect Engaged ", props.user.id)
@@ -67,6 +71,8 @@ let winPercent
 
                 </div>
 
+
+
                 <Accordion defaultActiveKey="">
                     <Accordion.Item eventKey="0">
                         <Accordion.Header><strong>Standard Definition</strong></Accordion.Header>
@@ -83,7 +89,7 @@ let winPercent
                     <Accordion.Item eventKey="2">
                         <Accordion.Header><strong>Player Stats</strong></Accordion.Header>
                         <Accordion.Body>
-                            
+
                             <Table>
                                 <thead>
                                     <tr>
@@ -104,7 +110,10 @@ let winPercent
                                     </tr>
                                 </tbody>
                             </Table>
-
+                            <GuessDistribution
+                                testStuff={props.userScore.guessDist}
+                                totalScore={totalScore}
+                            ></GuessDistribution>
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>

@@ -141,7 +141,10 @@ async function getUserScores(req, res) {
     for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
       if (!tempPlayerCurrentStreak[i].gameWon) {
         playerCurrentLoseStreak = playerCurrentLoseStreak + 1;
-        console.log("PLAYER Lose STREAK: COUNTING IN PROGRESS", playerCurrentLoseStreak);
+        console.log(
+          "PLAYER Lose STREAK: COUNTING IN PROGRESS",
+          playerCurrentLoseStreak
+        );
       } else {
         break;
       }
@@ -199,7 +202,7 @@ async function getUserScores(req, res) {
 
   let guessDist = await db.sequelize.query(
     `
-    select "score", count(*) from "Games" where "userId" = ${req.user.id} group by "score";
+    select "score", count(*) from "Games" where "userId" = ${req.user.id} group by "score" order by score desc;
   `,
     { type: QueryTypes.SELECT }
   );
@@ -225,7 +228,7 @@ async function getUserScores(req, res) {
     totalGames,
     totalWinPercent,
     totalLossPercent,
-    playerLossLongStreak
+    playerLossLongStreak,
   });
 }
 
