@@ -24,9 +24,9 @@ export default function LoseModal(props) {
     // if(props.userScore.playerLongStreak){
     longStreak = props.userScore.playerLossLongStreak
     // }
-    if (props.userScore.playerHighScore) {
-        bestScore = props.userScore.playerHighScore[0].score
-    }
+    // if (props.userScore.playerHighScore) {
+    //     bestScore = props.userScore.playerHighScore[0].score
+    // }
     if (props.userScore.playerCurrentLoseStreak) {
         currentStreak = props.userScore.playerCurrentLoseStreak
     } else { currentStreak = 0 }

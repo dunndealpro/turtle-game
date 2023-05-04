@@ -91,10 +91,24 @@ async function getUserScores(req, res) {
       "userId",
 
       [Sequelize.fn("SUM", Sequelize.col("score")), "total_score"],
+      [Sequelize.fn("COUNT", Sequelize.col("id")), "total_games"],
+      // [Sequelize.fn("COUNT", Sequelize.col('score')),"total_games"]
     ],
     group: ["userName", "userId"],
     order: [["total_score", "DESC"]],
   });
+
+  const highRatios = await db.sequelize.query(
+    `
+    SELECT 
+    "userName", 
+    SUM("score")::DECIMAL as total_score,
+    COUNT('id')::DECIMAL as total_games,
+    ROUND((SUM("score")::DECIMAL)/(COUNT('id')::DECIMAL),3) as ratio
+    FROM "Games" group by "userName" order by ratio DESC; 
+  `,
+    { type: QueryTypes.SELECT }
+  );
 
   const totalScore = await Game.findAll({
     where: { userId: req.user.id },
@@ -120,37 +134,41 @@ async function getUserScores(req, res) {
     order: [["id", "DESC"]],
   });
 
-  console.log("STREAK STREAK:  ", tempPlayerCurrentStreak);
-
-  if (tempPlayerCurrentStreak[0].gameWon) {
-    console.log("PLAYER STREAK is TRUE");
-    for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
-      if (tempPlayerCurrentStreak[i].gameWon) {
-        playerCurrentStreak = playerCurrentStreak + 1;
-        console.log("PLAYER STREAK: COUNTING IN PROGRESS", playerCurrentStreak);
-      } else {
-        break;
+  console.log("STREAK STREAK:  ", typeof(tempPlayerCurrentStreak));
+  if (tempPlayerCurrentStreak[0]) {
+    if (tempPlayerCurrentStreak[0].gameWon) {
+      console.log("PLAYER STREAK is TRUE");
+      for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
+        if (tempPlayerCurrentStreak[i].gameWon) {
+          playerCurrentStreak = playerCurrentStreak + 1;
+          console.log(
+            "PLAYER STREAK: COUNTING IN PROGRESS",
+            playerCurrentStreak
+          );
+        } else {
+          break;
+        }
       }
+    } else {
+      playerCurrentStreak = 0;
     }
-  } else {
-    playerCurrentStreak = 0;
-  }
 
-  if (!tempPlayerCurrentStreak[0].gameWon) {
-    console.log("PLAYER LOSE STREAK is TRUE");
-    for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
-      if (!tempPlayerCurrentStreak[i].gameWon) {
-        playerCurrentLoseStreak = playerCurrentLoseStreak + 1;
-        console.log(
-          "PLAYER Lose STREAK: COUNTING IN PROGRESS",
-          playerCurrentLoseStreak
-        );
-      } else {
-        break;
+    if (!tempPlayerCurrentStreak[0].gameWon) {
+      console.log("PLAYER LOSE STREAK is TRUE");
+      for (let i = 0; i < tempPlayerCurrentStreak.length; i++) {
+        if (!tempPlayerCurrentStreak[i].gameWon) {
+          playerCurrentLoseStreak = playerCurrentLoseStreak + 1;
+          console.log(
+            "PLAYER Lose STREAK: COUNTING IN PROGRESS",
+            playerCurrentLoseStreak
+          );
+        } else {
+          break;
+        }
       }
+    } else {
+      playerCurrentLoseStreak = 0;
     }
-  } else {
-    playerCurrentLoseStreak = 0;
   }
 
   console.log("PLAYER STREAK: ", playerCurrentStreak);
@@ -195,7 +213,7 @@ async function getUserScores(req, res) {
     )"Games" where "gameWon" = 't'
     group by grp, "gameWon", "userName"
     order by count desc
-    limit 10;
+    limit 5;
   `,
     { type: QueryTypes.SELECT }
   );
@@ -216,6 +234,7 @@ async function getUserScores(req, res) {
   });
 
   res.json({
+    highRatios,
     guessDist,
     userScores,
     longStreak,

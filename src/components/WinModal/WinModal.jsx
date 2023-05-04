@@ -25,9 +25,9 @@ export default function WinModal(props) {
     // if(props.userScore.playerLongStreak){
     longStreak = props.userScore.playerLongStreak
     // }
-    if (props.userScore.playerHighScore) {
-        bestScore = props.userScore.playerHighScore[0].score
-    }
+    // if (props.userScore.playerHighScore) {
+    //     bestScore = props.userScore.playerHighScore[0].score
+    // }
     if (props.userScore.playerCurrentStreak) {
         currentStreak = props.userScore.playerCurrentStreak
     } else { currentStreak = 0 }
@@ -45,8 +45,8 @@ export default function WinModal(props) {
         normalDef = props.normalDef
     }
     let totalScore
-    if(props.userScore.totalScore){
-        totalScore = props.userScore.totalScore[0].total_score}
+    // if(props.userScore.totalScore){
+    //     totalScore = props.userScore.totalScore[0].total_score}
 
     // useEffect(() => {
     //     // console.log("USerScrore UseEffect Engaged ", props.user.id)
@@ -112,7 +112,7 @@ export default function WinModal(props) {
                             </Table>
                             <GuessDistribution
                                 testStuff={props.userScore.guessDist}
-                                totalScore={totalScore}
+                                totalGames={totalGames}
                             ></GuessDistribution>
                         </Accordion.Body>
                     </Accordion.Item>

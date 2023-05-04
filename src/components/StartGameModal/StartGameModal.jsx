@@ -11,15 +11,15 @@ export default function StartGameModal(props){
     let longStreak
     let bestScore
     let currentStreak
-    if(props.userScore.totalScore){
-        totalScore = props.userScore.totalScore[0].total_score
-    }
+    // if(props.userScore.totalScore[0].total_score){
+    //     totalScore = props.userScore.totalScore[0].total_score
+    // }
     // if(props.userScore.playerLongStreak){
         longStreak = props.userScore.playerLongStreak
     // }
-    if(props.userScore.playerHighScore){
-        bestScore = props.userScore.playerHighScore[0].score
-    }
+    // if(props.userScore.playerHighScore){
+    //     bestScore = props.userScore.playerHighScore[0].score
+    // }
     if(props.userScore.playerCurrentStreak){
         currentStreak= props.userScore.playerCurrentStreak
     }else{currentStreak = 0}

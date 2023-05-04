@@ -10,30 +10,35 @@ export default function GuessDistribution(props) {
     //make guess dist into new array
     //iterate through new array, if score === guessNum, get index of score in new array
     //use index to get count of the score
-
+console.log(props.testStuff)
     let guessTotal = props.testStuff.map((num) => num.score)
     console.log(guessTotal)
     let statGuess = [0, 0, 0, 0, 0, 0, 0]
-    let statGuessBG = ['5%', '5%', '5%', '5%', '5%']
+    let statGuessBG = ['5%', '5%', '5%', '5%', '5%', '5%']
+    let widthMin = 2.5
+    let widthSet = 2.5
     guessTotal.forEach((guess, i) => {
         if (guess === 6) {
-            console.log(props.totalScore)
+            console.log(props.totalGames)
             statGuess.splice(0, 1, props.testStuff[i].count)
-            //    let width = (props.testStuff[i].count / props.totalScore).toString() + "%"
-            let width = Math.round(((props.testStuff[i].count / props.totalScore)) * 100)
-            if (width < 5) {
-                width = 5
+            //    let width = (props.testStuff[i].count / props.totalGames).toString() + "%"
+            let width = Math.round(((props.testStuff[i].count / props.totalGames)) * 100)
+            console.log(width)
+            if (width < widthMin ) {
+                width = widthSet
             }
             width = width.toString() + "%"
+            
             console.log(width)
             statGuessBG.splice(0, 1, width)
         }
         if (guess === 5) {
             console.log(i)
             statGuess.splice(1, 1, props.testStuff[i].count)
-            let width = Math.round(((props.testStuff[i].count / props.totalScore)) * 100)
-            if (width < 5) {
-                width = 5
+            let width = Math.round(((props.testStuff[i].count / props.totalGames)) * 100)
+            console.log(width)
+            if (width < widthMin ) {
+                width = widthSet
             }
             width = width.toString() + "%"
             statGuessBG.splice(1, 1, width)
@@ -41,9 +46,10 @@ export default function GuessDistribution(props) {
         if (guess === 4) {
             console.log(i)
             statGuess.splice(2, 1, props.testStuff[i].count)
-            let width = Math.round(((props.testStuff[i].count / props.totalScore)) * 100)
-            if (width < 5) {
-                width = 5
+            let width = Math.round(((props.testStuff[i].count / props.totalGames)) * 100)
+            console.log(width)
+            if (width < widthMin ) {
+                width = widthSet
             }
 
             width = width.toString() + "%"
@@ -52,9 +58,10 @@ export default function GuessDistribution(props) {
         if (guess === 3) {
             console.log(i)
             statGuess.splice(3, 1, props.testStuff[i].count)
-            let width = Math.round(((props.testStuff[i].count / props.totalScore)) * 100)
-            if (width < 5) {
-                width = 5
+            let width = Math.round(((props.testStuff[i].count / props.totalGames)) * 100)
+            console.log(width)
+            if (width < widthMin ) {
+                width = widthSet
             }
             width = width.toString() + "%"
             statGuessBG.splice(3, 1, width)
@@ -62,21 +69,26 @@ export default function GuessDistribution(props) {
         if (guess === 2) {
             console.log(i)
             statGuess.splice(4, 1, props.testStuff[i].count)
-            let width = Math.round(((props.testStuff[i].count / props.totalScore)) * 100)
-            if (width < 5) {
-                width = 5
+            let width = Math.round(((props.testStuff[i].count / props.totalGames)) * 100)
+            console.log(width)
+            if (width < widthMin ) {
+                width = widthSet
             }
             width = width.toString() + "%"
+            width = "50%"
+
             statGuessBG.splice(4, 1, width)
         }
         if (guess === 1) {
             console.log(i)
             statGuess.splice(5, 1, props.testStuff[i].count)
-            let width = Math.round(((props.testStuff[i].count / props.totalScore)) * 100)
-            if (width < 5) {
-                width = 5
+            let width = Math.round(((props.testStuff[i].count / props.totalGames)) * 100)
+            console.log(width)
+            if (width < widthMin ) {
+                width = widthSet
             }
             width = width.toString() + "%"
+            width = "50%"
             statGuessBG.splice(5, 1, width)
         }
 
