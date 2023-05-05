@@ -117,9 +117,8 @@ console.log(props.testStuff)
 
 
         <Container fluid>
-            Guess Distribution
+            <strong>Guess Distribution</strong>            
             <br /><br />
-
             <Row>
                 <Col xs={1}>1</Col>
                 <Col className="mb-1" ><div
@@ -161,13 +160,7 @@ console.log(props.testStuff)
                     className="guess"
                     style={{ 'width': `${statGuessBG[5]}` }}
                 >{statGuess[5]}</div></Col>
-            </Row>
-            {/* <span className="one-guess1">1</span> &nbsp; <span className="one-guess">{statGuess[0]}</span><br />      
-            <span>2</span> <span>{statGuess[1]}</span><br />  
-            <span>3</span> <span>{statGuess[2]}</span><br />  
-            <span>4</span> <span>{statGuess[3]}</span><br />  
-            <span>5</span> <span>{statGuess[4]}</span><br />  
-            <span>6</span> <span>{statGuess[5]}</span><br />   */}
+            </Row>           
         </Container>
 
 

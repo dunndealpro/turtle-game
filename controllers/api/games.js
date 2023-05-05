@@ -102,8 +102,7 @@ async function getUserScores(req, res) {
     `
     SELECT 
     "userName", 
-    SUM("score")::DECIMAL as total_score,
-    COUNT('id')::DECIMAL as total_games,
+    
     ROUND((SUM("score")::DECIMAL)/(COUNT('id')::DECIMAL),3) as ratio
     FROM "Games" group by "userName" order by ratio DESC; 
   `,
@@ -233,7 +232,15 @@ async function getUserScores(req, res) {
     limit: 5,
   });
 
+  let goldenChildren = await db.sequelize.query(
+    `
+    select "userName", "score", count(*) from "Games" where "score" = 6 group by "userName", "score" order by count desc;
+  `,
+    { type: QueryTypes.SELECT }
+  );
+
   res.json({
+    goldenChildren,
     highRatios,
     guessDist,
     userScores,

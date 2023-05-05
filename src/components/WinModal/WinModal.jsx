@@ -6,6 +6,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import Table from 'react-bootstrap/Table';
 import BarChart from "../GuessDistribution/GuessDistribution"
 import GuessDistribution from '../GuessDistribution/GuessDistribution';
+import PlayerStats from '../PlayerStats/PlayerStats';
+import LeaderBoard from '../LeaderBoard/LeaderBoard';
+import Container from 'react-bootstrap/Container'
 
 export default function WinModal(props) {
     // console.log(props.urbanDef)
@@ -13,8 +16,11 @@ export default function WinModal(props) {
     let winPercent
     let totalGames
     let longStreak
-    let bestScore
+    let totalScore
     let currentStreak
+
+
+
 
     if (props.userScore.totalWinPercent) {
         winPercent = props.userScore.totalWinPercent
@@ -25,9 +31,9 @@ export default function WinModal(props) {
     // if(props.userScore.playerLongStreak){
     longStreak = props.userScore.playerLongStreak
     // }
-    // if (props.userScore.playerHighScore) {
-    //     bestScore = props.userScore.playerHighScore[0].score
-    // }
+    if (props.userScore.totalScore) {
+        totalScore = props.userScore.totalScore[0].total_score
+    }
     if (props.userScore.playerCurrentStreak) {
         currentStreak = props.userScore.playerCurrentStreak
     } else { currentStreak = 0 }
@@ -44,7 +50,7 @@ export default function WinModal(props) {
     if (props.normalDef) {
         normalDef = props.normalDef
     }
-    let totalScore
+    // let totalScore
     // if(props.userScore.totalScore){
     //     totalScore = props.userScore.totalScore[0].total_score}
 
@@ -53,12 +59,16 @@ export default function WinModal(props) {
     //     props.getUserScores(props.user.id)
 
     // }, props.userScore)
+
+    let playerRatio = Math.round((totalScore / totalGames) * 100) / 100
+
     return (
         <Modal
             {...props}
-            size="lg"
+            size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -66,7 +76,7 @@ export default function WinModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
-                <div className="m-2 p-4">
+                <div className="m-2 p-2">
                     <strong>{props.answer}</strong> is the correct answer!
 
                 </div>
@@ -89,31 +99,24 @@ export default function WinModal(props) {
                     <Accordion.Item eventKey="2">
                         <Accordion.Header><strong>Player Stats</strong></Accordion.Header>
                         <Accordion.Body>
-
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>Total Games</th>
-                                        <th>Win %</th>
-                                        <th>Current Streak</th>
-                                        <th>Longest Streak</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{totalGames}</td>
-                                        <td>{winPercent}</td>
-                                        <td>{currentStreak}</td>
-                                        <td>{longStreak}</td>
-
-
-                                    </tr>
-                                </tbody>
-                            </Table>
+                            <PlayerStats
+                                totalGames={totalGames}
+                                winPercent={winPercent}
+                                currentStreak={currentStreak}
+                                longStreak={longStreak}
+                            />
                             <GuessDistribution
                                 testStuff={props.userScore.guessDist}
                                 totalGames={totalGames}
-                            ></GuessDistribution>
+                            />
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item>
+                        <Accordion.Header><strong>Leader Board</strong></Accordion.Header>
+                        <Accordion.Body>
+                           <LeaderBoard 
+                           stats={props.userScore}
+                           />
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>

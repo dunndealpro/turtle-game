@@ -25,3 +25,9 @@ SELECT
     -- (SELECT COUNT('id') as total_games from "Games")
     ROUND(CAST (float8 (SUM(score)*1000/ (SELECT COUNT('id') as total_games from "Games"))as numeric),4) as "percent"
     FROM players;
+
+SELECT 
+    "userName",
+    COUNT('id')
+    WHERE "score" = 6
+    FROM "Games" group by "userName" order by COUNT DESC;
