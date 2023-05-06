@@ -212,7 +212,8 @@ async function getUserScores(req, res) {
     )"Games" where "gameWon" = 't'
     group by grp, "gameWon", "userName"
     order by count desc
-    limit 5;
+    
+    ;
   `,
     { type: QueryTypes.SELECT }
   );

@@ -1,6 +1,6 @@
 import RWGamePage from "../RWGamePage/RWGamePage";
 import { useEffect, useState } from 'react'
-
+import { Container, Col, Row, } from 'react-bootstrap';
 import { Button } from "react-bootstrap";
 import { Card } from "react-bootstrap"
 import WarningModal from "../../components/WarningModal/WarningModal";
@@ -25,6 +25,10 @@ export default function MenuPage(props) {
 
             <span>This will show all available games</span>
             <br />
+<Container >
+    <Row className="justify-content-md-center">
+        <Col xs='12' md="6">
+        
             <Card className="m-2">
                 <Card.Body>
                     <Card.Title>
@@ -51,6 +55,10 @@ export default function MenuPage(props) {
                     > coming soon!</Button>
                 </Card.Body>
             </Card>
+        </Col>
+    </Row>
+</Container>
+
 
             <WarningModal
                 show={randomWordGame}

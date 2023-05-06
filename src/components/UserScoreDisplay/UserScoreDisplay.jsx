@@ -31,7 +31,7 @@ export default function UserScoreDisplay(props) {
         tempDisp = props.userScore[0].guess1
     }
 
- 
+
 
     useEffect(() => {
         // console.log("USerScrore UseEffect Engaged ", props.user.id)
@@ -41,11 +41,16 @@ export default function UserScoreDisplay(props) {
 
     return (
         <>
-       
-            {props.user.name} has a current win streak of {props.userScore.playerCurrentStreak} games!
+            <div className='p-2 streak-bg'>
+                <h4>
+
+                    Your Current win streak: {props.userScore.playerCurrentStreak} games!
+                </h4>
+
+            </div>
             {/* {tempDisp} */}
-            <br />
-            {props.answer}
+            {/* <br /> */}
+            {/* {props.answer} */}
             {/* {userScore[0].guess1} */}
         </>
     )

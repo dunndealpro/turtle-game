@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { useEffect, useState } from 'react'
+import { Container, Col, Row, } from 'react-bootstrap';
 
 import WinModal from '../../components/WinModal/WinModal';
 import LoseModal from '../../components/LoseModal/LoseModal';
@@ -64,13 +65,13 @@ export default function RWGamePage(props) {
 
   // console.log("gameWon: ", gameWon)
 
-  const [userScore, setUserScore] = useState([])
+  // const [userScore, setUserScore] = useState([])
 
 
   const [winModalShow, setWinModalShow] = useState(false);
   const [loseModalShow, setLoseModalShow] = useState(false);
   const [gameStartModalShow, setGameStartModalShow] = useState(true);
-  const [loadingModalShow, setLoadingModalShow]=useState(null)
+  const [loadingModalShow, setLoadingModalShow] = useState(null)
 
   const checkLastGame = async () => {
     let results = await gamesAPI.checkLastGame(props.user.id)
@@ -375,7 +376,7 @@ export default function RWGamePage(props) {
 
       }, 2500);
       saveRandomScore()
-      getUserScores()
+      props.getUserScores()
     } else if (currentGuessCount === 6) {
       setStreakCount(0)
       // getUrbanDef()
@@ -386,7 +387,7 @@ export default function RWGamePage(props) {
 
       }, 2500);
       saveRandomScore()
-      getUserScores()
+      props.getUserScores()
 
     }
     else {
@@ -403,11 +404,11 @@ export default function RWGamePage(props) {
     setIsWord(false)
   }
 
-  const getUserScores = async (userId) => {
-    let tempUserScore = await gamesAPI.getUserScores(userId)
-    // console.log(tempUserScore)
-    setUserScore(tempUserScore)
-  }
+  // const getUserScores = async (userId) => {
+  //   let tempUserScore = await gamesAPI.getUserScores(userId)
+  //   // console.log(tempUserScore)
+  //   setUserScore(tempUserScore)
+  // }
 
   const updateStreakCount = async () => {
     // console.log("streak count: ", streakCount)
@@ -430,117 +431,123 @@ export default function RWGamePage(props) {
 
   return (
     <>
-      <UserScoreDisplay
-        userScore={userScore}
-        setUserScore={setUserScore}
-        user={props.user}
-        answer={answer}
-        streakCount={streakCount}
-        getUserScores={getUserScores}
-      />
+      {/* <Container fluid >
+        <Row>
+          <Col sm="12"> */}
+            <UserScoreDisplay
+              userScore={props.userScore}
+              setUserScore={props.setUserScore}
+              user={props.user}
+              answer={answer}
+              streakCount={streakCount}
+              getUserScores={props.getUserScores}
+            />
 
-      <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
-        <GameBoardContainer
-          // {...props}
-          currentGuess={currentGuess}
-          setCurrentGuess={setCurrentGuess}
-          guess1={guess1}
-          setGuess1={setGuess1}
-          guess2={guess2}
-          setGuess2={setGuess2}
-          guess3={guess3}
-          setGuess3={setGuess3}
-          guess4={guess4}
-          setGuess4={setGuess4}
-          guess5={guess5}
-          setGuess5={setGuess5}
-          guess6={guess6}
-          setGuess6={setGuess6}
-          compareEntry={compareEntry}
-          guessInit={guessInit}
-          entryCount={entryCount}
-          setEntryCount={setEntryCount}
-          currentGuessCount={currentGuessCount}
-          setCurrentGuessCount={setCurrentGuessCount}
-          checkIfWord={checkIfWord}
-          isWord={isWord}
-          setIsWord={setIsWord}
-          guess1bg={guess1bg}
-          guess2bg={guess2bg}
-          guess3bg={guess3bg}
-          guess4bg={guess4bg}
-          guess5bg={guess5bg}
-          guess6bg={guess6bg}
-        />
+            <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
+              <GameBoardContainer
+                // {...props}
+                currentGuess={currentGuess}
+                setCurrentGuess={setCurrentGuess}
+                guess1={guess1}
+                setGuess1={setGuess1}
+                guess2={guess2}
+                setGuess2={setGuess2}
+                guess3={guess3}
+                setGuess3={setGuess3}
+                guess4={guess4}
+                setGuess4={setGuess4}
+                guess5={guess5}
+                setGuess5={setGuess5}
+                guess6={guess6}
+                setGuess6={setGuess6}
+                compareEntry={compareEntry}
+                guessInit={guessInit}
+                entryCount={entryCount}
+                setEntryCount={setEntryCount}
+                currentGuessCount={currentGuessCount}
+                setCurrentGuessCount={setCurrentGuessCount}
+                checkIfWord={checkIfWord}
+                isWord={isWord}
+                setIsWord={setIsWord}
+                guess1bg={guess1bg}
+                guess2bg={guess2bg}
+                guess3bg={guess3bg}
+                guess4bg={guess4bg}
+                guess5bg={guess5bg}
+                guess6bg={guess6bg}
+              />
 
-        <KeyBoardContainer
-          {...props}
-          currentGuess={currentGuess}
-          setCurrentGuess={setCurrentGuess}
-          guess1={guess1}
-          setGuess1={setGuess1}
-          guess2={guess2}
-          setGuess2={setGuess2}
-          guess3={guess3}
-          setGuess3={setGuess3}
-          guess4={guess4}
-          setGuess4={setGuess4}
-          guess5={guess5}
-          setGuess5={setGuess5}
-          guess6={guess6}
-          setGuess6={setGuess6}
-          compareEntry={compareEntry}
-          guessInit={guessInit}
-          entryCount={entryCount}
-          setEntryCount={setEntryCount}
-          currentGuessCount={currentGuessCount}
-          setCurrentGuessCount={setCurrentGuessCount}
-          checkIfWord={checkIfWord}
-          isWord={isWord}
-          setIsWord={setIsWord}
-          guess1bg={guess1bg}
-          guess2bg={guess2bg}
-          guess3bg={guess3bg}
-          guess4bg={guess4bg}
-          guess5bg={guess5bg}
-          guess6bg={guess6bg}
-        />
-        <StartGameModal
-          userScore={userScore}
-          user={props.user}
-          show={gameStartModalShow}
-          hideNew={hideNew}
-          hideQuit={hideQuit}
-        />
+              <KeyBoardContainer
+                {...props}
+                currentGuess={currentGuess}
+                setCurrentGuess={setCurrentGuess}
+                guess1={guess1}
+                setGuess1={setGuess1}
+                guess2={guess2}
+                setGuess2={setGuess2}
+                guess3={guess3}
+                setGuess3={setGuess3}
+                guess4={guess4}
+                setGuess4={setGuess4}
+                guess5={guess5}
+                setGuess5={setGuess5}
+                guess6={guess6}
+                setGuess6={setGuess6}
+                compareEntry={compareEntry}
+                guessInit={guessInit}
+                entryCount={entryCount}
+                setEntryCount={setEntryCount}
+                currentGuessCount={currentGuessCount}
+                setCurrentGuessCount={setCurrentGuessCount}
+                checkIfWord={checkIfWord}
+                isWord={isWord}
+                setIsWord={setIsWord}
+                guess1bg={guess1bg}
+                guess2bg={guess2bg}
+                guess3bg={guess3bg}
+                guess4bg={guess4bg}
+                guess5bg={guess5bg}
+                guess6bg={guess6bg}
+              />
+              <StartGameModal
+                userScore={props.userScore}
+                user={props.user}
+                show={gameStartModalShow}
+                hideNew={hideNew}
+                hideQuit={hideQuit}
+              />
 
-        <WinModal
-          getUserScores={getUserScores}
-          userScore={userScore}
-          user={props.user}
-          show={winModalShow}
-          hideNew={hideNew}
-          hideQuit={hideQuit}
-          urbanDef={urbanDef}
-          normalDef={normalDef}
-          answer={answer}
-        />
-        <LoseModal
-          getUserScores={getUserScores}
-          userScore={userScore}
-          user={props.user}
-          show={loseModalShow}
-          hideNew={hideNew}
-          hideQuit={hideQuit}
-          urbanDef={urbanDef}
-          normalDef={normalDef}
-          answer={answer}
-          guess6={guess6}
-        />
-        <LoadingModal
-        show={loadingModalShow}
-        // hide={}
-        />
-      </div>
+              <WinModal
+                getUserScores={props.getUserScores}
+                userScore={props.userScore}
+                user={props.user}
+                show={winModalShow}
+                hideNew={hideNew}
+                hideQuit={hideQuit}
+                urbanDef={urbanDef}
+                normalDef={normalDef}
+                answer={answer}
+              />
+              <LoseModal
+                getUserScores={props.getUserScores}
+                userScore={props.userScore}
+                user={props.user}
+                show={loseModalShow}
+                hideNew={hideNew}
+                hideQuit={hideQuit}
+                urbanDef={urbanDef}
+                normalDef={normalDef}
+                answer={answer}
+                guess6={guess6}
+              />
+              <LoadingModal
+                show={loadingModalShow}
+              // hide={}
+              />
+            </div>
+          {/* </Col>
+        </Row>
+      </Container> */}
     </>
   )
 }

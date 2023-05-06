@@ -8,35 +8,36 @@ import BarChart from "../GuessDistribution/GuessDistribution"
 import GuessDistribution from '../GuessDistribution/GuessDistribution';
 import PlayerStats from '../PlayerStats/PlayerStats';
 import LeaderBoard from '../LeaderBoard/LeaderBoard';
+import LeaderBoardQuick from '../LeaderBoardQuick/LeaderBoardQuick';
 import Container from 'react-bootstrap/Container'
 
 export default function WinModal(props) {
     // console.log(props.urbanDef)
     // props.getUserScores()
-    let winPercent
+    // let winPercent
     let totalGames
-    let longStreak
-    let totalScore
-    let currentStreak
+    // let longStreak
+    // let totalScore
+    // let currentStreak
 
 
 
 
-    if (props.userScore.totalWinPercent) {
-        winPercent = props.userScore.totalWinPercent
-    }
+    // if (props.userScore.totalWinPercent) {
+    //     winPercent = props.userScore.totalWinPercent
+    // }
     if (props.userScore.totalScore) {
         totalGames = props.userScore.totalGames
     }
-    // if(props.userScore.playerLongStreak){
-    longStreak = props.userScore.playerLongStreak
+    // // if(props.userScore.playerLongStreak){
+    // longStreak = props.userScore.playerLongStreak
+    // // }
+    // if (props.userScore.totalScore) {
+    //     totalScore = props.userScore.totalScore[0].total_score
     // }
-    if (props.userScore.totalScore) {
-        totalScore = props.userScore.totalScore[0].total_score
-    }
-    if (props.userScore.playerCurrentStreak) {
-        currentStreak = props.userScore.playerCurrentStreak
-    } else { currentStreak = 0 }
+    // if (props.userScore.playerCurrentStreak) {
+    //     currentStreak = props.userScore.playerCurrentStreak
+    // } else { currentStreak = 0 }
 
     let def
     let normalDef
@@ -60,7 +61,7 @@ export default function WinModal(props) {
 
     // }, props.userScore)
 
-    let playerRatio = Math.round((totalScore / totalGames) * 100) / 100
+    // let playerRatio = Math.round((totalScore / totalGames) * 100) / 100
 
     return (
         <Modal
@@ -100,10 +101,11 @@ export default function WinModal(props) {
                         <Accordion.Header><strong>Player Stats</strong></Accordion.Header>
                         <Accordion.Body>
                             <PlayerStats
-                                totalGames={totalGames}
-                                winPercent={winPercent}
-                                currentStreak={currentStreak}
-                                longStreak={longStreak}
+                            userScore={props.userScore}
+                                // totalGames={totalGames}
+                                // winPercent={winPercent}
+                                // currentStreak={currentStreak}
+                                // longStreak={longStreak}
                             />
                             <GuessDistribution
                                 testStuff={props.userScore.guessDist}
@@ -114,8 +116,8 @@ export default function WinModal(props) {
                     <Accordion.Item>
                         <Accordion.Header><strong>Leader Board</strong></Accordion.Header>
                         <Accordion.Body>
-                           <LeaderBoard 
-                           stats={props.userScore}
+                           <LeaderBoardQuick 
+                           userScore={props.userScore}
                            />
                         </Accordion.Body>
                     </Accordion.Item>

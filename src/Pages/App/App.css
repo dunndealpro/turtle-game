@@ -37,3 +37,22 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-bg{
+  background: rgba(50,225,75,1)
+}
+
+.streak-bg{
+  background: rgb(65, 104, 65);
+  height:100%;
+}
+
+
+.active-link {
+  font-weight: bold;
+  color: #000;
+}
+
+.active {
+  font-weight: bold;
+}
