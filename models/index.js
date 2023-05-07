@@ -5,27 +5,27 @@ const dbConfig = require("../config/database.js");
 
 const Sequelize = require("sequelize");
 // const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-// const sequelize = new Sequelize(process.env.DATABASE_URL, {
-//   host: process.env.HOST,
-//   dialect: 'postgres',
-//   operatorsAliases: 0,
-
-//   // pool: {
-//   //   max: dbConfig.pool.max,
-//   //   min: dbConfig.pool.min,
-//   //   acquire: dbConfig.pool.acquire,
-//   //   idle: dbConfig.pool.idle
-//   // }
-// });
-
-const sequelize = new Sequelize({
-  dialect: 'postgres',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   host: process.env.HOST,
-  port:process.env.PORT,
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE,
+  dialect: 'postgres',
+  operatorsAliases: 0,
+
+  // pool: {
+  //   max: dbConfig.pool.max,
+  //   min: dbConfig.pool.min,
+  //   acquire: dbConfig.pool.acquire,
+  //   idle: dbConfig.pool.idle
+  // }
 });
+
+// const sequelize = new Sequelize({
+//   dialect: 'postgres',
+//   host: process.env.HOST,
+//   port:process.env.PORT,
+//   username: process.env.DATABASE_USER,
+//   password: process.env.DATABASE_PASSWORD,
+//   database: process.env.DATABASE,
+// });
 
 
 const db = {};
