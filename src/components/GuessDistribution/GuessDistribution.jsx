@@ -75,7 +75,7 @@ console.log(props.testStuff)
                 width = widthSet
             }
             width = width.toString() + "%"
-            width = "50%"
+            // width = "50%"
 
             statGuessBG.splice(4, 1, width)
         }
@@ -88,7 +88,7 @@ console.log(props.testStuff)
                 width = widthSet
             }
             width = width.toString() + "%"
-            width = "50%"
+            // width = "50%"
             statGuessBG.splice(5, 1, width)
         }
 
