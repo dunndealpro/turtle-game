@@ -7,10 +7,6 @@ import { useState } from "react";
 
 export default function GameBoardContainer(props) {
 
-    console.log("Gameboard Container")
-
-
-
     return (
         <>
             <div >

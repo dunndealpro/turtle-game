@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
-import Modal from 'react-bootstrap/Modal';
+
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import { Link } from 'react-router-dom';
 
-export default function WarningModal(props) {
-    console.log("Warning Modal")
-
+export default function WarningModal(props) {  
 
     return (
         <Modal

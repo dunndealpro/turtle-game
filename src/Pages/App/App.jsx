@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import { Routes, Route } from 'react-router-dom'
 
 import { useState, useEffect } from 'react'
-import { getUser } from '../../utilities/users-service';
+import { Routes, Route } from 'react-router-dom'
 
 import AuthPage from '../AuthPage/AuthPage';
 import AboutPage from '../AboutPage/AboutPage';
@@ -12,6 +11,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import RWGamePage from '../RWGamePage/RWGamePage';
 import ScoreBoardPage from '../ScoreBoardPage/ScoreBoardPage';
 
+import { getUser } from '../../utilities/users-service';
 import * as gamesAPI from "../../utilities/games-api"
 
 import './App.css';
@@ -23,16 +23,13 @@ function App() {
   const [userScore, setUserScore] = useState([])
 
   const getUserScores = async (userId) => {
-    let tempUserScore = await gamesAPI.getUserScores(userId)
-    console.log(tempUserScore)
+    let tempUserScore = await gamesAPI.getUserScores(userId)    
     setUserScore(tempUserScore)
   }
-  console.log(userScore)
+ 
 
- useEffect(() => {
-    console.log("UseEffect Engaged")
+ useEffect(() => {    
      getUserScores()
-
   }, [])
 
   return (
