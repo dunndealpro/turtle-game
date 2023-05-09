@@ -5,7 +5,7 @@ const dbConfig = require("../config/database.js");
 
 const Sequelize = require("sequelize");
 // const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-const sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_GOLD_URL, {
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   host: process.env.HOST,
   dialect: 'postgres',
   operatorsAliases: 0,
