@@ -106,6 +106,9 @@ export default function KeyBoardContainer(props) {
 
     return (
         <>
+        {/* <Container fluid> */}
+
+
             <div>
                 {topRow.map((letter) => (
                     <KeyCard
@@ -260,6 +263,7 @@ export default function KeyBoardContainer(props) {
                 />
 
             </div>
+        {/* </Container> */}
 
 
 

@@ -41,12 +41,8 @@ export default function UserScoreDisplay(props) {
 
     return (
         <>
-            <div className='p-2 streak-bg'>
-                <h4>
-
-                    Your Current win streak: {props.userScore.playerCurrentStreak} games!
-                </h4>
-
+            <div className='fs-3 p-1 streak-bg'>
+                Current win streak: {props.userScore.playerCurrentStreak} games! 
             </div>
             {/* {tempDisp} */}
             {/* <br /> */}

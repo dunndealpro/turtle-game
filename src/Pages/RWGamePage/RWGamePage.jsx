@@ -431,9 +431,9 @@ export default function RWGamePage(props) {
 
   return (
     <>
-      {/* <Container fluid >
-        <Row>
-          <Col sm="12"> */}
+      {/* <Container > */}
+        {/* <Row> */}
+          {/* <Col sm="12"> */}
             <UserScoreDisplay
               userScore={props.userScore}
               setUserScore={props.setUserScore}
