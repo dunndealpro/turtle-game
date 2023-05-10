@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Col from 'react-bootstrap/Col';
 import './LetterCard.css'
 
 export default function LetterCard(props) {
@@ -20,38 +21,18 @@ export default function LetterCard(props) {
 
     }
 
-    classDisplay = classDisplay +  ' tile'
+    classDisplay = classDisplay + ' tile'
 
-    // if (props.index === 0){
-    //     classDisplay = 'borderflip'+props.index
-    // }
 
-    let color = "red"
-    // console.log(props.letter)
     return (
         <>
-
-            <div
-            // style={{
-                // 'background': `${props.background}`,
-                // 'width': '3em',
-                // 'height': '3em',
-                // 'margin': '4px',
-                // 'padding': '10px',
-                // borderWidth: 4
-                
-                
-            // }
-            // }
-            className={classDisplay}
-            >
-                <div className="font-size">
-                    {/* <strong> */}
+            {/* <Col > */}
+                <div className={classDisplay} >
+                    <div className="font-size">
                         {props.letter}
-                    {/* </strong> */}
-
+                    </div>
                 </div>
-            </div>
+            {/* </Col> */}
         </>
     )
 }

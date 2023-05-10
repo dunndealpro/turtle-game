@@ -24,7 +24,8 @@ export default function MenuPage(props) {
             <Container >
                 <Row className="justify-content-md-center">
                     <Col xs='12' md="6">
-                        <Card className="m-2">
+                        
+                        <Card className="m-2 game-card">
                             <Card.Body>
                                 <Card.Title>
                                     Random Turtle
@@ -32,12 +33,15 @@ export default function MenuPage(props) {
                                 <Card.Subtitle className="mb-2 text-muted">Unlimited Turtles!</Card.Subtitle>
                                 <Button
                                     onClick={onClick}
-                                    style={{ backgroundColor: 'rgb(0, 200, 0)', borderColor: 'rgb(0,0, 0)' }}
+                                    className='game-button'
+                                    // style={{ backgroundColor: 'rgb(0, 200, 0)', borderColor: 'rgb(0,0, 0)' }}
                                 > Click to Play!</Button>
                             </Card.Body>
                         </Card>
 
-                        <Card className="m-2">
+                        
+
+                        <Card className="m-2  game-card">
                             <Card.Body>
                                 <Card.Title>
                                     Daily Turtle

@@ -3,6 +3,8 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { useState } from 'react'
 
+import { Container, Row, Col } from 'react-bootstrap';
+
 import GameBoardContainer from "../../components/GameBoardContainer/GameBoardContainer";
 import KeyBoardContainer from "../../components/KeyBoardContainer/KeyBoardContainer";
 import InvalidEntryModal from '../../components/InvalidEntryModal/InvalidEntryModal';
@@ -13,6 +15,8 @@ import UserScoreDisplay from '../../components/UserScoreDisplay/UserScoreDisplay
 import WinModal from '../../components/WinModal/WinModal';
 
 import * as gamesAPI from "../../utilities/games-api"
+
+import './RWGamePage.css'
 
 export default function RWGamePage(props) {
 
@@ -325,16 +329,18 @@ export default function RWGamePage(props) {
 
   return (
     <>
-      <UserScoreDisplay
-        userScore={props.userScore}
-        setUserScore={props.setUserScore}
-        user={props.user}
-        answer={answer}
-        streakCount={streakCount}
-        getUserScores={props.getUserScores}
-      />
+    <div className="ugh">
+      <Container fluid   >
 
-      <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
+        <UserScoreDisplay
+          userScore={props.userScore}
+          setUserScore={props.setUserScore}
+          user={props.user}
+          answer={answer}
+          streakCount={streakCount}
+          getUserScores={props.getUserScores}
+        />
+
         <GameBoardContainer
           currentGuess={currentGuess}
           setCurrentGuess={setCurrentGuess}
@@ -407,50 +413,57 @@ export default function RWGamePage(props) {
           shake={shake}
           setShake={setShake}
         />
-        <StartGameModal
-          userScore={props.userScore}
-          user={props.user}
-          show={gameStartModalShow}
-          hideNew={hideNew}
-          hideQuit={hideQuit}
-        />
 
-        <WinModal
-          getUserScores={props.getUserScores}
-          userScore={props.userScore}
-          user={props.user}
-          show={winModalShow}
-          hideNew={hideNew}
-          hideQuit={hideQuit}
-          urbanDef={urbanDef}
-          normalDef={normalDef}
-          answer={answer}
-        />
-        <LoseModal
-          getUserScores={props.getUserScores}
-          userScore={props.userScore}
-          user={props.user}
-          show={loseModalShow}
-          hideNew={hideNew}
-          hideQuit={hideQuit}
-          urbanDef={urbanDef}
-          normalDef={normalDef}
-          answer={answer}
-          guess6={guess6}
-        />
-        <LoadingModal
-          show={loadingModalShow}
-        />
-        <InvalidEntryModal
-          show={invalidEntry}
-          setInvalidEntry={setInvalidEntry}
-          invalidEntry={invalidEntry}
-          shake={shake}
-          setShake={setShake}
-          entryCount={entryCount}
-        />
+      </Container>
 
-      </div>
+    </div>
+
+      <StartGameModal
+        userScore={props.userScore}
+        user={props.user}
+        show={gameStartModalShow}
+        hideNew={hideNew}
+        hideQuit={hideQuit}
+      />
+
+      <WinModal
+        getUserScores={props.getUserScores}
+        userScore={props.userScore}
+        user={props.user}
+        show={winModalShow}
+        hideNew={hideNew}
+        hideQuit={hideQuit}
+        urbanDef={urbanDef}
+        normalDef={normalDef}
+        answer={answer}
+      />
+      <LoseModal
+        getUserScores={props.getUserScores}
+        userScore={props.userScore}
+        user={props.user}
+        show={loseModalShow}
+        hideNew={hideNew}
+        hideQuit={hideQuit}
+        urbanDef={urbanDef}
+        normalDef={normalDef}
+        answer={answer}
+        guess6={guess6}
+      />
+      <LoadingModal
+        show={loadingModalShow}
+      />
+      <InvalidEntryModal
+        show={invalidEntry}
+        setInvalidEntry={setInvalidEntry}
+        invalidEntry={invalidEntry}
+        shake={shake}
+        setShake={setShake}
+        entryCount={entryCount}
+      />
+      {/* </div> */}
+
+
+
 
     </>
   )

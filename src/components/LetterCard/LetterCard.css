@@ -1,5 +1,6 @@
 .bordertest {
   border: 1px solid white;
+  
 }
 
 .font-size {
@@ -7,7 +8,7 @@
   display: flex;
   justify-self: center;
   align-self: center;
-  font-size: 24px;
+  font-size: 36px;
   font-weight: bold;
 }
 
@@ -16,10 +17,10 @@
   justify-content: center;
   align-items: center;
   color: white;
-  width: 3em;
-  height: 3em;
+  width: 3.8em;
+  height: 3.8em;
   margin: 4px;
-  padding: 0 0 4px 0;
+  padding: 0 0 0 0;
 }
 
 @keyframes enterpulse {
@@ -166,7 +167,7 @@
 @keyframes flipG {
   from {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   50% {
@@ -184,13 +185,13 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   10% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   20% {
@@ -208,17 +209,17 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
   20% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   30% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   40% {
@@ -236,18 +237,18 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   40% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   50% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   60% {
@@ -265,17 +266,17 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
   60% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   70% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   80% {
@@ -293,18 +294,18 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   80% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   90% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   100% {
@@ -322,7 +323,7 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   50% {
@@ -341,13 +342,13 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   10% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   20% {
@@ -365,18 +366,18 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   20% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   30% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   40% {
@@ -394,18 +395,18 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   40% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   50% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   60% {
@@ -423,18 +424,18 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   60% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   70% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   80% {
@@ -452,18 +453,18 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   80% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   90% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   100% {
@@ -481,7 +482,7 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   50% {
@@ -500,13 +501,13 @@
   from {
     border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   10% {
     border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   20% {
@@ -523,17 +524,17 @@
 @keyframes flipDG1 {
   from {border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   20% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   30% {border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   40% {
@@ -550,17 +551,17 @@
 @keyframes flipDG2 {
   from {border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   40% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   50% {border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   60% {
@@ -577,17 +578,17 @@
 @keyframes flipDG3 {
   from {border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   60% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   70% {border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   80% {
@@ -604,17 +605,17 @@
 @keyframes flipDG4 {
   from {border: 2px solid white;
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   80% {
     transform: scaley(1);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   90% {border: 0px solid white;
     transform: scaley(0);
-    background-color: RGB(25, 35, 25, 1);
+    background-color: rgba(90, 131, 90, 1);
   }
 
   100% {

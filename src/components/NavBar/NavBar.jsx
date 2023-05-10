@@ -25,11 +25,11 @@ export default function NavBar({ user, setUser }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav variant="" className="">
-            <Nav.Link activeClassName="active" href="/" className="d-sm-block">Games</Nav.Link>
-            <Nav.Link activeClassName="active" href="/about">About</Nav.Link>
-            <Nav.Link activeClassName="active"   className="" href="/score-board">ScoreBoard</Nav.Link>
-            <Nav.Link activeClassName="active" className="d-md-none" onClick={handleLogOut} href="">Logout</Nav.Link>
-            <NavDropdown className="d-none d-md-block" title={title} id="basic-nav-dropdown">
+            <Nav.Link activeClassName="active turtle-nav-item" href="/" className="d-sm-block turtle-nav-item">Games</Nav.Link>
+            <Nav.Link activeClassName="active turtle-nav-item" className='turtle-nav-item' href="/about">About</Nav.Link>
+            <Nav.Link activeClassName="active" turtle-nav-item   className="turtle-nav-item" href="/score-board">ScoreBoard</Nav.Link>
+            <Nav.Link activeClassName="active turtle-nav-item" className="d-md-none" onClick={handleLogOut} href="">Logout</Nav.Link>
+            <NavDropdown className="d-none d-md-block turtle-nav-item" title={title} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={handleLogOut} href="">Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>

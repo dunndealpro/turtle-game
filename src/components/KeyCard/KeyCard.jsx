@@ -150,7 +150,7 @@ export default function KeyCard(props) {
                 onClick={handleKeyPress}
             >
                 <div
-                    className=''
+                    className='fs-4'
                     data-key={props.letter}
                     accessKey={props.letter}
                 >

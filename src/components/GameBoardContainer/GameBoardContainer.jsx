@@ -1,5 +1,5 @@
 import LetterCard from "../LetterCard/LetterCard";
-import Container from 'react-bootstrap/Container'
+// import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
@@ -58,9 +58,9 @@ export default function GameBoardContainer(props) {
     return (
         <>
             <div >
-                <Container >
+                {/* <Container > */}
                     <div className={shake1}>
-                        <Row className='justify-content-center'>
+                        <Row className='mt-2 justify-content-center '>
                             {props.guess1.map((letter, index) => (
                                 <LetterCard
                                     key={letter.toString() + '_' + index}
@@ -133,7 +133,7 @@ export default function GameBoardContainer(props) {
 
                     </div>
 
-                </Container>
+                {/* </Container> */}
 
             </div>
         </>

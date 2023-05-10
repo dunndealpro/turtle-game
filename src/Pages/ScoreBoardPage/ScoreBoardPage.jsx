@@ -16,38 +16,41 @@ export default function ScoreBoardPage(props) {
     }, [])
 
     const getUserScores = async (userId) => {
-        let tempUserScore = await gamesAPI.getUserScores(userId)        
+        let tempUserScore = await gamesAPI.getUserScores(userId)
         setStats(tempUserScore)
         setIsLoading(false)
     }
-    
+
     return (
         <>
             {isLoading ? (
                 <div>Loading Spinnger</div>
             ) : (
-                <Container >
-                    <Row className="justify-content-md-center">
-                        <Col xs='12' md="6">
-                            <div>
-                                <h1>
-                                    ScoreBoard Page
-                                </h1>
-                                {props.user.name}'s Stats
-                                <PlayerStats userScore={stats} />
-                                <h1>
+                <div >
+                    <Container  className='mt-5 p-1 score-board-page' >
+                        <Row className="p-5 justify-content-md-center">
+                            <Col xs='12' md="6">
+                                <div>
+                                    <h1>
+                                        Score Board Page
+                                    </h1>
+                                    <span className='fs-2 '>{props.user.name}'s Stats </span>
+                                    <PlayerStats userScore={stats} />
+                                    <h1>
 
-                                    Leaders
-                                </h1>
-                                <LeaderBoard stuff={stats} />
+                                        Leaders
+                                    </h1>
+                                    <LeaderBoard stuff={stats} />
 
-                            </div>
+                                </div>
 
-                        </Col>
+                            </Col>
 
-                    </Row>
+                        </Row>
 
-                </Container>
+                    </Container>
+
+                </div>
 
             )}
 

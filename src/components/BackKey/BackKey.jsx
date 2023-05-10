@@ -5,7 +5,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 export default function BackKey(props) {
     useHotkeys('backspace', () => handleKeyPress())
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = () => {
         if (props.entryCount > 1) {
             
             props.setEntryCount(props.entryCount - 1)
@@ -19,8 +19,10 @@ export default function BackKey(props) {
 
     return (
         <>
-            <Button onClick={handleKeyPress} className="bg-light text-dark" style={{ 'margin': '1px', 'padding': '10px', 'height': '60px' }}>
-                <div accessKey={"Backspace"} >
+            <Button onClick={handleKeyPress} className="back-btn text-dark" 
+            // style={{ 'margin': '1px', 'padding': '3px', 'height': '60px' }}
+            >
+                <div className='fs-5' accessKey={"Backspace"} >
                     
                     Back
                 </div>

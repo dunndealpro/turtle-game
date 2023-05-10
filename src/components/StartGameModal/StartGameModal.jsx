@@ -48,11 +48,13 @@ export default function StartGameModal(props) {
     
             <Modal.Footer>
                 <Button
-                    style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                className='game-button'
+                    // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                     onClick={props.hideNew}>New Game</Button>
                 <Link to="/">
                     <Button
-                        style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                    className='game-btn-neg'
+                        // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                         onClick={props.hideQuit}>i am not ready to play</Button>
 
                 </Link>

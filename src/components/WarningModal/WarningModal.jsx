@@ -25,7 +25,8 @@ export default function WarningModal(props) {
             <Modal.Footer>
             <Link to="/random-turtles">
                 <Button
-                    style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                className='game-button'
+                    // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                     onClick={props.onHide}>I understand
                 </Button>
                </Link>
