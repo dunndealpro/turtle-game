@@ -8,9 +8,12 @@ export default function EnterKey(props) {
     const handleKeyPress = () => {
         if (props.entryCount === 6) {           
             props.checkIfWord()            
-        } else (
-            console.log("invalid entry")
-        )
+
+        } else {
+            props.setInvalidEntry(true) 
+            props.setShake(true)
+            console.log("invalid entry")}
+        
     }
 
     return (

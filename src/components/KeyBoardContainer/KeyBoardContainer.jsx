@@ -10,17 +10,17 @@ export default function KeyBoardContainer(props) {
 
     const topRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     const midRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
-    const botRow = ["Z", "X", "C", "V", "B", "N", "M"]  
+    const botRow = ["Z", "X", "C", "V", "B", "N", "M"]
 
     // const [background, setBackground] = useState("LightGrey")
     let priorGuess
     let idx
 
-   
+
 
     return (
         <>
-        {/* <Container fluid> */}
+            {/* <Container fluid> */}
 
 
             <div>
@@ -54,8 +54,8 @@ export default function KeyBoardContainer(props) {
                         setEntryCount={props.setEntryCount}
                         currentGuessCount={props.currentGuessCount}
                         setCurrentGuessCount={props.setCurrentGuessCount}
-                        // background={background}
-                    
+                    // background={background}
+
                     />
                 ))}
 
@@ -91,7 +91,7 @@ export default function KeyBoardContainer(props) {
                         setEntryCount={props.setEntryCount}
                         currentGuessCount={props.currentGuessCount}
                         setCurrentGuessCount={props.setCurrentGuessCount}
-                        // background={background}
+                    // background={background}
                     // guessInit={props.guessInit}
                     />
                 ))}
@@ -120,6 +120,9 @@ export default function KeyBoardContainer(props) {
                     checkIfWord={props.checkIfWord}
                     isWord={props.isWord}
                     setIsWord={props.setIsWord}
+                    setInvalidEntry={props.setInvalidEntry}
+                    shake={props.shake}
+                    setShake={props.setShake}
                 />
                 {botRow.map((letter) => (
                     <KeyCard
@@ -151,7 +154,7 @@ export default function KeyBoardContainer(props) {
                         setEntryCount={props.setEntryCount}
                         currentGuessCount={props.currentGuessCount}
                         setCurrentGuessCount={props.setCurrentGuessCount}
-                        // background={background}                    
+                    // background={background}                    
                     />
                 ))}
                 <BackKey
@@ -176,7 +179,7 @@ export default function KeyBoardContainer(props) {
                 />
 
             </div>
-        {/* </Container> */}
+            {/* </Container> */}
 
 
 

@@ -13,7 +13,7 @@ export default function UserScoreDisplay(props) {
             <div className='fs-3 p-1 streak-bg'>
                 Current win streak: {props.userScore.playerCurrentStreak} games!
             </div>
-            {props.answer}
+            {/* {props.answer} */}
         </>
     )
 }

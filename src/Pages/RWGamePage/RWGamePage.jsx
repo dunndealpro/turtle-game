@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 import GameBoardContainer from "../../components/GameBoardContainer/GameBoardContainer";
 import KeyBoardContainer from "../../components/KeyBoardContainer/KeyBoardContainer";
+import InvalidEntryModal from '../../components/InvalidEntryModal/InvalidEntryModal';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import LoseModal from '../../components/LoseModal/LoseModal';
 import StartGameModal from '../../components/StartGameModal/StartGameModal';
@@ -49,10 +50,14 @@ export default function RWGamePage(props) {
   const [urbanDef, setUrbanDef] = useState()
   const [normalDef, setNormalDef] = useState()
   const [streakCount, setStreakCount] = useState(props.user.streakcount)
+
   const [winModalShow, setWinModalShow] = useState(false);
   const [loseModalShow, setLoseModalShow] = useState(false);
   const [gameStartModalShow, setGameStartModalShow] = useState(true);
   const [loadingModalShow, setLoadingModalShow] = useState(null)
+  const [invalidEntry, setInvalidEntry] = useState(false)
+
+  const [shake, setShake] = useState(false)
 
   const checkLastGame = async () => {
     let results = await gamesAPI.checkLastGame(props.user.id)
@@ -63,7 +68,7 @@ export default function RWGamePage(props) {
     }
   }
 
-  function hideNew() {    
+  function hideNew() {
     updateStreakCount()
     checkLastGame(props.user.id)
     setWinModalShow(false)
@@ -84,13 +89,13 @@ export default function RWGamePage(props) {
     setGuess6bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
     setCurrentGuess(['', '', '', '', ''])
     setUrbanDef()
-    setCurrentGuessCount(1)   
+    setCurrentGuessCount(1)
     setEntryCount(1)
     setIsWord(false)
     getNewAnswer()
   }
 
-  function hideQuit() {    
+  function hideQuit() {
     updateStreakCount(streakCount)
     setGameStartModalShow(false)
     setWinModalShow(false)
@@ -110,9 +115,13 @@ export default function RWGamePage(props) {
     setGuess6bg([blankEntry, blankEntry, blankEntry, blankEntry, blankEntry])
     setCurrentGuess(['', '', '', '', ''])
     setUrbanDef()
-    setCurrentGuessCount(1)    
+    setCurrentGuessCount(1)
     setEntryCount(1)
     setIsWord(false)
+  }
+
+  function shakeInvalidEntry() {
+
   }
 
   const getNewAnswer = async () => {
@@ -124,7 +133,7 @@ export default function RWGamePage(props) {
       if (words[i].word.length === 5) {
         newAnswer = words[i].word.toLowerCase()
         await checkIfUrbanWord(newAnswer)
-        break      
+        break
       }
     }
     if (!isUrbanWord) {
@@ -141,7 +150,7 @@ export default function RWGamePage(props) {
         isUrbanWord = true
         let tempAnswer = await gamesAPI.addWordToTurtleDB(response[0].word)
         setAnswerInfo(tempAnswer)
-        setAnswer(tempAnswer.word.toUpperCase().split(""))        
+        setAnswer(tempAnswer.word.toUpperCase().split(""))
         setNormalDef(response[0].meanings[0].definitions[0].definition)
         getUrbanDef(tempAnswer.word)
         startNewRandomGame()
@@ -152,12 +161,12 @@ export default function RWGamePage(props) {
     }
   }
 
-  const getUrbanDef = async (word) => {    
+  const getUrbanDef = async (word) => {
     let urbanSearchUrl = `https://api.urbandictionary.com/v0/define?term=${word}`
     try {
-      const response = await fetch(urbanSearchUrl).then(res => res.json());      
+      const response = await fetch(urbanSearchUrl).then(res => res.json());
       let rndInt = Math.floor(Math.random() * response.list.length) + 1
-      setUrbanDef(response.list[rndInt].definition)      
+      setUrbanDef(response.list[rndInt].definition)
     } catch (error) {
       console.log("Error: ", error)
     }
@@ -171,6 +180,7 @@ export default function RWGamePage(props) {
         compareEntry()
       }
     } catch (error) {
+      setInvalidEntry(true)
       console.log("Error: ", error)
     }
   }
@@ -195,7 +205,7 @@ export default function RWGamePage(props) {
     const newScore = await gamesAPI.saveRandomWordGame(score)
   }
 
-  const startNewRandomGame = async () => {  
+  const startNewRandomGame = async () => {
     let pointsWon = 0
     let score = {
       wordId: answerInfo.id,
@@ -211,13 +221,13 @@ export default function RWGamePage(props) {
       streakcount: streakCount,
       gameWon: null
     }
-    const newGame = await gamesAPI.startRandomWordGame(score)    
-    setGameId(newGame.id)    
+    const newGame = await gamesAPI.startRandomWordGame(score)
+    setGameId(newGame.id)
     setLoadingModalShow(false)
   }
 
   function checkGuess(i) {
-    if (answer[i] === currentGuess[i]) {      
+    if (answer[i] === currentGuess[i]) {
       tempBG.splice(i, 1, isCorrect)
     } else if (answer.find(guess => guess === currentGuess[i])) {
       //find index of answer    
@@ -228,26 +238,26 @@ export default function RWGamePage(props) {
           return occursMoreThanOnce = true;
         }
       })
-      if (!occursMoreThanOnce) {  
+      if (!occursMoreThanOnce) {
         tempBG.splice(i, 1, inWord)
       }
-      
+
 
       if (indices.length === 1 && (answer[indices[0]] === currentGuess[indices[0]])) {
-        tempBG.splice(i, 1, notInWord)        
+        tempBG.splice(i, 1, notInWord)
       }
       if (indices.length === 1 && (answer[indices[0]] !== currentGuess[indices[0]])) {
-        tempBG.splice(i, 1, inWord)        
+        tempBG.splice(i, 1, inWord)
       }
       if (indices.length === 2 && ((answer[indices[0]] === currentGuess[indices[0]]) && answer[indices[1]] !== currentGuess[indices[1]])) {
-        tempBG.splice(i, 1, inWord)        
+        tempBG.splice(i, 1, inWord)
       }
       if (indices.length === 2 && ((answer[indices[0]] !== currentGuess[indices[0]]) && answer[indices[1]] === currentGuess[indices[1]])) {
-        tempBG.splice(i, 1, inWord)        
+        tempBG.splice(i, 1, inWord)
       }
       console.log(indices)
-    } else {      
-      tempBG.splice(i, 1, notInWord)      
+    } else {
+      tempBG.splice(i, 1, notInWord)
     }
 
     //set background color of entry after evaluated
@@ -272,7 +282,7 @@ export default function RWGamePage(props) {
   }
 
   function compareEntry() {
-    for (let i = 0; i < answer.length; i++) {     
+    for (let i = 0; i < answer.length; i++) {
       checkGuess(i)
     }
 
@@ -286,7 +296,7 @@ export default function RWGamePage(props) {
       saveRandomScore()
       props.getUserScores()
     } else if (currentGuessCount === 6) {
-      setStreakCount(0)   
+      setStreakCount(0)
       gameWon = false
       setTimeout(() => {
         setLoseModalShow(true)
@@ -294,7 +304,7 @@ export default function RWGamePage(props) {
       saveRandomScore()
       props.getUserScores()
     }
-    else {    
+    else {
       // setCompare(false)      
     }
 
@@ -304,128 +314,144 @@ export default function RWGamePage(props) {
     setIsWord(false)
   }
 
-  const updateStreakCount = async () => {  
+  const updateStreakCount = async () => {
     let streakCountJson = {
       userId: props.user.id,
       streakCount: streakCount
     }
-    let updatedStreakCount = await gamesAPI.updateStreakCount(streakCountJson)    
+    let updatedStreakCount = await gamesAPI.updateStreakCount(streakCountJson)
   }
 
 
   return (
-    <>      
-            <UserScoreDisplay
-              userScore={props.userScore}
-              setUserScore={props.setUserScore}
-              user={props.user}
-              answer={answer}
-              streakCount={streakCount}
-              getUserScores={props.getUserScores}
-            />
+    <>
+      <UserScoreDisplay
+        userScore={props.userScore}
+        setUserScore={props.setUserScore}
+        user={props.user}
+        answer={answer}
+        streakCount={streakCount}
+        getUserScores={props.getUserScores}
+      />
 
-            <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
-              <GameBoardContainer               
-                currentGuess={currentGuess}
-                setCurrentGuess={setCurrentGuess}
-                guess1={guess1}
-                setGuess1={setGuess1}
-                guess2={guess2}
-                setGuess2={setGuess2}
-                guess3={guess3}
-                setGuess3={setGuess3}
-                guess4={guess4}
-                setGuess4={setGuess4}
-                guess5={guess5}
-                setGuess5={setGuess5}
-                guess6={guess6}
-                setGuess6={setGuess6}
-                compareEntry={compareEntry}
-                guessInit={guessInit}
-                entryCount={entryCount}
-                setEntryCount={setEntryCount}
-                currentGuessCount={currentGuessCount}
-                setCurrentGuessCount={setCurrentGuessCount}
-                checkIfWord={checkIfWord}
-                isWord={isWord}
-                setIsWord={setIsWord}
-                guess1bg={guess1bg}
-                guess2bg={guess2bg}
-                guess3bg={guess3bg}
-                guess4bg={guess4bg}
-                guess5bg={guess5bg}
-                guess6bg={guess6bg}
-              />
+      <div style={{ 'background': "RGB(25,35,25,1)", "height": '100vh' }}>
+        <GameBoardContainer
+          currentGuess={currentGuess}
+          setCurrentGuess={setCurrentGuess}
+          guess1={guess1}
+          setGuess1={setGuess1}
+          guess2={guess2}
+          setGuess2={setGuess2}
+          guess3={guess3}
+          setGuess3={setGuess3}
+          guess4={guess4}
+          setGuess4={setGuess4}
+          guess5={guess5}
+          setGuess5={setGuess5}
+          guess6={guess6}
+          setGuess6={setGuess6}
+          compareEntry={compareEntry}
+          guessInit={guessInit}
+          entryCount={entryCount}
+          setEntryCount={setEntryCount}
+          currentGuessCount={currentGuessCount}
+          setCurrentGuessCount={setCurrentGuessCount}
+          checkIfWord={checkIfWord}
+          isWord={isWord}
+          setIsWord={setIsWord}
+          guess1bg={guess1bg}
+          guess2bg={guess2bg}
+          guess3bg={guess3bg}
+          guess4bg={guess4bg}
+          guess5bg={guess5bg}
+          guess6bg={guess6bg}
+          invalidEntry={invalidEntry}
+          setInvalidEntry={setInvalidEntry}
+          shake={shake}
+          setShake={setShake}
+        />
 
-              <KeyBoardContainer
-                {...props}
-                currentGuess={currentGuess}
-                setCurrentGuess={setCurrentGuess}
-                guess1={guess1}
-                setGuess1={setGuess1}
-                guess2={guess2}
-                setGuess2={setGuess2}
-                guess3={guess3}
-                setGuess3={setGuess3}
-                guess4={guess4}
-                setGuess4={setGuess4}
-                guess5={guess5}
-                setGuess5={setGuess5}
-                guess6={guess6}
-                setGuess6={setGuess6}
-                compareEntry={compareEntry}
-                guessInit={guessInit}
-                entryCount={entryCount}
-                setEntryCount={setEntryCount}
-                currentGuessCount={currentGuessCount}
-                setCurrentGuessCount={setCurrentGuessCount}
-                checkIfWord={checkIfWord}
-                isWord={isWord}
-                setIsWord={setIsWord}
-                guess1bg={guess1bg}
-                guess2bg={guess2bg}
-                guess3bg={guess3bg}
-                guess4bg={guess4bg}
-                guess5bg={guess5bg}
-                guess6bg={guess6bg}
-              />
-              <StartGameModal
-                userScore={props.userScore}
-                user={props.user}
-                show={gameStartModalShow}
-                hideNew={hideNew}
-                hideQuit={hideQuit}
-              />
+        <KeyBoardContainer
+          {...props}
+          currentGuess={currentGuess}
+          setCurrentGuess={setCurrentGuess}
+          guess1={guess1}
+          setGuess1={setGuess1}
+          guess2={guess2}
+          setGuess2={setGuess2}
+          guess3={guess3}
+          setGuess3={setGuess3}
+          guess4={guess4}
+          setGuess4={setGuess4}
+          guess5={guess5}
+          setGuess5={setGuess5}
+          guess6={guess6}
+          setGuess6={setGuess6}
+          compareEntry={compareEntry}
+          guessInit={guessInit}
+          entryCount={entryCount}
+          setEntryCount={setEntryCount}
+          currentGuessCount={currentGuessCount}
+          setCurrentGuessCount={setCurrentGuessCount}
+          checkIfWord={checkIfWord}
+          isWord={isWord}
+          setIsWord={setIsWord}
+          guess1bg={guess1bg}
+          guess2bg={guess2bg}
+          guess3bg={guess3bg}
+          guess4bg={guess4bg}
+          guess5bg={guess5bg}
+          guess6bg={guess6bg}
+          invalidEntry={invalidEntry}
+          setInvalidEntry={setInvalidEntry}
+          shake={shake}
+          setShake={setShake}
+        />
+        <StartGameModal
+          userScore={props.userScore}
+          user={props.user}
+          show={gameStartModalShow}
+          hideNew={hideNew}
+          hideQuit={hideQuit}
+        />
 
-              <WinModal
-                getUserScores={props.getUserScores}
-                userScore={props.userScore}
-                user={props.user}
-                show={winModalShow}
-                hideNew={hideNew}
-                hideQuit={hideQuit}
-                urbanDef={urbanDef}
-                normalDef={normalDef}
-                answer={answer}
-              />
-              <LoseModal
-                getUserScores={props.getUserScores}
-                userScore={props.userScore}
-                user={props.user}
-                show={loseModalShow}
-                hideNew={hideNew}
-                hideQuit={hideQuit}
-                urbanDef={urbanDef}
-                normalDef={normalDef}
-                answer={answer}
-                guess6={guess6}
-              />
-              <LoadingModal
-                show={loadingModalShow}
-              
-              />
-            </div>
-        
+        <WinModal
+          getUserScores={props.getUserScores}
+          userScore={props.userScore}
+          user={props.user}
+          show={winModalShow}
+          hideNew={hideNew}
+          hideQuit={hideQuit}
+          urbanDef={urbanDef}
+          normalDef={normalDef}
+          answer={answer}
+        />
+        <LoseModal
+          getUserScores={props.getUserScores}
+          userScore={props.userScore}
+          user={props.user}
+          show={loseModalShow}
+          hideNew={hideNew}
+          hideQuit={hideQuit}
+          urbanDef={urbanDef}
+          normalDef={normalDef}
+          answer={answer}
+          guess6={guess6}
+        />
+        <LoadingModal
+          show={loadingModalShow}
+        />
+        <InvalidEntryModal
+          show={invalidEntry}
+          setInvalidEntry={setInvalidEntry}
+          invalidEntry={invalidEntry}
+          shake={shake}
+          setShake={setShake}
+          entryCount={entryCount}
+        />
+
+      </div>
+
     </>
   )
 }
