@@ -1,29 +1,37 @@
-.key {
-  background-color: LightGrey;
-  margin: 1px;
-  padding: 8px;
+.key, .key:hover, .key.active, .key:active {
+  background-color: lightGrey;
+  margin: 2px;
+  padding: 6px;
   height: 60px;
-  width: 2em;
+  min-width: 1.75em;
   border: LightGrey;
+  color: black;
+  transition-delay: 2s;
+}
+
+
+
+.is-correct, .is-correct:hover  {
+  background-color: green;
+  transition-delay: 2s;
   color: black;
 }
 
-.is-correct {
-  background-color: green;
-  transition-delay: 2s;
-}
-
-.in-word {
+.in-word, .in-word:hover {
   background-color: rgb(184, 184, 0);
   transition-delay: 2s;
+  color: black;
 }
 
-.not-in-word {
+.not-in-word, .not-in-word:hover {
   background-color: Dimgray;
   transition-delay: 2s;
+  color: black;
 }
 
-.blank {
+.blank .blank:hover{
   background-color: LightGrey;
   transition-delay: 2s;
+  color: black;
 }
+

@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
-import Modal from 'react-bootstrap/Modal';
+
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 import { Link } from 'react-router-dom';
 
-export default function WarningModal(props) {
-    console.log("Warning Modal")
-
+export default function WarningModal(props) {  
 
     return (
         <Modal
@@ -26,7 +25,8 @@ export default function WarningModal(props) {
             <Modal.Footer>
             <Link to="/random-turtles">
                 <Button
-                    style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                className='game-button'
+                    // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                     onClick={props.onHide}>I understand
                 </Button>
                </Link>

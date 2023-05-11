@@ -1,24 +1,22 @@
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col'
+
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook';
-import { motion } from "framer-motion";
 
 import './KeyCard.css'
 
 
 export default function KeyCard(props) {
 
+    //allows user to type guess instead of using mouse to click screen
     useHotkeys(props.letter, () => handleKeyBoardPress(props.letter))
 
+    // sets the state for the current guess as it is typed
     const handleKeyBoardPress = (event) => {
         if (props.entryCount < 6) {
             let key = event
             props.setEntryCount(props.entryCount + 1)
             let idx = props.currentGuess.indexOf('')
-
-            if (idx < 5 && idx > -1) {
+            if (idx < 5 && idx > -1) {           
                 let temp = props.currentGuess
                 temp.splice(idx, 1, key)
                 props.setCurrentGuess(temp)
@@ -41,18 +39,15 @@ export default function KeyCard(props) {
                     props.setGuess6(props.currentGuess)
                 }
             }
-
-        } else {
-            console.log("no more entries")
         }
     }
 
+     // sets the state for the current guess as it is clicked
     const handleKeyPress = (event) => {
         if (props.entryCount < 6) {
             let key = event.target.innerText || event.key
             props.setEntryCount(props.entryCount + 1)
             let idx = props.currentGuess.indexOf('')
-
             if (idx < 5 && idx > -1) {
                 let temp = props.currentGuess
                 temp.splice(idx, 1, key)
@@ -76,83 +71,61 @@ export default function KeyCard(props) {
                     props.setGuess6(props.currentGuess)
                 }
             }
-
-        } else {
-            console.log("no more entries")
         }
     }
 
-    let background 
+    //determines the letter/key has been guessed and determines if it is in the word or correct spot
+    let background
     let priorGuess
-    let idx
+    let idx  
 
-
-
-    // function getKeyBoardState() {
-    //     console.log("keyboard state engaged")
-    console.log(props.currentGuessCount)
     if (props.currentGuessCount > 1) {
-        // setTimeout(() => {
-        console.log("yo dude")
         const isMatch = (element) => element === props.letter
-
-        // background = "LightGrey"
-
         priorGuess = props.guess1
         if (priorGuess.findIndex(isMatch) > -1) {
-            console.log(priorGuess.findIndex(isMatch))
             idx = priorGuess.findIndex(isMatch)
             if (props.guess1bg[idx] !== 'white') {
-                // setTimeout(() => {
                 background = props.guess1bg[idx]
-                console.log("Timeout and react stinks")
-                // }, 2000);
-                console.log("wierd stuff bro ", props.letter)
             }
         }
 
         priorGuess = props.guess2
 
         if (priorGuess.findIndex(isMatch) > -1) {
-            console.log(priorGuess.findIndex(isMatch))
             idx = priorGuess.findIndex(isMatch)
             if (props.guess2bg[idx] !== 'white') {
                 background = props.guess2bg[idx]
             }
-            console.log("wierd stuff bro ", props.letter)
         }
 
         priorGuess = props.guess3
 
         if (priorGuess.findIndex(isMatch) > -1) {
-            console.log(priorGuess.findIndex(isMatch))
+
             idx = priorGuess.findIndex(isMatch)
             if (props.guess3bg[idx] !== 'white') {
                 background = props.guess3bg[idx]
-                console.log("LETTERS, what are they good for?")
             }
-            console.log("wierd stuff bro ", props.letter)
         }
 
         priorGuess = props.guess4
 
         if (priorGuess.findIndex(isMatch) > -1) {
-            console.log(priorGuess.findIndex(isMatch))
+
             idx = priorGuess.findIndex(isMatch)
             if (props.guess4bg[idx] !== 'white') {
                 background = props.guess4bg[idx]
             }
-            console.log("wierd stuff bro ", props.letter)
         }
 
         priorGuess = props.guess5
 
         if (priorGuess.findIndex(isMatch) > -1) {
-            console.log(priorGuess.findIndex(isMatch))
+
             idx = priorGuess.findIndex(isMatch)
-            if (props.guess5bg[idx] !== 'white')
+            if (props.guess5bg[idx] !== 'white') {
                 background = props.guess5bg[idx]
-            console.log("wierd stuff bro ", props.letter)
+            }
         }
     }
 
@@ -175,27 +148,15 @@ export default function KeyCard(props) {
                 data-key={props.letter}
                 className={classDisplay}
                 onClick={handleKeyPress}
-                // style={
-                //     {
-                //         'margin': '1px',
-                //         'padding': '8px',
-                //         'height': '60px',
-                //         'width': '2em',
-                //         'border': 'LightGrey',
-                //         'color': 'black'
-                //     }
-                // }
-                >
+            >
                 <div
-                    className=''
+                    className='fs-4'
                     data-key={props.letter}
-                    accessKey={props.letter}>
+                    accessKey={props.letter}
+                >
                     <strong>{props.letter}</strong>
                 </div>
-
             </Button>
-
-
         </>
     )
 }

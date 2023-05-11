@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100vh;
+  background-color: rgb(208, 127, 255);
+  /* max-height: 100vh; */
 }
 
 .App-logo {
@@ -15,7 +18,7 @@
 
 .App-header {
   background-color: #282c34;
-  
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,15 +41,20 @@
   }
 }
 
-.nav-bg{
-  background: rgba(50,225,75,1)
+.nav-bg {
+  background: rgba(50, 225, 75, 1);
 }
 
-.streak-bg{
-  background: rgb(65, 104, 65);
-  height:100%;
+.streak-bg {
+  background: rgb(160, 255, 160);
+  width: 100%;
+  /* height:100%; */
 }
 
+.turtle-nav-item:hover {
+  color: black;
+  font-weight: bold;
+}
 
 .active-link {
   font-weight: bold;
@@ -55,4 +63,80 @@
 
 .active {
   font-weight: bold;
+}
+
+.game-button {
+  background-color: rgb(67, 173, 67);
+  border: #303030 1px solid;
+  box-shadow: 0px 0px 2px rgb(0, 0, 0);
+}
+
+.game-button:hover {
+  background-color: rgb(0, 112, 0);
+  color: black;
+  font-weight: bold;
+  /* transition-delay: 2s; */
+}
+
+.game-button.active,
+.game-button:active {
+  background-color: rgb(0, 112, 0);
+  transition-delay: 2s;
+}
+
+.game-card {
+  border: #000 1px solid;
+  box-shadow: 0px 0px 4px rgb(0, 0, 0);
+}
+
+.game-btn-neg {
+  background-color: crimson;
+  border: #303030 1px solid;
+  box-shadow: 0px 0px 2px rgb(0, 0, 0);
+}
+
+.game-btn-neg:hover {
+  background-color: rgb(172, 17, 48);
+  border: #303030 1px solid;
+  color: black;
+  font-weight: bold;
+}
+
+.enter-btn,
+.back-btn{
+  background-color: lightgrey;
+  border: lightgrey 1px solid;
+  margin: 1px;
+  padding: 3px;
+  height: 60px;
+  /* transition-delay: 2s; */
+}
+
+.enter-btn:hover,
+.back-btn:hover
+{
+  background-color: darkgrey;
+  border: darkgrey 1px solid;
+  margin: 1px;
+  padding: 3px;
+  height: 60px;
+  /* transition-delay: 2s; */
+}
+
+.enter-btn.active,
+.enter-btn:active,
+.back-btn.active,
+.back-btn:active {
+  background-color: darkgrey;
+  border: darkgrey 1px solid;
+  margin: 1px;
+  padding: 3px;
+  height: 60px;
+  transition-delay: 2s;
+}
+
+.score-board-page{
+  background-color: #9edd6b;
+  padding: 5vh 2vw 20vh 2vw;
+  border-radius: 10px;
 }

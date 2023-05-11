@@ -1,26 +1,28 @@
 import Button from 'react-bootstrap/Button';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { motion } from "framer-motion";
+
 
 export default function BackKey(props) {
     useHotkeys('backspace', () => handleKeyPress())
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = () => {
         if (props.entryCount > 1) {
-            console.log("back key clicked")
+            
             props.setEntryCount(props.entryCount - 1)
             let temp = props.currentGuess
-            console.log(temp)
+            
             temp.splice((props.entryCount - 2), 1, '')
             props.setCurrentGuess(temp)
-            console.log(props.currentGuess)
+            
         }
     }
 
     return (
         <>
-            <Button onClick={handleKeyPress} className="bg-light text-dark" style={{ 'margin': '1px', 'padding': '10px', 'height': '60px' }}>
-                <div accessKey={"Backspace"} >
+            <Button onClick={handleKeyPress} className="back-btn text-dark" 
+            // style={{ 'margin': '1px', 'padding': '3px', 'height': '60px' }}
+            >
+                <div className='fs-5' accessKey={"Backspace"} >
                     
                     Back
                 </div>

@@ -1,18 +1,13 @@
 import * as usersAPI from './users-api';
 
-export async function signUp(userData) {
-    // Delegate the network request code to the users-api.js API module
-    // which will ultimately return a JSON Web Token (JWT)
-    console.log(userData)
+export async function signUp(userData) { 
     const token = await usersAPI.signUp(userData);
-    localStorage.setItem('token', token);
-    // Baby step by returning whatever is sent back by the server
-    console.log(token)
+    localStorage.setItem('token', token);   
     return getUser();
   }
 
   export function getToken() {
-    console.log("GET TOKEN>><<??")
+
     // getItem returns null if there's no string
     const token = localStorage.getItem('token');
     if (!token) return null;
@@ -46,7 +41,3 @@ export async function signUp(userData) {
     return getUser();
   }
 
-  // export function checkToken() {
-  //   return usersAPI.checkToken()
-  //     .then(dateStr => new Date(dateStr));
-  // }

@@ -12,56 +12,23 @@ import LeaderBoardQuick from '../LeaderBoardQuick/LeaderBoardQuick';
 import Container from 'react-bootstrap/Container'
 
 export default function WinModal(props) {
-    // console.log(props.urbanDef)
-    // props.getUserScores()
-    // let winPercent
+
     let totalGames
-    // let longStreak
-    // let totalScore
-    // let currentStreak
 
-
-
-
-    // if (props.userScore.totalWinPercent) {
-    //     winPercent = props.userScore.totalWinPercent
-    // }
     if (props.userScore.totalScore) {
         totalGames = props.userScore.totalGames
     }
-    // // if(props.userScore.playerLongStreak){
-    // longStreak = props.userScore.playerLongStreak
-    // // }
-    // if (props.userScore.totalScore) {
-    //     totalScore = props.userScore.totalScore[0].total_score
-    // }
-    // if (props.userScore.playerCurrentStreak) {
-    //     currentStreak = props.userScore.playerCurrentStreak
-    // } else { currentStreak = 0 }
 
     let def
     let normalDef
     if (props.urbanDef) {
-        // let max = props.urbanDef.list.length
-        // let rndInt = Math.floor(Math.random() * max) + 1
-        // def = props.urbanDef.list[rndInt].definition
         def = props.urbanDef
     }
 
     if (props.normalDef) {
         normalDef = props.normalDef
     }
-    // let totalScore
-    // if(props.userScore.totalScore){
-    //     totalScore = props.userScore.totalScore[0].total_score}
 
-    // useEffect(() => {
-    //     // console.log("USerScrore UseEffect Engaged ", props.user.id)
-    //     props.getUserScores(props.user.id)
-
-    // }, props.userScore)
-
-    // let playerRatio = Math.round((totalScore / totalGames) * 100) / 100
 
     return (
         <Modal
@@ -69,7 +36,6 @@ export default function WinModal(props) {
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -79,10 +45,7 @@ export default function WinModal(props) {
             <Modal.Body className="show-grid">
                 <div className="m-2 p-2">
                     <strong>{props.answer}</strong> is the correct answer!
-
                 </div>
-
-
 
                 <Accordion defaultActiveKey="">
                     <Accordion.Item eventKey="0">
@@ -101,11 +64,7 @@ export default function WinModal(props) {
                         <Accordion.Header><strong>Player Stats</strong></Accordion.Header>
                         <Accordion.Body>
                             <PlayerStats
-                            userScore={props.userScore}
-                                // totalGames={totalGames}
-                                // winPercent={winPercent}
-                                // currentStreak={currentStreak}
-                                // longStreak={longStreak}
+                                userScore={props.userScore}                          
                             />
                             <GuessDistribution
                                 testStuff={props.userScore.guessDist}
@@ -116,14 +75,12 @@ export default function WinModal(props) {
                     <Accordion.Item>
                         <Accordion.Header><strong>Leader Board</strong></Accordion.Header>
                         <Accordion.Body>
-                           <LeaderBoardQuick 
-                           userScore={props.userScore}
-                           />
+                            <LeaderBoardQuick
+                                userScore={props.userScore}
+                            />
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
-
-
             </Modal.Body>
             <Modal.Footer>
                 <Button
@@ -133,7 +90,6 @@ export default function WinModal(props) {
                     <Button
                         style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                         onClick={props.hideQuit}>No More!</Button>
-
                 </Link>
             </Modal.Footer>
         </Modal>
