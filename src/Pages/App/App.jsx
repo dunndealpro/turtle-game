@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import AuthPage from '../AuthPage/AuthPage';
 import AboutPage from '../AboutPage/AboutPage';
+import Footer from '../../components/Footer/Footer';
 import LandingPage from '../LandingPage/LandingPage';
 import NavBar from '../../components/NavBar/NavBar';
 import RWGamePage from '../RWGamePage/RWGamePage';
@@ -23,13 +24,13 @@ function App() {
   const [userScore, setUserScore] = useState([])
 
   const getUserScores = async (userId) => {
-    let tempUserScore = await gamesAPI.getUserScores(userId)    
+    let tempUserScore = await gamesAPI.getUserScores(userId)
     setUserScore(tempUserScore)
   }
- 
 
- useEffect(() => {    
-     getUserScores()
+
+  useEffect(() => {
+    getUserScores()
   }, [])
 
   return (
@@ -40,12 +41,16 @@ function App() {
             user={user}
             setUser={setUser}
           />
-          <Routes>
-            <Route path="/" element={<LandingPage  user={user}/>}/>
-            <Route path="/random-turtles" element={<RWGamePage  user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore}/>}/>
-            <Route path="/about" element={<AboutPage/>}/>
-            <Route path="/score-board" element={<ScoreBoardPage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore}/>}/>
-          </Routes>         
+          <div className="flex-grow-1 overflow-auto">
+            <Routes>
+              <Route path="/" element={<LandingPage user={user} />} />
+              <Route path="/random-turtles" element={<RWGamePage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/score-board" element={<ScoreBoardPage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
+            </Routes>
+
+          </div>
+          <Footer />
         </>
         :
         <AuthPage
