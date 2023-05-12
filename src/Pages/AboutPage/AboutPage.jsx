@@ -12,9 +12,9 @@ export default function AboutPage() {
 
     return (
         <>
-            <div className="fs-3">
+            {/* <div className="fs-1 m-4 border-bottom">
                 About Turtle
-            </div>
+            </div> */}
             {/* <div>
                 Welcome to the game of Turtle!
             </div>
@@ -37,10 +37,12 @@ export default function AboutPage() {
 
 
 
-            <Container>
-                <Row>
-                    <Col xs={4}>
+            <Container className="m-3 pt-3" fluid>
+                <Row fluid className='justify-content-center mt-1'>
+                    <Col xs={2} className='m-1' style={{ position: 'fixed', top:100, left: 0 }}>
                         <Nav id="navbar-example3" className=" flex-column align-items pe-4 border-end">
+                        {/* <Nav id="navbar-example3" className=" "> */}
+
                             <NavItem>
                                 <Nav.Link className="ms-3 my-1" href="#item-1">What is and why Turtle?</Nav.Link>
 
@@ -54,57 +56,44 @@ export default function AboutPage() {
                                     <NavItem>
                                         <Nav.Link className="ms-3 my-1" href="#item-2-2">Local Storage vs. Database Storage</Nav.Link>
                                     </NavItem>
-                                </Nav>
-                            </NavItem>
-                            <NavItem>
-                                <Nav.Link href="#item-3">Answer Definitions</Nav.Link>
-                                <Nav className="flex-column">
                                     <NavItem>
-                                        <Nav.Link className="ms-3 my-1" href="#item-3-1">Free Dictionary API</Nav.Link>
-                                    </NavItem>
-                                    <NavItem>
-                                        <Nav.Link className="ms-3 my-1" href="#item-3-2">Urban Dictionary</Nav.Link>
+                                        <Nav.Link className="ms-3 my-1" href="#item-2-3">Answer Definitions</Nav.Link>
                                     </NavItem>
                                 </Nav>
-                            </NavItem>
+                            </NavItem>                            
                         </Nav>
                     </Col>
-                    <Col xs={8}>
+                    <Col className="m-2" xs={12} md={8}>
                         <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabIndex="0" className="scrollspy-example-3">
-                            <div id="item-1">
+                            <div className="m-2 mt-2" id="item-1">
                                 <h2><strong>What is and why Turtle?</strong></h2>
-                                <p className="fs-5">  <span>
+                                <p className="fs-3">  <span>
                                     Turtle is a re-creation and adaptation of the well known game "Wordle."  As an avid player and fan of Wordle, I play the New York Times' word game daily with a group of friends and we all share our scores with each other. Along with my friends, we often find ourselves wanting to play more than one game a day, and also at times, need to look up the meaning of the resulting answer.  To appease these wants, I recreated Wordle with a few unique distinctions.
                                 </span></p>
                             </div>
 
-                            <div id="item-2">
+                            <div className="m-2 mt-4" id="item-2">
                                 <h2><strong>Key Differences Between Wordle and Turtle</strong></h2>
                                 {/* <p>...</p> */}
-                                <div id="item-2-1">
+                                <div id="item-2-1" className="m-2 mt-4">
                                     <h3>Daily Game vs. Unlimited Games</h3>
-                                    <p className="fs-5">Traditional Wordle offers 1 game per day, with puzzle answers already determined and hard coded into the game. Turtle currently features unlimited plays as well as providing random puzzle answers for each game. (more on how puzzle answers are selected in the 'how it works sections')</p>
+                                    <p className="fs-3">Traditional Wordle offers 1 game per day, with puzzle answers already determined and hard coded into the game. Turtle currently features unlimited plays as well as providing random puzzle answers for each game. (more on how puzzle answers are selected in the 'how it works sections')</p>
                                 </div>
-                                <div id="item-2-2">
+                                <div id="item-2-2" className="m-2 mt-4">
                                     <h3>Local Storage vs. Database Storage</h3>
-                                    <p className="fs-5"><span>
+                                    <p className="fs-3"><span>
                                         The classic Wordle game stores and displays the user's and only the user's stats in their browser's local storage.
                                     </span><br /><br />
                                         <span>Turtle is a full stack PERN(PostgreSQL, Express, React, Node) application that stores all user's game results and statistics to a relational database.  As such, Turtle is able to query the database to display other players scores and stats. </span></p>
                                 </div>
+                                <div id="item-2-3" className="m-2 mt-4">
+                                    <h3>Definition Display</h3>
+                                    <p className="fs-3"><span>
+                                    When a game is either won or loss, the player has a choice to show a standard definition (assumed 'safe for work')* from dictionaryapi.dev or a definition from urbandictionary.com('not safe for work') 
+                                    </span></p><br /><br />
+                                </div>
                             </div>
-                            <div id="item-3">
-                                <h4>Definition Display</h4>  
-                                <p>When a game is either won or loss, the player has a choice to show a standard definition (assumed 'safe for work')* from dictionaryapi.dev or a definition from urbandictionary.com('not safe for work') </p>                              
-                            </div>
-                            <div id="item-3-1">
-                                <h5>item 3-1</h5>
-                                <p>...</p>
-                            </div>
-                            <div id="item-3-2">
-                                <h5>Item 3-2</h5>
-                                <p>...</p>
-                            </div>
+                            
                         </div>
                     </Col>
                 </Row>
