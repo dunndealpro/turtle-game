@@ -53,7 +53,7 @@ function App() {
           <Footer />
         </>
         :
-        <AuthPage
+        <AuthPage className="flex-grow-1 overflow-auto"
           setUser={setUser}
         />
       }

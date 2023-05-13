@@ -29,7 +29,7 @@ console.log(props.userScore)
 
     return(
         <>
-        <Table responsive size="md" className='fs-4'>
+        <Table responsive size="md" className='fs-6'>
                                 <thead>
                                     <tr>
                                         {/* <th>Total Points</th> */}

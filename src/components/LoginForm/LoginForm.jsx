@@ -52,7 +52,7 @@ export default function LoginForm({ setUser }) {
 
                                 </span>  <br />
 
-                            <Button className="m-2" variant="primary " type="submit" >Login</Button>
+                            <Button className="m-2 game-button"  type="submit" >Login</Button>
                             <p className="error-message">&nbsp;{error}</p>
                         </Form>
 

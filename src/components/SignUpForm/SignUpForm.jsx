@@ -49,10 +49,10 @@ export default class SignUpForm extends Component {
     render() {
         const disable = this.state.password !== this.state.confirm;
         return (
-            <div>
-                <Container className="p-2 m-2">
-                    <Row>
-                        <Col>
+            <div className="d-flex justify-content-center align-items-center" >
+                {/* <Container className="p-2 m-2">
+                    <Row> */}
+                        {/* <Col md={6}> */}
                             <Form autoComplete="off" onSubmit={this.handleSubmit}>
                                 <Form.Group className="mb-3" >
                                     <Form.Control type="name" placeholder="Enter Name" name="name" value={this.state.name} onChange={this.handleChange} required />
@@ -72,11 +72,11 @@ export default class SignUpForm extends Component {
 
                                 </span> <br />
 
-                                <Button className="m-2" variant="primary" type="submit" disabled={disable}>Sign Up</Button>
+                                <Button className="m-2 game-button" type="submit" disabled={disable}>Sign Up</Button>
                             </Form>
-                        </Col>
-                    </Row>
-                </Container>
+                        {/* </Col> */}
+                    {/* </Row>
+                </Container> */}
                 <p className="error-message">&nbsp;{this.state.error}</p>
             </div>
         );
