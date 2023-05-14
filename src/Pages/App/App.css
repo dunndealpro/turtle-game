@@ -131,6 +131,8 @@
   margin: 1px;
   padding: 3px;
   height: 60px;
+  font-size: 1.1em;
+  /* max-width: 1.5em; */
   /* transition-delay: 2s; */
 }
 
@@ -165,4 +167,32 @@
 
 .main-other{
   flex-grow: 1;
+}
+
+/* #item-1{
+  scroll-padding-top: -60px;
+} */
+
+.scroll-test{
+  position: relative;
+}
+
+.scroll-test-body{
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.about-tabs{
+  font-size: ;
+
+}
+
+.active-pill{
+  background-color: #f00;
+  color: #fff;
+}
+
+.nav .nav-link.active{
+  background-color: rgba(50, 225, 75, 1);
+  color: black;
 }

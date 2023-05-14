@@ -329,7 +329,7 @@ export default function RWGamePage(props) {
 
   return (
     <>
-    <div className="ugh flex-grow-1 overflow-auto">
+    <div className="ugh">
       <Container fluid   >
 
         <UserScoreDisplay

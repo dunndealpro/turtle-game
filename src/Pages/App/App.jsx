@@ -41,7 +41,7 @@ function App() {
             user={user}
             setUser={setUser}
           />
-          <div className="flex-grow-1 overflow-auto">
+          <div className="flex-grow-1 overflow-auto" style={{ flex: '1 1 auto', overflow: 'hidden' }}>
             <Routes>
               <Route path="/" element={<LandingPage user={user} />} />
               <Route path="/random-turtles" element={<RWGamePage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
