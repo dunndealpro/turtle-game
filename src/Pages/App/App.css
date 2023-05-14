@@ -131,6 +131,8 @@
   margin: 1px;
   padding: 3px;
   height: 60px;
+  font-size: 1.1em;
+  /* max-width: 1.5em; */
   /* transition-delay: 2s; */
 }
 

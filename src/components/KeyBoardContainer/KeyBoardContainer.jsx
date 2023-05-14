@@ -22,12 +22,12 @@ export default function KeyBoardContainer(props) {
         <>
             {/* <Container fluid> */}
 
-            <div className="keyboard-container">
+            <div className="">
 
-                <Row className="" xs={12}>
-                    <Col>
+                <Row className="keyboard-container align-content-center"  >
+                    <Col className="" xs={12}>
                         {topRow.map((letter) => (
-                            <KeyCard
+                            <KeyCard 
                                 guess1bg={props.guess1bg}
                                 guess2bg={props.guess2bg}
                                 guess3bg={props.guess3bg}

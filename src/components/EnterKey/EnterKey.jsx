@@ -24,7 +24,7 @@ export default function EnterKey(props) {
                 className="text-dark enter-btn"
                 // style={{ 'margin': '1px', 'padding': '3px', 'height': '60px' }}
                 >
-                <div className='fs-5' >Enter</div>
+                <div className='' >Enter</div>
             </Button>
 
         </>

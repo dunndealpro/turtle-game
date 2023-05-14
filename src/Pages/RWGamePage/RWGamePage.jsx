@@ -329,7 +329,7 @@ export default function RWGamePage(props) {
 
   return (
     <>
-    <div className="ugh ">
+    <div className="ugh">
       <Container fluid   >
 
         <UserScoreDisplay

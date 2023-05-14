@@ -22,7 +22,7 @@ export default function BackKey(props) {
             <Button onClick={handleKeyPress} className="back-btn text-dark" 
             // style={{ 'margin': '1px', 'padding': '3px', 'height': '60px' }}
             >
-                <div className='fs-5' accessKey={"Backspace"} >
+                <div className='' accessKey={"Backspace"} >
                     
                     Back
                 </div>
