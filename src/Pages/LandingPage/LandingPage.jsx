@@ -19,7 +19,7 @@ export default function MenuPage(props) {
 
     return (
         <>
-            <div className="fs-3"><strong>Games Page</strong></div>
+            <div className="fs-3 mt-3"><strong>Games Page</strong></div>
           
             <Container >
                 <Row className="justify-content-md-center">
