@@ -124,9 +124,6 @@ export default function RWGamePage(props) {
     setIsWord(false)
   }
 
-  function shakeInvalidEntry() {
-
-  }
 
   const getNewAnswer = async () => {
     setLoadingModalShow(true)
@@ -436,6 +433,7 @@ export default function RWGamePage(props) {
         urbanDef={urbanDef}
         normalDef={normalDef}
         answer={answer}
+        currentGuessCount={currentGuessCount}
       />
       <LoseModal
         getUserScores={props.getUserScores}

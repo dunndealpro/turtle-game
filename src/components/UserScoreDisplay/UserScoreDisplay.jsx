@@ -18,7 +18,7 @@ export default function UserScoreDisplay(props) {
 
                 </div>
             </Row>
-            {/* {props.answer} */}
+            {props.answer}
         </>
     )
 }

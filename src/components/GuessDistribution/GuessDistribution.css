@@ -1,11 +1,19 @@
 .guess{
     /* display: block; */
     margin: 3px,0,3px,0;
-    background-color: darkgreen;
+    background-color: rgb(0, 66, 0);
     border-radius: 2px;
     padding-right: 8px;
     text-align: end;
+    color: white;
+    
     /* width: 75%; */
+}
+
+.guess-current{
+    transform: scaley(1.2);
+    font-weight: bold;
+    background-color: darkgreen;    
 }
 
 .one-guess1{

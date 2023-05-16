@@ -28,6 +28,10 @@ export default function WinModal(props) {
     if (props.normalDef) {
         normalDef = props.normalDef
     }
+let response = ''
+    if (props.currentGuessCount === 2){
+
+    }
 
 
     return (
@@ -43,9 +47,16 @@ export default function WinModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="show-grid">
+                { props.currentGuessCount===2 ?  
                 <div className="m-2 p-2">
+                    Yea, right, lucky guess... <br /><br />
                     <strong>{props.answer}</strong> is the correct answer!
                 </div>
+                :
+                 <div className="m-2 p-2">
+                 It only took you <strong>{props.currentGuessCount-1}</strong> guesses but, <br />
+                 <strong>{props.answer}</strong> is the correct answer!
+             </div>}
 
                 <Accordion defaultActiveKey="">
                     <Accordion.Item eventKey="0">
@@ -69,6 +80,7 @@ export default function WinModal(props) {
                             <GuessDistribution
                                 testStuff={props.userScore.guessDist}
                                 totalGames={totalGames}
+                                currentGuessCount={props.currentGuessCount}
                             />
                         </Accordion.Body>
                     </Accordion.Item>
@@ -84,11 +96,13 @@ export default function WinModal(props) {
             </Modal.Body>
             <Modal.Footer>
                 <Button
-                    style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                className='game-button'
+                    // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                     onClick={props.hideNew}>New Game</Button>
                 <Link to="/">
                     <Button
-                        style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                    className='game-btn-neg'
+                        // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
                         onClick={props.hideQuit}>No More!</Button>
                 </Link>
             </Modal.Footer>

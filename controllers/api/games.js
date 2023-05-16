@@ -240,6 +240,8 @@ async function getUserScores(req, res) {
     { type: QueryTypes.SELECT }
   );
 
+  
+
   res.json({
     goldenChildren,
     highRatios,
