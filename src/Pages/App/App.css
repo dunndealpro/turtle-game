@@ -130,9 +130,10 @@
   border: lightgrey 1px solid;
   margin: 1px;
   padding: 3px;
+  padding-right: 5px;
   height: 60px;
   width: 48px;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
   /* max-width: 1.5em; */
   /* transition-delay: 2s; */
