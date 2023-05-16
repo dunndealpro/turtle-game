@@ -12,11 +12,52 @@ export default function GuessDistribution(props) {
     //use index to get count of the score
 
     let guessTotal = props.testStuff.map((num) => num.score)
+    let guess1 = "guess"
+    let guess2 = "guess"
+    let guess3 = "guess"
+    let guess4 = "guess"
+    let guess5 = "guess"
+    let guess6 = "guess"
+
+    let bold1 = "normal"
+    let bold2 = "normal"
+    let bold3 = "normal"
+    let bold4 = "normal"
+    let bold5 = "normal"
+    let bold6 = "normal"
+
     
     let statGuess = [0, 0, 0, 0, 0, 0, 0]
     let statGuessBG = ['5%', '5%', '5%', '5%', '5%', '5%']
     let widthMin = 2.5
     let widthSet = 2.5
+
+    if (props.currentGuessCount === 2){
+        guess1 = "guess guess-current"
+        bold1 = 'bold'
+    }
+    if (props.currentGuessCount === 3){
+        guess2 = "guess guess-current"
+        bold2 = 'bold'
+    }
+    if (props.currentGuessCount === 4){
+        guess3 = "guess guess-current"
+        bold3 = 'bold'
+    }
+    if (props.currentGuessCount === 5){
+        guess4 = "guess guess-current"
+        bold4 = 'bold'
+    }
+    if (props.currentGuessCount === 6){
+        guess5 = "guess guess-current"
+        bold5 = 'bold'
+    }
+    if (props.currentGuessCount === 7){
+        guess6 = "guess guess-current"
+        bold6 = 'bold'
+    }
+
+
     guessTotal.forEach((guess, i) => {
         if (guess === 6) {
             
@@ -95,49 +136,60 @@ export default function GuessDistribution(props) {
         }
     })  
 
+
+    // if (props.currentGuessCount === 1 ){
+    //     guess = "guess guess-current"
+    // }
+    // if (props.currentGuessCount === 2 ){
+    //     guess = "guess guess-current"
+    // }
+    // if (props.currentGuessCount === 3 ){
+    //     guess = "guess guess-current"
+    // }
+
     return (
-        <Container fluid>
+        <Container fluid className=""  >
             <strong>Guess Distribution</strong>            
             <br /><br />
             <Row>
-                <Col xs={1}>1</Col>
+                <Col xs={1} style={{'fontWeight':`${bold1}`}}>1</Col>
                 <Col className="mb-1" ><div
-                    className="guess"
+                    className={guess1}
                     style={{ 'width': `${statGuessBG[0]}` }}
                 >{statGuess[0]}</div></Col>
             </Row>
             <Row>
-                <Col xs={1}>2</Col>
+                <Col xs={1} style={{'fontWeight':`${bold2}`}}>2</Col>
                 <Col className="mb-1" ><div
-                    className="guess"
+                    className={guess2}
                     style={{ 'width': `${statGuessBG[1]}` }}
                 >{statGuess[1]}</div></Col>
             </Row>
             <Row>
-                <Col xs={1}>3</Col>
+                <Col xs={1} style={{'fontWeight':`${bold3}`}}>3</Col>
                 <Col className="mb-1" ><div
-                    className="guess"
+                    className={guess3}
                     style={{ 'width': `${statGuessBG[2]}` }}
                 >{statGuess[2]}</div></Col>
             </Row>
             <Row>
-                <Col xs={1}>4</Col>
+                <Col xs={1} style={{'fontWeight':`${bold4}`}}>4</Col>
                 <Col className="mb-1" ><div
-                    className="guess"
+                    className={guess4}
                     style={{ 'width': `${statGuessBG[3]}` }}
                 >{statGuess[3]}</div></Col>
             </Row>
             <Row>
-                <Col xs={1}>5</Col>
+                <Col xs={1} style={{'fontWeight':`${bold5}`}}>5</Col>
                 <Col className="mb-1" ><div
-                    className="guess"
+                    className={guess5}
                     style={{ 'width': `${statGuessBG[4]}` }}
                 >{statGuess[4]}</div></Col>
             </Row>
             <Row>
-                <Col xs={1}>6</Col>
+                <Col xs={1} style={{'fontWeight':`${bold6}`}}>6</Col>
                 <Col className="mb-1" ><div
-                    className="guess"
+                    className={guess6}
                     style={{ 'width': `${statGuessBG[5]}` }}
                 >{statGuess[5]}</div></Col>
             </Row>           
