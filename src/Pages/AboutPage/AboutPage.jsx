@@ -62,6 +62,7 @@ export default function AboutPage() {
                                         Once a 5 letter word is found, a new API request is made to dictionaryapi.dev to ensure that the word from UD is an acceptable, english language word. If unacceptable, it returns an error message and the process starts again. If the word is acceptable, the request returns a “safe-for-work” definition of the word to be displayed along with its UD definition after the game is completed.
 
                                     </span></p>
+                                    
                                 </Tab>
                             </Tabs>
                         </Col>

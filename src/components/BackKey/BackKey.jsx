@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import { useHotkeys } from 'react-hotkeys-hook';
+import {BsBackspace }from 'react-icons/bs'
 
 
 export default function BackKey(props) {
@@ -19,12 +20,12 @@ export default function BackKey(props) {
 
     return (
         <>
-            <Button onClick={handleKeyPress} className="back-btn text-dark" 
+            <Button onClick={handleKeyPress} className="back-btn text-dark back-space" 
             // style={{ 'margin': '1px', 'padding': '3px', 'height': '60px' }}
             >
-                <div className='' accessKey={"Backspace"} >
+                <div style={{'font-weight': 'bold'}} className='' accessKey={"Backspace"} >
                     
-                    Back
+                    <BsBackspace  size={30}/>
                 </div>
             </Button>
         </>

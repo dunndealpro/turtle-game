@@ -25,7 +25,7 @@ export default function KeyBoardContainer(props) {
             <div className="">
 
                 <Row className="keyboard-container align-content-center"  >
-                    <Col className="" xs={12}>
+                    <Col className="w-100" xs={12}>
                         {topRow.map((letter) => (
                             <KeyCard 
                                 guess1bg={props.guess1bg}

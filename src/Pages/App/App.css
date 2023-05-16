@@ -131,7 +131,9 @@
   margin: 1px;
   padding: 3px;
   height: 60px;
+  width: 48px;
   font-size: 1.1em;
+  font-weight: bold;
   /* max-width: 1.5em; */
   /* transition-delay: 2s; */
 }
@@ -159,6 +161,10 @@
   transition-delay: 2s;
 }
 
+/* .back-space{
+  width: 44px;
+} */
+
 .score-board-page{
   background-color: rgb(106, 212, 122);
   padding: 5vh 2vw 20vh 2vw;
@@ -172,6 +178,7 @@
 /* #item-1{
   scroll-padding-top: -60px;
 } */
+
 
 .scroll-test{
   position: relative;

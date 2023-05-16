@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {GiTurtle} from "react-icons/gi"
 
 import * as userService from '../../utilities/users-service';
 
@@ -20,8 +21,9 @@ export default function NavBar({ user, setUser }) {
     <div className="fs-5" >
       <Navbar className="p-2 nav-bg" collapseOnSelect expand="lg" id="navbar" sticky="top" variant="light">
         <Navbar.Brand className="" href="/">
-          TURTLE
+          <GiTurtle size={35}/>&nbsp;&nbsp;
         </Navbar.Brand>
+          <span >TURTLE</span>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav variant="" className="">
