@@ -20,9 +20,9 @@ export default function AboutPage() {
         <>
            
            
-                <Container className='bg-light rounded mb-2 mt-2' >
-                    <Row className='justify-content-center align-items-center'>
-                        <Col md={6} >
+                <Container className='mb-2 mt-2' >
+                    <Row className='justify-content-center   align-items-center '>
+                        <Col className="bg-light about-page rounded p-3" md={10} lg={8} >
                             <Tabs
                                 defaultActiveKey="what-is"
                                 id="justify-tab-example"

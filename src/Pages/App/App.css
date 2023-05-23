@@ -45,6 +45,14 @@
   }
 }
 
+.about-page{
+  border: 2px solid black;
+}
+
+.tab-color{
+  color:rgb(255, 248, 249)
+}
+
 .spy-stuff{
   position: relative;
 }
@@ -170,7 +178,19 @@
   background-color: rgb(106, 212, 122);
   padding: 5vh 2vw 20vh 2vw;
   border-radius: 10px;
+  border: solid 2px black;
 }
+
+.leader-board{
+  border: solid 2px black;
+}
+
+.player-stats{
+  border: solid 2px black;
+  background-color: rgb(255, 255, 255);
+  
+}
+
 
 .main-other{
   flex-grow: 1;

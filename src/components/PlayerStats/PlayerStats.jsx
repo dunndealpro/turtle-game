@@ -20,7 +20,7 @@ console.log(props.userScore)
     // if(props.userScore.playerLongStreak){
     longStreak = props.userScore.playerLongStreak
     // }
-    if (props.userScore.totalScore) {
+    if (props.userScore.totalScore[0] && props.userScore.totalScore[0].total_score) {
         totalScore = props.userScore.totalScore[0].total_score
     }
     if (props.userScore.playerCurrentStreak) {
@@ -29,6 +29,8 @@ console.log(props.userScore)
 
     return(
         <>
+        <div className='player-stats p-2 mt-2 mb-3 rounded'>
+
         <Table responsive size="md" className='fs-6'>
                                 <thead>
                                     <tr>
@@ -53,6 +55,7 @@ console.log(props.userScore)
                                     </tr>
                                 </tbody>
                             </Table>
+        </div>
         </>
     )
 }

@@ -375,7 +375,7 @@ export default function RWGamePage(props) {
         />
 
         <KeyBoardContainer
-          {...props}
+          // {...props}
           currentGuess={currentGuess}
           setCurrentGuess={setCurrentGuess}
           guess1={guess1}

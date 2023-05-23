@@ -32,124 +32,126 @@ export default function LeaderBoard(props) {
 
     return (
         <>
+            <div className="leader-board rounded mt-2">
 
-            <Accordion defaultActiveKey="">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header><strong>Highest Total Scores</strong></Accordion.Header>
-                    <Accordion.Body >
-                    <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                <Accordion defaultActiveKey="">
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header><strong>Highest Total Scores</strong></Accordion.Header>
+                        <Accordion.Body >
+                            <div style={{ maxHeight: "200px", overflowY: "auto" }}>
 
-                        <Table responsive size="md">
-                            {/* <div className="overflow-auto"> */}
-                            <thead >
-                                <tr>
-                                    <th>#</th><th>User Name</th><th>Score</th><th>Total Games</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {stats.userScores.map((item, k) => (
-                                    <tr>
-                                        <td>{k + 1}</td>
-                                        <td>{item.userName}</td>
-                                        <td>{item.total_score}</td>
-                                        <td>{item.total_games}</td>
-                                    </tr>
-                                ))}
-                                {/* <tr>
+                                <Table responsive >
+                                    {/* <div className="overflow-auto"> */}
+                                    <thead >
+                                        <tr>
+                                            <th>#</th><th>User Name</th><th>Score</th><th>Total Games</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {stats.userScores.map((item, k) => (
+                                            <tr key={k}>
+                                                <td>{k + 1}</td>
+                                                <td>{item.userName}</td>
+                                                <td>{item.total_score}</td>
+                                                <td>{item.total_games}</td>
+                                            </tr>
+                                        ))}
+                                        {/* <tr>
                                     <td>1</td><td>{stats.userScores[0].userName}</td><td>{stats.userScores[0].total_score}</td><td>{stats.userScores[0].total_games}</td>
-                                </tr>
-                                <tr>
+                                    </tr>
+                                    <tr>
                                     <td>2</td><td>{stats.userScores[1].userName}</td><td>{stats.userScores[1].total_score}</td><td>{stats.userScores[1].total_games}</td>
                                 </tr>
                                 <tr>
-                                    <td>3</td><td>{stats.userScores[2].userName}</td><td>{stats.userScores[2].total_score}</td><td>{stats.userScores[2].total_games}</td>
-                                </tr> */}
-                            </tbody>
+                                <td>3</td><td>{stats.userScores[2].userName}</td><td>{stats.userScores[2].total_score}</td><td>{stats.userScores[2].total_games}</td>
+                            </tr> */}
+                                    </tbody>
 
-                            {/* </div> */}
-                        </Table>
-                        </div>
-
-                    </Accordion.Body>
-                </Accordion.Item>
-
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header><strong>Longest Streaks</strong></Accordion.Header>
-                    <Accordion.Body>
-                            <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-                        <Table responsive className="overflow-auto" size="md" style={{ height: 200 }}>
-                                <thead>
-                                    <tr>
-                                        <th>#</th><th>User Name</th><th>Streak Count</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {stats.longStreak.map((item, k) => (
-                                        <tr>
-                                            <td>{k + 1}</td>
-                                            <td>{item.userName}</td>
-                                            <td>{item.count}</td>
-                                        </tr>
-                                    ))}
-
-                                </tbody>
-
-
-
-                        </Table>
+                                    {/* </div> */}
+                                </Table>
                             </div>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header><strong>Best Point:Game Ratio</strong></Accordion.Header>
-                    <Accordion.Body>
-                    <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-                        <Table responsive size="md">
-                            <thead>
-                                <tr>
-                                    <th>#</th><th>User Name</th><th>P:G Ratio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {stats.highRatios.map((item, k) => (
-                                    <tr>
-                                        <td>{k + 1}</td>
-                                        <td>{item.userName}</td>
-                                        <td>{item.ratio}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
-                        </div>
 
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="3">
-                    <Accordion.Header><strong>Golden Children</strong></Accordion.Header>
-                    <Accordion.Body>
-                    <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                        </Accordion.Body>
+                    </Accordion.Item>
 
-                        <Table responsive size="md">
-                            <thead>
-                                <tr>
-                                    <th>#</th><th>User Name</th><th># of Games correct on 1st Guess</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {stats.goldenChildren.map((item, k) => (
-                                    <tr>
-                                        <td>{k + 1}</td>
-                                        <td>{item.userName}</td>
-                                        <td>{item.count}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
-                        </div>
+                    <Accordion.Item eventKey="1">
+                        <Accordion.Header><strong>Longest Streaks</strong></Accordion.Header>
+                        <Accordion.Body>
+                            <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                                <Table responsive  size="md" >
+                                    <thead>
+                                        <tr>
+                                            <th>#</th><th>User Name</th><th>Streak Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {stats.longStreak.map((item, k) => (
+                                            <tr key={k}>
+                                                <td>{k + 1}</td>
+                                                <td>{item.userName}</td>
+                                                <td>{item.count}</td>
+                                            </tr>
+                                        ))}
 
-                    </Accordion.Body>
-                </Accordion.Item>
-            </Accordion>
+                                    </tbody>
+
+
+
+                                </Table>
+                            </div>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header><strong>Best Point : Game Ratio</strong></Accordion.Header>
+                        <Accordion.Body>
+                            <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+                                <Table responsive size="md">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th><th>User Name</th><th>P:G Ratio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {stats.highRatios.map((item, k) => (
+                                            <tr key={k}>
+                                                <td>{k + 1}</td>
+                                                <td>{item.userName}</td>
+                                                <td>{item.ratio}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </Table>
+                            </div>
+
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="3">
+                        <Accordion.Header><strong>Golden Children</strong>(...aka lucky guessers)</Accordion.Header>
+                        <Accordion.Body>
+                            <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+
+                                <Table responsive size="md">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th><th>User Name</th><th># of Games correct on 1st Guess</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {stats.goldenChildren.map((item, k) => (
+                                            <tr key={k}>
+                                                <td>{k + 1}</td>
+                                                <td>{item.userName}</td>
+                                                <td>{item.count}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </Table>
+                            </div>
+
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
+            </div>
 
 
 

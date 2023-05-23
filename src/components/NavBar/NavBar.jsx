@@ -32,7 +32,7 @@ export default function NavBar({ user, setUser }) {
             <Nav.Link activeClassName="active" turtle-nav-item   className="turtle-nav-item" href="/score-board">ScoreBoard</Nav.Link>
             <Nav.Link activeClassName="active turtle-nav-item" className="d-md-none" onClick={handleLogOut} href="">Logout</Nav.Link>
             <NavDropdown className="d-none d-md-block turtle-nav-item" title={title} id="basic-nav-dropdown">
-              <NavDropdown.Item onClick={handleLogOut} href="">Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogOut} href="/">Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
