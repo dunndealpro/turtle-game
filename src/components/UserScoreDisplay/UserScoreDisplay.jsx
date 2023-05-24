@@ -16,7 +16,6 @@ export default function UserScoreDisplay(props) {
                     Current win streak: {props.userScore.playerCurrentStreak} games!
                 </div>
             </Row>
-            {props.answer}
         </>
     )
 }
