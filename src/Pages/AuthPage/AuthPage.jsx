@@ -18,7 +18,7 @@ export default function AuthPage({ setUser }) {
                         <Col md={6} bg-dark className="">
                             <h1 className="p-2">Welcome to Turtle!</h1>
                             <h2 className="p-2"> Please Login or Sign up!</h2>
-                            <Button variant="secondary" className="p-2 mx-auto mb-2" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</Button>
+                            <Button variant="secondary" className="p-2 mx-auto mb-2" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'New User'}</Button>
                             {showSignUp ?
                                 <SignUpForm className=" " setUser={setUser} />
                                 :
@@ -27,7 +27,6 @@ export default function AuthPage({ setUser }) {
                             </Col>
                     </Row>
                 </Container>
-
             </div>
         </>
     )

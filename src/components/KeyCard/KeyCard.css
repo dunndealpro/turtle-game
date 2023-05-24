@@ -1,9 +1,10 @@
 .key, .key:hover, .key.active, .key:active {
   background-color: lightGrey;
-  margin: 2px;
-  padding: 6px;
+  margin: 1px;
+  padding: 4px;
   height: 60px;
-  min-width: 1.82em;
+  width: 31.6px;
+  /* min-width: 1.82em; */
   border: LightGrey;
   color: black;
   transition-delay: 2s;

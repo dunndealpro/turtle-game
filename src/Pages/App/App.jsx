@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Router, Routes, Route } from 'react-router-dom'
 
 import AuthPage from '../AuthPage/AuthPage';
 import AboutPage from '../AboutPage/AboutPage';
@@ -19,7 +19,6 @@ import './App.css';
 
 function App() {
 
-
   const [user, setUser] = useState(getUser());
   const [userScore, setUserScore] = useState([])
 
@@ -28,36 +27,35 @@ function App() {
     setUserScore(tempUserScore)
   }
 
-
   useEffect(() => {
     getUserScores()
   }, [])
 
   return (
-    <main className="App">
-      {user ?
-        <>
-          <NavBar
-            user={user}
+      <main className="App">
+        {user ?
+          <>
+            <NavBar
+              user={user}
+              setUser={setUser}
+            />
+            <div className="flex-grow-1 overflow-auto" style={{ flex: '1 1 auto', overflow: 'hidden' }}>
+              <Routes>
+                <Route path="/" element={<LandingPage user={user} />} />
+                <Route path="/random-turtles" element={<RWGamePage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/score-board" element={<ScoreBoardPage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
+              </Routes>
+
+            </div>
+            <Footer />
+          </>
+          :
+          <AuthPage className="flex-grow-1 overflow-auto"
             setUser={setUser}
           />
-          <div className="flex-grow-1 overflow-auto" style={{ flex: '1 1 auto', overflow: 'hidden' }}>
-            <Routes>
-              <Route path="/" element={<LandingPage user={user} />} />
-              <Route path="/random-turtles" element={<RWGamePage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/score-board" element={<ScoreBoardPage user={user} userScore={userScore} getUserScores={getUserScores} setUserScore={setUserScore} />} />
-            </Routes>
-
-          </div>
-          <Footer />
-        </>
-        :
-        <AuthPage className="flex-grow-1 overflow-auto"
-          setUser={setUser}
-        />
-      }
-    </main>
+        }
+      </main>
   );
 }
 

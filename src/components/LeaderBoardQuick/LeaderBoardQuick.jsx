@@ -1,38 +1,11 @@
-import { Container, Row, Col } from "react-bootstrap";
-import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
+import Table from 'react-bootstrap/Table';
 
 
-export default function LeaderBoard(props) {
-    console.log(props.userScore)
-    console.log(props.stuff)
-    let stats = props.stuff || props.userScore
-
-    console.log(stats)
-
-    let topScoreName
-    let topScoreScore
-    let topScoreGames
-
-    // if (stats.userScores[0].userName){
-    //     topScoreName = stats.userScores[0].userName
-    // }
-    // if(stats.userScores[0].total_score){
-    //     topScoreScore = stats.userScores[0].total_score
-    // }
-
-    // if(stats.userScores[0].total_games){
-    //     topScoreGames = stats.userScores[0].total_games
-    // }
-
-
-    //     if(stats.userScores[0]){
-    // topScores = stats.userScores[0]
-    //     }
-
+export default function LeaderBoardQuick(props) {
+    let stats = props.stats || props.userScore
     return (
         <>
-
             <Accordion defaultActiveKey="">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header><strong>Highest Total Scores</strong></Accordion.Header>
@@ -51,11 +24,9 @@ export default function LeaderBoard(props) {
                                             <td>{stats.userScores[0].userName}</td>
                                             <td>{stats.userScores[0].total_score}</td>
                                             <td>{stats.userScores[0].total_games}</td>
-
                                         </>
                                         :
                                         <></>
-
                                     }
                                 </tr>
                                 <tr>
@@ -114,6 +85,7 @@ export default function LeaderBoard(props) {
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>
+
                 <Accordion.Item eventKey="2">
                     <Accordion.Header><strong>Best Point:Game Ratio</strong></Accordion.Header>
                     <Accordion.Body>
@@ -137,7 +109,6 @@ export default function LeaderBoard(props) {
                                             <td>2</td><td>{stats.highRatios[1].userName}</td><td>{stats.highRatios[1].ratio}</td>
                                         </> : <></>
                                     }
-
                                 </tr>
                                 <tr>
                                     {stats.highRatios[2] && stats.highRatios[2].userName ?
@@ -145,12 +116,12 @@ export default function LeaderBoard(props) {
                                             <td>3</td><td>{stats.highRatios[2].userName}</td><td>{stats.highRatios[2].ratio}</td>
                                         </> : <></>
                                     }
-
                                 </tr>
                             </tbody>
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>
+
                 <Accordion.Item eventKey="3">
                     <Accordion.Header><strong>Golden Children</strong></Accordion.Header>
                     <Accordion.Body>
@@ -174,7 +145,6 @@ export default function LeaderBoard(props) {
                                             <td>2</td><td>{stats.goldenChildren[1].userName}</td><td>{stats.goldenChildren[1].count}</td>
                                         </> : <></>
                                     }
-
                                 </tr>
                                 <tr>
                                     {stats.goldenChildren[2] && stats.goldenChildren[2].userName ?
@@ -182,16 +152,12 @@ export default function LeaderBoard(props) {
                                             <td>3</td><td>{stats.goldenChildren[2].userName}</td><td>{stats.goldenChildren[2].count}</td>
                                         </> : <></>
                                     }
-
                                 </tr>
                             </tbody>
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-
-
-
         </>
     )
 }

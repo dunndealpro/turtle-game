@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import { Container, Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 import './UserScoreDisplay.css';
-// import { Container } from 'react-bootstrap';
 
 export default function UserScoreDisplay(props) {
 
@@ -15,7 +14,6 @@ export default function UserScoreDisplay(props) {
             <Row  >
                 <div className='fs-4 streak-bg'>
                     Current win streak: {props.userScore.playerCurrentStreak} games!
-
                 </div>
             </Row>
             {props.answer}

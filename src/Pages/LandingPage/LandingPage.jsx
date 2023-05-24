@@ -1,5 +1,3 @@
-//pages/LandingPage/LandingPage.jsx
-
 import { Button, Card, Container, Col, Row, } from 'react-bootstrap';
 import { useState } from 'react'
 
@@ -39,8 +37,6 @@ export default function MenuPage(props) {
                             </Card.Body>
                         </Card>
 
-                        
-
                         <Card className="m-2  game-card">
                             <Card.Body>
                                 <Card.Title>
@@ -57,7 +53,6 @@ export default function MenuPage(props) {
                     </Col>
                 </Row>
             </Container>
-
 
             <WarningModal
                 show={randomWordGame}
