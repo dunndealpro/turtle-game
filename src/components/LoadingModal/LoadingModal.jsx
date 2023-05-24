@@ -1,17 +1,13 @@
+import Container from 'react-bootstrap/Container'
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 export default function LoadingModal(props) {
 
     return (
         <>
-
             <Modal
                 {...props}
-
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >

@@ -19,7 +19,6 @@ import './App.css';
 
 function App() {
 
-
   const [user, setUser] = useState(getUser());
   const [userScore, setUserScore] = useState([])
 
@@ -28,14 +27,11 @@ function App() {
     setUserScore(tempUserScore)
   }
 
-
   useEffect(() => {
     getUserScores()
   }, [])
 
   return (
-    // <Router>
-
       <main className="App">
         {user ?
           <>
@@ -60,7 +56,6 @@ function App() {
           />
         }
       </main>
-    // </Router>
   );
 }
 

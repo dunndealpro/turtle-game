@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row'
 import { useState } from 'react';
 
@@ -23,9 +23,6 @@ export default function LoginForm({ setUser }) {
         // Prevent form from being submitted to the server
         evt.preventDefault();
         try {
-            // The promise returned by the signUp service method 
-            // will resolve to the user object included in the
-            // payload of the JSON Web Token (JWT)
             const user = await usersService.login(credentials);
             setUser(user);
         } catch {
@@ -36,7 +33,7 @@ export default function LoginForm({ setUser }) {
     }
 
     return (
-        <div>
+        <>
             <Container className="p-2" >
                 <Row>
                     <Col >
@@ -48,18 +45,14 @@ export default function LoginForm({ setUser }) {
                                 <Form.Control type="password" placeholder="Enter Password" name="password" value={credentials.password} onChange={handleChange} required />
                             </Form.Group>
                             <span className="m-2">
-                                This website uses information from www.urbandictionary.com.  Some(most) of the content from www.urbandictionary.com may be considered inappropriate for younger users and/or “not safe for work.”  By logging in to this website, you are acknowledging that you may see or read disturbing content and you will not hold the developers and creators responsible for any feelings you may have.  
-
-                                </span>  <br />
-
-                            <Button className="m-2 game-button"  type="submit" >Login</Button>
+                                This website uses information from www.urbandictionary.com.  Some(most) of the content from www.urbandictionary.com may be considered inappropriate for younger users and/or “not safe for work.”  By logging in to this website, you are acknowledging that you may see or read disturbing content and you will not hold the developers and creators responsible for any feelings you may have.
+                            </span><br />
+                            <Button className="m-2 game-button" type="submit" >Login</Button>
                             <p className="error-message">&nbsp;{error}</p>
                         </Form>
-
                     </Col>
                 </Row>
             </Container>
-
-        </div>
+        </>
     );
 }

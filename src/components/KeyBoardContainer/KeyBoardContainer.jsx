@@ -1,10 +1,9 @@
-import KeyCard from "../KeyCard/KeyCard";
-import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+
+import KeyCard from "../KeyCard/KeyCard";
 import EnterKey from "../EnterKey/EnterKey";
 import BackKey from "../BackKey/BackKey";
-import { useEffect, useState } from 'react'
 
 export default function KeyBoardContainer(props) {
 
@@ -12,22 +11,13 @@ export default function KeyBoardContainer(props) {
     const midRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     const botRow = ["Z", "X", "C", "V", "B", "N", "M"]
 
-    // const [background, setBackground] = useState("LightGrey")
-    let priorGuess
-    let idx
-
-
-
     return (
         <>
-            {/* <Container fluid> */}
-
             <div className="">
-
                 <Row className="keyboard-container align-content-center"  >
                     <Col className="w-100" xs={12}>
                         {topRow.map((letter) => (
-                            <KeyCard 
+                            <KeyCard
                                 guess1bg={props.guess1bg}
                                 guess2bg={props.guess2bg}
                                 guess3bg={props.guess3bg}
@@ -56,14 +46,12 @@ export default function KeyBoardContainer(props) {
                                 setEntryCount={props.setEntryCount}
                                 currentGuessCount={props.currentGuessCount}
                                 setCurrentGuessCount={props.setCurrentGuessCount}
-                            // background={background}
                             />
-
                         ))}
                     </Col>
 
                 </Row>
-                <Row fluid xs={12}>
+                <Row xs={12}>
                     <Col>
                         {midRow.map((letter) => (
                             <KeyCard
@@ -95,8 +83,6 @@ export default function KeyBoardContainer(props) {
                                 setEntryCount={props.setEntryCount}
                                 currentGuessCount={props.currentGuessCount}
                                 setCurrentGuessCount={props.setCurrentGuessCount}
-                            // background={background}
-                            // guessInit={props.guessInit}
                             />
                         ))}
 
@@ -130,8 +116,6 @@ export default function KeyBoardContainer(props) {
                             shake={props.shake}
                             setShake={props.setShake}
                         />
-                        {/* </Col>
-                    <Col> */}
                         {botRow.map((letter) => (
                             <KeyCard
                                 guess1bg={props.guess1bg}
@@ -162,11 +146,8 @@ export default function KeyBoardContainer(props) {
                                 setEntryCount={props.setEntryCount}
                                 currentGuessCount={props.currentGuessCount}
                                 setCurrentGuessCount={props.setCurrentGuessCount}
-                            // background={background}                    
                             />
                         ))}
-                        {/* </Col>
-                    <Col > */}
                         <BackKey
                             entryCount={props.entryCount}
                             currentGuess={props.currentGuess}
@@ -188,15 +169,8 @@ export default function KeyBoardContainer(props) {
                             setCurrentGuessCount={props.setCurrentGuessCount}
                         />
                     </Col>
-
                 </Row>
             </div>
-            {/* </Container> */}
-
-
-
-
-
         </>
     )
 }

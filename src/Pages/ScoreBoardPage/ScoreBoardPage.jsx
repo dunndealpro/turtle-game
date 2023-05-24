@@ -17,7 +17,6 @@ export default function ScoreBoardPage(props) {
     }, [])
 
     const getUserScores = async (userId) => {
-        // setIsLoading(true)
         let tempUserScore = await gamesAPI.getUserScores(userId)
         setStats(tempUserScore)
         setIsLoading(false)
@@ -40,10 +39,8 @@ export default function ScoreBoardPage(props) {
                                         </h1>
                                         <span className='fs-3 '><strong>{props.user.name}'s Stats </strong></span>
                                         <PlayerStats userScore={stats} />
-                                       
                                         <span className='fs-3'><strong>Leaders </strong></span>
-                                           
-                                        <LeaderBoard stuff={stats} />
+                                        <LeaderBoard stats={stats} />
                                     </div>
                                 </Col>
                             </Row>
@@ -51,7 +48,6 @@ export default function ScoreBoardPage(props) {
                     </div>
                 </>
             }
-
         </>
     )
 }

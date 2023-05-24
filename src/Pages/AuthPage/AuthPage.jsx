@@ -27,7 +27,6 @@ export default function AuthPage({ setUser }) {
                             </Col>
                     </Row>
                 </Container>
-
             </div>
         </>
     )

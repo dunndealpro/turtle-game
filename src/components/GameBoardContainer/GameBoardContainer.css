@@ -1,5 +1,5 @@
 .shake {
-    animation: shake 0.3s ease-in-out 2;
+    animation: shake 0.5s ease-in-out 2;
   }
   
   @keyframes shake {

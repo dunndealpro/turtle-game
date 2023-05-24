@@ -37,7 +37,6 @@ export async function signUp(userData) {
     // module.
     const token = await usersAPI.login(credentials);
     localStorage.setItem('token', token);
-    console.log("token saved locally?")
     return getUser();
   }
 

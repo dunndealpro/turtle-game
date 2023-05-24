@@ -1,10 +1,8 @@
 
 import Button from 'react-bootstrap/Button';
 import { useHotkeys } from 'react-hotkeys-hook';
-import Col from 'react-bootstrap/Col'
 
 import './KeyCard.css'
-
 
 export default function KeyCard(props) {
 

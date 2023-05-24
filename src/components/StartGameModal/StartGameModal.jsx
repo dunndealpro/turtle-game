@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom';
-
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 
 export default function StartGameModal(props) {
 
     let currentStreak
-    if (props.userScore.playerCurrentStreak) {
-        currentStreak = props.userScore.playerCurrentStreak
+    if (props.userscore.playerCurrentStreak) {
+        currentStreak = props.userscore.playerCurrentStreak
     } else { currentStreak = 0 }
 
     return (
@@ -45,18 +44,15 @@ export default function StartGameModal(props) {
                 }
 
             </Modal.Body>
-    
+
             <Modal.Footer>
                 <Button
-                className='game-button'
-                    // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                    className='game-button'
                     onClick={props.hideNew}>New Game</Button>
                 <Link to="/">
                     <Button
-                    className='game-btn-neg'
-                        // style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
-                        onClick={props.hideQuit}>i am not ready to play</Button>
-
+                        className='game-btn-neg'
+                        onClick={props.hideQuit}>I am not ready to play</Button>
                 </Link>
             </Modal.Footer>
         </Modal>
