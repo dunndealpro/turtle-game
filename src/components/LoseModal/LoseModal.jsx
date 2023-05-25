@@ -90,11 +90,11 @@ export default function LoseModal(props) {
             </Modal.Body>            
                         <Modal.Footer>
                 <Button
-                    style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                    className='game-button'
                     onClick={props.hideNew}>New Game</Button>
                 <Link to="/">
                     <Button
-                        style={{ backgroundColor: 'rgb(43, 112, 168)', borderColor: 'rgb(43, 112, 168)' }}
+                        className='game-btn-neg'
                         onClick={props.hideQuit}>No More!</Button>
                 </Link>
             </Modal.Footer>
