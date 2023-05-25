@@ -30,6 +30,15 @@ When a new game is started, a few things happen to select a random word. First, 
 
 Once a 5 letter word is found, a new API request is made to dictionaryapi.dev to ensure that the word from UD is an acceptable, english language word. If unacceptable, it returns an error message and the process starts again. If the word is acceptable, the request returns a “safe-for-work” definition of the word to be displayed along with its UD definition after the game is completed.
 
+## How to Play
+
+You have 6 attempts to:
+
+- Enter a valid 5 letter word
+- if a letter is in the correct spot, its background will turn green
+- if a letter is in the word, but not in the correct spot, its background will turn yellow.
+- if a letter in not in the word, its background will turn grey.
+
 ## Screen Shots
 
 ![Suign Up](public/signup.PNG)
