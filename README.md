@@ -38,10 +38,11 @@ Once a 5 letter word is found, a new API request is made to dictionaryapi.dev to
 ![gameplay2](public/gameplay2.PNG)
 ![gameplay3](public/gameplay3.PNG)
 ![gameplay4](public/gameplay4.PNG)
+![scoreboard](public/scoreboard.PNG)
 
 ## Technologies Used
 
-PostgreSQL, Express, React.js, Node.js HTML5, CSS3, JavaScript ES6, Bootstrap, Sequelize, Token-Based Authentication(JWT)
+PostgreSQL, Express.js, React.js, Node.js HTML5, CSS3, JavaScript ES6, Bootstrap, Sequelize, Token-Based Authentication(JWT)
 
 ## [Link to deployed app](https://turtle-game.herokuapp.com/)
 
