@@ -1,5 +1,6 @@
-.key, .key:hover, .key.active, .key:active {
+.key, .key:hover,  .key:active {
   background-color: lightGrey;
+
   margin: 1px;
   padding: 4px;
   height: 60px;

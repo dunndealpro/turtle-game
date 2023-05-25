@@ -13,18 +13,21 @@ export default function AuthPage({ setUser }) {
     return (
         <>
             <div className='d-flex justify-content-center align-items-center vh-100 auth-page'>
-                <Container className="bg-light rounded">
+                <Container >
                     <Row className="m-2 justify-content-center align-items-center">
-                        <Col md={6} bg-dark className="">
+                        <Col lg={6} bg-dark className="bg-light rounded pb-4 pt-4">
                             <h1 className="p-2">Welcome to Turtle!</h1>
                             <h2 className="p-2"> Please Login or Sign up!</h2>
-                            <Button variant="secondary" className="p-2 mx-auto mb-2" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'New User'}</Button>
+                            <Button variant="secondary" className="p-2 mx-auto mt-2 mb-2" onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'New User'}</Button>
+                           {/* <Col > */}
                             {showSignUp ?
                                 <SignUpForm className=" " setUser={setUser} />
                                 :
                                 <LoginForm className=" " setUser={setUser} />
                             }
-                            </Col>
+                           {/* </Col> */}
+                        </Col>
+                           
                     </Row>
                 </Container>
             </div>
