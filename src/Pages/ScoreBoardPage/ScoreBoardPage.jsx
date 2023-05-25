@@ -35,7 +35,7 @@ export default function ScoreBoardPage(props) {
                                 <Col xs='12' md="6">
                                     <div>
                                         <h1>
-                                            Score Board Page
+                                            Scoreboard Page
                                         </h1>
                                         <span className='fs-3 '><strong>{props.user.name}'s Stats </strong></span>
                                         <PlayerStats userScore={stats} />
