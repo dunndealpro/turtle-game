@@ -26,7 +26,7 @@ export default function NavBar({ user, setUser }) {
           <Nav variant="" className="">
             <Nav.Link   href="/" className="d-sm-block turtle-nav-item">Games</Nav.Link>
             <Nav.Link   className='turtle-nav-item' href="/about">About</Nav.Link>
-            <Nav.Link     className="turtle-nav-item" href="/score-board">ScoreBoard</Nav.Link>
+            <Nav.Link     className="turtle-nav-item" href="/score-board">Scoreboard</Nav.Link>
             <Nav.Link   className="d-md-none" onClick={handleLogOut} href="">Logout</Nav.Link>
             <NavDropdown className="d-none d-md-block turtle-nav-item" title={title} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={handleLogOut} href="/">Logout</NavDropdown.Item>
